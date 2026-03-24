@@ -1,0 +1,2136 @@
+[
+  {
+    "id": "N-NX01-P03-E-004",
+    "import": null,
+    "reciter": {
+      "age": 20,
+      "gender": "MALE",
+      "id": 4
+    },
+    "script": {
+      "chars_count": 1496,
+      "id": "N-NX01",
+      "normalized": [
+        "서울시는 세입자 보호와 함께 전세 사기 엄단에 나섰습니다.",
+        "노후 아파트들이 밀집한 여의도에서 처음으로 정비구역 지정 아파트가 나왔습니다.",
+        "지은 지 사십 육 년 된 공작아파트 정비계획안이 서울시에서 통과됐습니다.",
+        "여의도 일대 초고층 개발에 시동이 걸리게 되었습니다.",
+        "안전진단 개편과 부담금 면제 수준이 재건축 활성화의 관건이 될 것으로 보입니다.",
+        "현대중공업 군산조선소에서 생산직 직원을 대규모로 뽑는 자리가 마련됐습니다.",
+        "재가동 결정 뒤 처음으로 대규모 채용 행사가 열린 것입니다.",
+        "대학 졸업 예정자부터 은퇴자까지 오백여 명의 발길이 이어졌습니다.",
+        "자녀 학자금과 숙소비 지원 등 복지혜택도 적지 않습니다.",
+        "조선소가 다시 멈출 수 있어 불안하다는 반응도 있습니다.",
+        "협력사들은 경력자를 구하려고 애를 먹었습니다.",
+        "조선업 생태계가 무너졌기 때문에, 지원자 대부분이 고령인 점도 아쉽다는 입장입니다.",
+        "연간 십만 톤의 선박 블록을 만들려면 구백여 명이 필요합니다.",
+        "현재, 채용 예정이거나 교육 중인 인원은 삼백 명 정도입니다.",
+        "사건은 지난해 시 월 이십 구 일 아침 여덟 시, 서초구의 한 거리에서 발생했습니다.",
+        "창문을 열고 달리던 운전자가 차에서 내려 에이씨의 몸을 밀치기 시작했습니다.",
+        "에이씨는 강한 힘으로 내 목을 조르고 폭행했다고 주장하고 있습니다.",
+        "결국, 에이씨는 경찰에 운전자를 고소했습니다.",
+        "문제는 운전자도 에이씨를 쌍방폭행 혐의로 고소했다는 것입니다.",
+        "방배경찰서는 폭행의 방어 수준이 어느 정도였는지 를 따져야 한다고 설명했습니다.",
+        "사건을 넘겨받은 검찰도 에이씨에게 쌍방과실 혐의가 인정된다며, 구약식 처분을 내렸습니다.",
+        "에이씨는 묻지마 폭행을 당하고도 전과자가 되게 생겼다며 정식재판을 원한다고 밝혔습니다.",
+        "브라질에서 유에프오가 목격돼 화제가 되고 있다.",
+        "이십 사 일 브라질 언론들은 상파울루 상공에 유에프오가 나타났다고 보도했다.",
+        "그들은 수십 개의 빛이 푸른색 빛을 둘러싸고 원을 그리며 밤하늘에 떠 있었다고 증언했다.",
+        "현지 경찰은 일대에 불꽃놀이 행사는 없었으며 군사 비행훈련도 없었다고 밝혔다.",
+        "최근 남미의 한 도시에 유에프오의 흔적으로 보이는 기이한 물체가 추락했다.",
+        "주민들은 지름 일 미터의 커다란 구체가 떨어지는 것을 목격하고 경찰에 신고했다.",
+        "무게 오십 킬로그램의 이 구체는 정확한 정체나 용도를 알 수 없는 상황이다.",
+        "목격자들은 외계인이나 유에프오의 흔적이 아니냐는 추측을 내비치고 있다.",
+        "얼마 전 러시아에서 구름을 닮은 듯한 거대한 미확인비행물체가 목격된 바 있어 의문은 커지고 있다.",
+        "아직 그 어떤 명확한 정보도 나오지 않은 상태다.",
+        "유에프오 추종자들은 철저한 조사를 요구했다.",
+        "미국 경찰이 순직 동료를 대신해 일일 아빠로 변신했다.",
+        "팔 일 오전, 테네시주 러더퍼드 카운티의 한 학교에 경찰차가 들어섰다.",
+        "경찰 호위 속에 나타난 오 세의 꼬마는 이 학교 입학생 안나 쿠즈넷소바였다.",
+        "안나는 도열한 경찰 삼십 여 명에게 손을 흔들며 인사를 했다.",
+        "시장 에반 콜은 쿠즈넷소바 경사는 언제나 타인을 위해 싸웠다며 그를 애도했다.",
+        "안나는 호위해 준 경찰들 한 명 한 명과 손뼉을 부딪쳤다며 뿌듯함을 드러냈다.",
+        "펀자브주 총리는 현장 책임자의 제안에 따라 주저 없이 강물 한 잔을 떠 마셨다.",
+        "정치인으로서 정화사업에 대한 확신을 보여주기 위한 퍼포먼스였다.",
+        "현지 언론은 총리가 극심한 복통과 함께 감염 진단을 받았다고 전했다.",
+        "더인디안익스프레스는 인근 사십 개 마을이 여전히 오 폐수를 강물에 불법 방류 중이라고 전했다.",
+        "총리 측은 검진차 병원을 찾은 것뿐이라고 해명했다.",
+        "딸이 주는 육아 수고비가 부담이 될까, 걱정도 됩니다.",
+        "서울시가 아이를 돌봐주는 친인척에게 매달 수당을 지급하겠다고 밝혔습니다.",
+        "벌써부터 부정하게 수당을 타낼 수 있다는 우려가 나오고 있습니다.",
+        "서울시는 부정수급 적발 시 강력한 제재 및 환수 방안을 검토 중이라고 밝혔습니다.",
+        "삼십 대 여성이 지방흡입 수술을 받은 뒤 피부 괴사 진단을 받았습니다.",
+        "수술을 한 병원은 괜찮다는 말만 되풀이하면서 오히려 환자에게 책임을 돌렸습니다."
+      ],
+      "origin": [
+        "서울시는 세입자 보호와 함께 전세 사기 엄단에 나섰습니다. ",
+        "노후 아파트들이 밀집한 여의도에서 처음으로 정비구역 지정 아파트가 나왔습니다. ",
+        "지은 지 46년 된 공작아파트 정비계획안이 서울시에서 통과됐습니다. ",
+        "여의도 일대 초고층 개발에 시동이 걸리게 되었습니다. ",
+        "안전진단 개편과 부담금 면제 수준이 재건축 활성화의 관건이 될 것으로 보입니다. ",
+        "현대중공업 군산조선소에서 생산직 직원을 대규모로 뽑는 자리가 마련됐습니다.",
+        "재가동 결정 뒤 처음으로 대규모 채용 행사가 열린 것입니다.",
+        "대학 졸업 예정자부터 은퇴자까지 5백여 명의 발길이 이어졌습니다.",
+        "자녀 학자금과 숙소비 지원 등 복지혜택도 적지 않습니다.",
+        "조선소가 다시 멈출 수 있어 불안하다는 반응도 있습니다.",
+        "협력사들은 경력자를 구하려고 애를 먹었습니다.",
+        "조선업 생태계가 무너졌기 때문에, 지원자 대부분이 고령인 점도 아쉽다는 입장입니다.",
+        "연간 10만 톤의 선박 블록을 만들려면 9백여 명이 필요합니다.",
+        "현재, 채용 예정이거나 교육 중인 인원은 3백 명 정도입니다.",
+        "사건은 지난해 10월 29일 아침 8시, 서초구의 한 거리에서 발생했습니다.",
+        "창문을 열고 달리던 운전자가 차에서 내려 A씨의 몸을 밀치기 시작했습니다.",
+        "A씨는 \"강한 힘으로 내 목을 조르고 폭행했다\"고 주장하고 있습니다.",
+        "결국, A씨는 경찰에 운전자를 고소했습니다.",
+        "문제는 운전자도 A씨를 쌍방폭행 혐의로 고소했다는 것입니다.",
+        "방배경찰서는 '폭행의 방어 수준이 어느 정도였는지' 를 따져야 한다고 설명했습니다.",
+        "사건을 넘겨받은 검찰도 A씨에게 쌍방과실 혐의가 인정된다며, 구약식 처분을 내렸습니다.",
+        "A씨는 \"묻지마 폭행을 당하고도 전과자가 되게 생겼다\"며 \"정식재판을 원한다\"고 밝혔습니다.",
+        "브라질에서 UFO가 목격돼 화제가 되고 있다.",
+        "24일 브라질 언론들은 상파울루 상공에 UFO가 나타났다고 보도했다.",
+        "그들은 수십 개의 빛이 푸른색 빛을 둘러싸고 원을 그리며 밤하늘에 떠 있었다고 증언했다.",
+        "현지 경찰은 일대에 불꽃놀이 행사는 없었으며 군사 비행훈련도 없었다고 밝혔다.",
+        "최근 남미의 한 도시에 UFO의 흔적으로 보이는 기이한 물체가 추락했다.",
+        "주민들은 지름 1m의 커다란 구체가 떨어지는 것을 목격하고 경찰에 신고했다.",
+        "무게 50㎏의 이 구체는 정확한 정체나 용도를 알 수 없는 상황이다.",
+        "목격자들은 외계인이나 UFO의 흔적이 아니냐는 추측을 내비치고 있다.",
+        "얼마 전 러시아에서 구름을 닮은 듯한 거대한 미확인비행물체가 목격된 바 있어 의문은 커지고 있다.",
+        "아직 그 어떤 명확한 정보도 나오지 않은 상태다.",
+        "UFO 추종자들은 철저한 조사를 요구했다.",
+        "미국 경찰이 순직 동료를 대신해 ‘일일 아빠’로 변신했다. ",
+        "8일 오전, 테네시주 러더퍼드 카운티의 한 학교에 경찰차가 들어섰다. ",
+        "경찰 호위 속에 나타난 5세의 꼬마는 이 학교 입학생 안나 쿠즈넷소바였다.",
+        "안나는 도열한 경찰 30여 명에게 손을 흔들며 인사를 했다.",
+        "시장 에반 콜은 \"쿠즈넷소바 경사는 언제나 타인을 위해 싸웠다”며 그를 애도했다.",
+        "안나는 호위해 준 경찰들 한 명 한 명과 손뼉을 부딪쳤다며 뿌듯함을 드러냈다.",
+        "펀자브주 총리는 현장 책임자의 제안에 따라 주저 없이 강물 한 잔을 떠 마셨다.",
+        "정치인으로서 정화사업에 대한 확신을 보여주기 위한 퍼포먼스였다.",
+        "현지 언론은 총리가 극심한 복통과 함께 감염 진단을 받았다고 전했다.",
+        "더인디안익스프레스는 인근 40개 마을이 여전히 오·폐수를 강물에 불법 방류 중이라고 전했다.",
+        "총리 측은 검진차 병원을 찾은 것뿐이라고 해명했다. ",
+        "딸이 주는 육아 수고비가 부담이 될까, 걱정도 됩니다.",
+        "서울시가 아이를 돌봐주는 친인척에게 매달 '수당'을 지급하겠다고 밝혔습니다.",
+        "벌써부터 부정하게 수당을 타낼 수 있다는 우려가 나오고 있습니다.",
+        "서울시는 부정수급 적발 시 강력한 제재 및 환수 방안을 검토 중이라고 밝혔습니다.",
+        "30대 여성이 지방흡입 수술을 받은 뒤 피부 괴사 진단을 받았습니다.",
+        "수술을 한 병원은 괜찮다는 말만 되풀이하면서 오히려 환자에게 책임을 돌렸습니다."
+      ],
+      "part_no": 3,
+      "tokens_count": 472
+    },
+    "sentences": [
+      {
+        "id": "N-NX-E-004-0101",
+        "origin_text": "서울시는 세입자 보호와 함께 전세 사기 엄단에 나섰습니다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.3800048828125,
+          "file_duration": 4.8800048828125,
+          "filename": "N-NX-E-004-0101.wav",
+          "ptr": "서울시는 세입자 보호와 함께  /  전세 사기 엄단에 나섰습니다.",
+          "tr": "서울시는 세입자 보호와 함께 전세 사기 엄단에 나섰습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0102",
+        "origin_text": "노후 아파트들이 밀집한 여의도에서 처음으로 정비구역 지정 아파트가 나왔습니다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.260009765625,
+          "file_duration": 5.760009765625,
+          "filename": "N-NX-E-004-0102.wav",
+          "ptr": "노후 아파트들이 밀집한 여의도에서  /  처음으로 정비구역 지정 아파트가 나왔습니다.",
+          "tr": "노후 아파트들이 밀집한 여의도에서 처음으로 정비구역 지정 아파트가 나왔습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0103",
+        "origin_text": "지은 지 46년 된 공작아파트 정비계획안이 서울시에서 통과됐습니다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.393399092970526,
+          "file_duration": 5.699995117187498,
+          "filename": "N-NX-E-004-0103.wav",
+          "ptr": "지은 지 사십 육 년 된 공작아파트 정비계획안이  /  서울시에서 통과됐습니다.",
+          "tr": "지은 지 사십 육 년 된 공작아파트 정비계획안이 서울시에서 통과됐습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0104",
+        "origin_text": "여의도 일대 초고층 개발에 시동이 걸리게 되었습니다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.219970703125,
+          "file_duration": 3.719970703125,
+          "filename": "N-NX-E-004-0104.wav",
+          "ptr": "여의도 일대 초고층 개발에 시동이 걸리게 되었습니다.",
+          "tr": "여의도 일대 초고층 개발에 시동이 걸리게 되었습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0105",
+        "origin_text": "안전진단 개편과 부담금 면제 수준이 재건축 활성화의 관건이 될 것으로 보입니다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 6.05999755859375,
+          "file_duration": 6.55999755859375,
+          "filename": "N-NX-E-004-0105.wav",
+          "ptr": "안전진단 개편과 부담금 면제 수준이  /  재건축 활성화의 관건이 될 것으로 보입니다.",
+          "tr": "안전진단 개편과 부담금 면제 수준이 재건축 활성화의 관건이 될 것으로 보입니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0106",
+        "origin_text": "현대중공업 군산조선소에서 생산직 직원을 대규모로 뽑는 자리가 마련됐습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.87994384765625,
+          "file_duration": 6.37994384765625,
+          "filename": "N-NX-E-004-0106.wav",
+          "ptr": "현대중공업  /  군산조선소에서  /  생산직 직원을 대규모로 뽑는 자리가 마련됐습니다.",
+          "tr": "현대중공업 군산조선소에서 생산직 직원을 대규모로 뽑는 자리가 마련됐습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0107",
+        "origin_text": "재가동 결정 뒤 처음으로 대규모 채용 행사가 열린 것입니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.29998779296875,
+          "file_duration": 4.79998779296875,
+          "filename": "N-NX-E-004-0107.wav",
+          "ptr": "재가동 결정 뒤 처음으로  /  대규모 채용 행사가 열린 것입니다.",
+          "tr": "재가동 결정 뒤 처음으로 대규모 채용 행사가 열린 것입니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0108",
+        "origin_text": "대학 졸업 예정자부터 은퇴자까지 5백여 명의 발길이 이어졌습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.97998046875,
+          "file_duration": 5.47998046875,
+          "filename": "N-NX-E-004-0108.wav",
+          "ptr": "대학 졸업 예정자부터 은퇴자까지  /  오백여 명의 발길이 이어졌습니다.",
+          "tr": "대학 졸업 예정자부터 은퇴자까지 오백여 명의 발길이 이어졌습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0109",
+        "origin_text": "자녀 학자금과 숙소비 지원 등 복지혜택도 적지 않습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.53997802734375,
+          "file_duration": 5.03997802734375,
+          "filename": "N-NX-E-004-0109.wav",
+          "ptr": "자녀 학자금과 숙소비 지원 등  /  복지혜택도 적지 않습니다.",
+          "tr": "자녀 학자금과 숙소비 지원 등 복지혜택도 적지 않습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0110",
+        "origin_text": "조선소가 다시 멈출 수 있어 불안하다는 반응도 있습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.77996826171875,
+          "file_duration": 4.27996826171875,
+          "filename": "N-NX-E-004-0110.wav",
+          "ptr": "조선소가 다시 멈출 수 있어  /  불안하다는 반응도 있습니다.",
+          "tr": "조선소가 다시 멈출 수 있어 불안하다는 반응도 있습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0111",
+        "origin_text": "협력사들은 경력자를 구하려고 애를 먹었습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.1600341796875,
+          "file_duration": 3.6600341796875,
+          "filename": "N-NX-E-004-0111.wav",
+          "ptr": "협력사들은 경력자를 구하려고 애를 먹었습니다.",
+          "tr": "협력사들은 경력자를 구하려고 애를 먹었습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0112",
+        "origin_text": "조선업 생태계가 무너졌기 때문에, 지원자 대부분이 고령인 점도 아쉽다는 입장입니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 6.05999755859375,
+          "file_duration": 6.55999755859375,
+          "filename": "N-NX-E-004-0112.wav",
+          "ptr": "조선업 생태계가 무너졌기 때문에  /  지원자 대부분이 고령인 점도  /  아쉽다는 입장입니다.",
+          "tr": "조선업 생태계가 무너졌기 때문에, 지원자 대부분이 고령인 점도 아쉽다는 입장입니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0113",
+        "origin_text": "연간 10만 톤의 선박 블록을 만들려면 9백여 명이 필요합니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.41998291015625,
+          "file_duration": 4.91998291015625,
+          "filename": "N-NX-E-004-0113.wav",
+          "ptr": "연간 십만 톤의 선박 블록을 만들려면  /  구백여 명이 필요합니다.",
+          "tr": "연간 십만 톤의 선박 블록을 만들려면 구백여 명이 필요합니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0114",
+        "origin_text": "현재, 채용 예정이거나 교육 중인 인원은 3백 명 정도입니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.70001220703125,
+          "file_duration": 5.20001220703125,
+          "filename": "N-NX-E-004-0114.wav",
+          "ptr": "현재 채용 예정이거나 교육 중인 인원은  /  삼백 명 정도입니다.",
+          "tr": "현재, 채용 예정이거나 교육 중인 인원은 삼백 명 정도입니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0115",
+        "origin_text": "사건은 지난해 10월 29일 아침 8시, 서초구의 한 거리에서 발생했습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.79998779296875,
+          "file_duration": 6.29998779296875,
+          "filename": "N-NX-E-004-0115.wav",
+          "ptr": "사건은 지난해 시 월 이십 구 일 아침 여덟 시  /  서초구의 한 거리에서 발생했습니다.",
+          "tr": "사건은 지난해 시 월 이십 구 일 아침 여덟 시, 서초구의 한 거리에서 발생했습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0116",
+        "origin_text": "창문을 열고 달리던 운전자가 차에서 내려 A씨의 몸을 밀치기 시작했습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.46002197265625,
+          "file_duration": 5.96002197265625,
+          "filename": "N-NX-E-004-0116.wav",
+          "ptr": "창문을 열고 달리던 운전자가 차에서 내려  /  에이씨의 몸을 밀치기 시작했습니다.",
+          "tr": "창문을 열고 달리던 운전자가 차에서 내려 에이씨의 몸을 밀치기 시작했습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0117",
+        "origin_text": "A씨는 \"강한 힘으로 내 목을 조르고 폭행했다\"고 주장하고 있습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.3599853515625,
+          "file_duration": 4.819987792968746,
+          "filename": "N-NX-E-004-0117.wav",
+          "ptr": "에이씨는 강한 힘으로 내 목을 조르고 폭행했다고 주장하고 있습니다.",
+          "tr": "에이씨는 강한 힘으로 내 목을 조르고 폭행했다고 주장하고 있습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0118",
+        "origin_text": "결국, A씨는 경찰에 운전자를 고소했습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.5,
+          "file_duration": 4,
+          "filename": "N-NX-E-004-0118.wav",
+          "ptr": "결국  /  에이씨는 경찰에 운전자를 고소했습니다.",
+          "tr": "결국, 에이씨는 경찰에 운전자를 고소했습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0119",
+        "origin_text": "문제는 운전자도 A씨를 쌍방폭행 혐의로 고소했다는 것입니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.800048828125,
+          "file_duration": 5.300048828125,
+          "filename": "N-NX-E-004-0119.wav",
+          "ptr": "문제는 운전자도 에이씨를  /  쌍방폭행 혐의로 고소했다는 것입니다.",
+          "tr": "문제는 운전자도 에이씨를 쌍방폭행 혐의로 고소했다는 것입니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0120",
+        "origin_text": "방배경찰서는 `폭행의 방어 수준이 어느 정도였는지` 를 따져야 한다고 설명했습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.3800048828125,
+          "file_duration": 5.8800048828125,
+          "filename": "N-NX-E-004-0120.wav",
+          "ptr": "방배경찰서는  /  폭행의 방어 수준이 어느 정도였는지를 따져야 한다고 설명했습니다.",
+          "tr": "방배경찰서는 폭행의 방어 수준이 어느 정도였는지를 따져야 한다고 설명했습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0121",
+        "origin_text": "사건을 넘겨받은 검찰도 A씨에게 쌍방과실 혐의가 인정된다며, 구약식 처분을 내렸습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 6.8800048828125,
+          "file_duration": 7.3800048828125,
+          "filename": "N-NX-E-004-0121.wav",
+          "ptr": "사건을 넘겨받은 검찰도  /  에이씨에게 쌍방과실 혐의가 인정된다며  /  구약식 처분을 내렸습니다.",
+          "tr": "사건을 넘겨받은 검찰도 에이씨에게 쌍방과실 혐의가 인정된다며, 구약식 처분을 내렸습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0122",
+        "origin_text": "A씨는 \"묻지마 폭행을 당하고도 전과자가 되게 생겼다\"며 \"정식재판을 원한다\"고 밝혔습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 6.5,
+          "file_duration": 6.9499560546875045,
+          "filename": "N-NX-E-004-0122.wav",
+          "ptr": "에이씨는 묻지마 폭행을 당하고도  /  전과자가 되게 생겼다며  /  정식재판을 원한다고 밝혔습니다.",
+          "tr": "에이씨는 묻지마 폭행을 당하고도 전과자가 되게 생겼다며 정식재판을 원한다고 밝혔습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0123",
+        "origin_text": "브라질에서 UFO가 목격돼 화제가 되고 있다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.3800048828125,
+          "file_duration": 3.8800048828125,
+          "filename": "N-NX-E-004-0123.wav",
+          "ptr": "브라질에서 유에프오가 목격돼  /  화제가 되고 있다.",
+          "tr": "브라질에서 유에프오가 목격돼 화제가 되고 있다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0124",
+        "origin_text": "24일 브라질 언론들은 상파울루 상공에 UFO가 나타났다고 보도했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.47998046875,
+          "file_duration": 5.97998046875,
+          "filename": "N-NX-E-004-0124.wav",
+          "ptr": "이십 사 일 브라질 언론들은  /  상파울루 상공에 유에프오가 나타났다고 보도했다.",
+          "tr": "이십 사 일 브라질 언론들은 상파울루 상공에 유에프오가 나타났다고 보도했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0125",
+        "origin_text": "그들은 수십 개의 빛이 푸른색 빛을 둘러싸고 원을 그리며 밤하늘에 떠 있었다고 증언했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 6.20001220703125,
+          "file_duration": 6.70001220703125,
+          "filename": "N-NX-E-004-0125.wav",
+          "ptr": "그들은 수십 개의 빛이 푸른색 빛을 둘러싸고  /  원을 그리며  /  밤하늘에 떠 있었다고 증언했다.",
+          "tr": "그들은 수십 개의 빛이 푸른색 빛을 둘러싸고 원을 그리며 밤하늘에 떠 있었다고 증언했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0126",
+        "origin_text": "현지 경찰은 일대에 불꽃놀이 행사는 없었으며 군사 비행훈련도 없었다고 밝혔다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.9599609375,
+          "file_duration": 6.4599609375,
+          "filename": "N-NX-E-004-0126.wav",
+          "ptr": "현지 경찰은 일대에 불꽃놀이 행사는 없었으며  /  군사 비행훈련도 없었다고 밝혔다.",
+          "tr": "현지 경찰은 일대에 불꽃놀이 행사는 없었으며 군사 비행훈련도 없었다고 밝혔다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0127",
+        "origin_text": "최근 남미의 한 도시에 UFO의 흔적으로 보이는 기이한 물체가 추락했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.17999267578125,
+          "file_duration": 5.67999267578125,
+          "filename": "N-NX-E-004-0127.wav",
+          "ptr": "최근 남미의 한 도시에  /  유에프오의 흔적으로 보이는  /  기이한 물체가 추락했다.",
+          "tr": "최근 남미의 한 도시에 유에프오의 흔적으로 보이는 기이한 물체가 추락했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0128",
+        "origin_text": "주민들은 지름 1m의 커다란 구체가 떨어지는 것을 목격하고 경찰에 신고했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.55999755859375,
+          "file_duration": 6.05999755859375,
+          "filename": "N-NX-E-004-0128.wav",
+          "ptr": "주민들은 지름 일 미터의 커다란 구체가 떨어지는 것을 목격하고  /  경찰에 신고했다.",
+          "tr": "주민들은 지름 일 미터의 커다란 구체가 떨어지는 것을 목격하고 경찰에 신고했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0129",
+        "origin_text": "무게 50㎏의 이 구체는 정확한 정체나 용도를 알 수 없는 상황이다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.1600341796875,
+          "file_duration": 5.6600341796875,
+          "filename": "N-NX-E-004-0129.wav",
+          "ptr": "무게 오십 킬로그램의 이 구체는  /  정확한 정체나 용도를 알 수 없는 상황이다.",
+          "tr": "무게 오십 킬로그램의 이 구체는 정확한 정체나 용도를 알 수 없는 상황이다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0130",
+        "origin_text": "목격자들은 외계인이나 UFO의 흔적이 아니냐는 추측을 내비치고 있다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.17999267578125,
+          "file_duration": 5.67999267578125,
+          "filename": "N-NX-E-004-0130.wav",
+          "ptr": "목격자들은 외계인이나 유에프오의 흔적이 아니냐는  /  추측을 내비치고 있다.",
+          "tr": "목격자들은 외계인이나 유에프오의 흔적이 아니냐는 추측을 내비치고 있다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0131",
+        "origin_text": "얼마 전 러시아에서 구름을 닮은 듯한 거대한 미확인비행물체가 목격된 바 있어 의문은 커지고 있다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 7.10003662109375,
+          "file_duration": 7.60003662109375,
+          "filename": "N-NX-E-004-0131.wav",
+          "ptr": "얼마 전 러시아에서 구름을 닮은 듯한  /  거대한 미확인비행물체가 목격된 바 있어  /  의문은 커지고 있다.",
+          "tr": "얼마 전 러시아에서 구름을 닮은 듯한 거대한 미확인비행물체가 목격된 바 있어 의문은 커지고 있다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0132",
+        "origin_text": "아직 그 어떤 명확한 정보도 나오지 않은 상태다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.699951171875,
+          "file_duration": 4.199951171875,
+          "filename": "N-NX-E-004-0132.wav",
+          "ptr": "아직 그 어떤 명확한 정보도  /  나오지 않은 상태다.",
+          "tr": "아직 그 어떤 명확한 정보도 나오지 않은 상태다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0133",
+        "origin_text": "UFO 추종자들은 철저한 조사를 요구했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.139892578125,
+          "file_duration": 3.639892578125,
+          "filename": "N-NX-E-004-0133.wav",
+          "ptr": "유에프오 추종자들은  /  철저한 조사를 요구했다.",
+          "tr": "유에프오 추종자들은 철저한 조사를 요구했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0134",
+        "origin_text": "미국 경찰이 순직 동료를 대신해 ‘일일 아빠’로 변신했다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.0999755859375,
+          "file_duration": 4.569973144531247,
+          "filename": "N-NX-E-004-0134.wav",
+          "ptr": "미국 경찰이 순직 동료를 대신해  /  일일 아빠로 변신했다.",
+          "tr": "미국 경찰이 순직 동료를 대신해 일일 아빠로 변신했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0135",
+        "origin_text": "8일 오전, 테네시주 러더퍼드 카운티의 한 학교에 경찰차가 들어섰다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.2799072265625,
+          "file_duration": 5.7799072265625,
+          "filename": "N-NX-E-004-0135.wav",
+          "ptr": "팔 일 오전 테네시주 러더퍼드 카운티의 한 학교에  /  경찰차가 들어섰다.",
+          "tr": "팔 일 오전, 테네시주 러더퍼드 카운티의 한 학교에 경찰차가 들어섰다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0136",
+        "origin_text": "경찰 호위 속에 나타난 5세의 꼬마는 이 학교 입학생 안나 쿠즈넷소바였다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.739990234375,
+          "file_duration": 6.239990234375,
+          "filename": "N-NX-E-004-0136.wav",
+          "ptr": "경찰 호위 속에 나타난 오 세의 꼬마는  /  이 학교 입학생  /  안나 쿠즈넷소바였다.",
+          "tr": "경찰 호위 속에 나타난 오 세의 꼬마는 이 학교 입학생 안나 쿠즈넷소바였다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0137",
+        "origin_text": "안나는 도열한 경찰 30여 명에게 손을 흔들며 인사를 했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.92937641723347,
+          "file_duration": 5.17937641723347,
+          "filename": "N-NX-E-004-0137.wav",
+          "ptr": "안나는 도열한 경찰 삼십여 명에게 손을 흔들며 인사를 했다.",
+          "tr": "안나는 도열한 경찰 삼십여 명에게 손을 흔들며 인사를 했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0138",
+        "origin_text": "시장 에반 콜은 \"쿠즈넷소바 경사는 언제나 타인을 위해 싸웠다”며 그를 애도했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.8599853515625,
+          "file_duration": 6.3599853515625,
+          "filename": "N-NX-E-004-0138.wav",
+          "ptr": "시장 에반 콜은  /  쿠즈넷소바 경사는 언제나 타인을 위해 싸웠다며  /  그를 애도했다.",
+          "tr": "시장 에반 콜은 쿠즈넷소바 경사는 언제나 타인을 위해 싸웠다며 그를 애도했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0139",
+        "origin_text": "안나는 호위해 준 경찰들 한 명 한 명과 손뼉을 부딪쳤다며 뿌듯함을 드러냈다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.760009765625,
+          "file_duration": 6.260009765625,
+          "filename": "N-NX-E-004-0139.wav",
+          "ptr": "안나는 호위해 준 경찰들 한 명 한 명과 손뼉을 부딪쳤다며  /  뿌듯함을 드러냈다.",
+          "tr": "안나는 호위해 준 경찰들 한 명 한 명과 손뼉을 부딪쳤다며 뿌듯함을 드러냈다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0140",
+        "origin_text": "펀자브주 총리는 현장 책임자의 제안에 따라 주저 없이 강물 한 잔을 떠 마셨다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.8199462890625,
+          "file_duration": 6.3199462890625,
+          "filename": "N-NX-E-004-0140.wav",
+          "ptr": "펀자브주 총리는  /  현장 책임자의 제안에 따라  /  주저 없이 강물 한 잔을 떠 마셨다.",
+          "tr": "펀자브주 총리는 현장 책임자의 제안에 따라 주저 없이 강물 한 잔을 떠 마셨다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0141",
+        "origin_text": "정치인으로서 정화사업에 대한 확신을 보여주기 위한 퍼포먼스였다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.4600830078125,
+          "file_duration": 4.9600830078125,
+          "filename": "N-NX-E-004-0141.wav",
+          "ptr": "정치인으로서 정화사업에 대한 확신을 보여주기 위한  /  퍼포먼스였다.",
+          "tr": "정치인으로서 정화사업에 대한 확신을 보여주기 위한 퍼포먼스였다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0142",
+        "origin_text": "현지 언론은 총리가 극심한 복통과 함께 감염 진단을 받았다고 전했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.1600341796875,
+          "file_duration": 5.6600341796875,
+          "filename": "N-NX-E-004-0142.wav",
+          "ptr": "현지 언론은 총리가 극심한 복통과 함께  /  감염 진단을 받았다고 전했다.",
+          "tr": "현지 언론은 총리가 극심한 복통과 함께 감염 진단을 받았다고 전했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0143",
+        "origin_text": "더인디안익스프레스는 인근 40개 마을이 여전히 오·폐수를 강물에 불법 방류 중이라고 전했다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 6.8800048828125,
+          "file_duration": 7.3800048828125,
+          "filename": "N-NX-E-004-0143.wav",
+          "ptr": "더인디안익스프레스는  /  인근 사십 개 마을이 여전히 오 폐수를  /  강물에 불법 방류 중이라고 전했다.",
+          "tr": "더인디안익스프레스는 인근 사십 개 마을이 여전히 오 폐수를 강물에 불법 방류 중이라고 전했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0144",
+        "origin_text": "총리 측은 검진차 병원을 찾은 것뿐이라고 해명했다. ",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.5999755859375,
+          "file_duration": 4.0999755859375,
+          "filename": "N-NX-E-004-0144.wav",
+          "ptr": "총리 측은 검진차 병원을 찾은 것뿐이라고 해명했다.",
+          "tr": "총리 측은 검진차 병원을 찾은 것뿐이라고 해명했다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0145",
+        "origin_text": "딸이 주는 육아 수고비가 부담이 될까, 걱정도 됩니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 3.580078125,
+          "file_duration": 4.080078125,
+          "filename": "N-NX-E-004-0145.wav",
+          "ptr": "딸이 주는 육아 수고비가 부담이 될까  /  걱정도 됩니다.",
+          "tr": "딸이 주는 육아 수고비가 부담이 될까, 걱정도 됩니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0146",
+        "origin_text": "서울시가 아이를 돌봐주는 친인척에게 매달 `수당`을 지급하겠다고 밝혔습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.8800048828125,
+          "file_duration": 5.3800048828125,
+          "filename": "N-NX-E-004-0146.wav",
+          "ptr": "서울시가 아이를 돌봐주는 친인척에게  /  매달 수당을 지급하겠다고 밝혔습니다.",
+          "tr": "서울시가 아이를 돌봐주는 친인척에게 매달 수당을 지급하겠다고 밝혔습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0147",
+        "origin_text": "벌써부터 부정하게 수당을 타낼 수 있다는 우려가 나오고 있습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.1600341796875,
+          "file_duration": 4.6600341796875,
+          "filename": "N-NX-E-004-0147.wav",
+          "ptr": "벌써부터 부정하게 수당을 타낼 수 있다는 우려가  /  나오고 있습니다.",
+          "tr": "벌써부터 부정하게 수당을 타낼 수 있다는 우려가 나오고 있습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0148",
+        "origin_text": "서울시는 부정수급 적발 시 강력한 제재 및 환수 방안을 검토 중이라고 밝혔습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.860107421875,
+          "file_duration": 6.360107421875,
+          "filename": "N-NX-E-004-0148.wav",
+          "ptr": "서울시는 부정수급 적발 시  /  강력한 제재 및  /  환수 방안을 검토 중이라고 밝혔습니다.",
+          "tr": "서울시는 부정수급 적발 시 강력한 제재 및 환수 방안을 검토 중이라고 밝혔습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0149",
+        "origin_text": "30대 여성이 지방흡입 수술을 받은 뒤 피부 괴사 진단을 받았습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 4.9600830078125,
+          "file_duration": 5.4600830078125,
+          "filename": "N-NX-E-004-0149.wav",
+          "ptr": "삼십 대 여성이 지방흡입 수술을 받은 뒤  /  피부 괴사 진단을 받았습니다.",
+          "tr": "삼십 대 여성이 지방흡입 수술을 받은 뒤 피부 괴사 진단을 받았습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      },
+      {
+        "id": "N-NX-E-004-0150",
+        "origin_text": "수술을 한 병원은 괜찮다는 말만 되풀이하면서 오히려 환자에게 책임을 돌렸습니다.",
+        "style": {
+          "emotion": "무감정",
+          "intensity": 0,
+          "style": "낭독체",
+          "sub_style": ""
+        },
+        "voice_piece": {
+          "duration": 5.9300537109375,
+          "file_duration": 6.4300537109375,
+          "filename": "N-NX-E-004-0150.wav",
+          "ptr": "수술을 한 병원은 괜찮다는 말만 되풀이하면서  /  오히려 환자에게 책임을 돌렸습니다.",
+          "tr": "수술을 한 병원은 괜찮다는 말만 되풀이하면서 오히려 환자에게 책임을 돌렸습니다."
+        },
+        "votes": [
+          {
+            "likert_scale": 4,
+            "voter": {
+              "age": 30,
+              "gender": "FEMALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 20,
+              "gender": "MALE"
+            }
+          },
+          {
+            "likert_scale": 5,
+            "voter": {
+              "age": 40,
+              "gender": "MALE"
+            }
+          }
+        ]
+      }
+    ],
+    "src_type": "nan",
+    "studio": {
+      "id": "E",
+      "mic": "AKG C-414 XL ll, XLS",
+      "micpre": "Discrete 8 Synergy Core",
+      "name": "스튜디오5"
+    },
+    "voice": {
+      "duration": 374.1000453514739,
+      "filename": "/data2/gst-voice/splitted/N/004/N-NX01-P03-E-004.wav",
+      "recorded_at": "2022-09-20 08:51:46",
+      "sample_rate": 44100
+    }
+  }
+]

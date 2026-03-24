@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+.idea/
+.vscode/
+*.egg-info/
+dist/
+build/
+
+.DS_Store
+.ipynb_checkpoints/
+*.log
+
+# 로컬 다운로드 캐시 (모델 등)
+.cache/
+huggingface/
