@@ -6,10 +6,25 @@ SER + STT 감정 인식 테스트 프론트엔드
 import sys
 import tempfile
 from pathlib import Path
+import importlib.util
+
+# Anaconda의 깨진 tensorflow 바이너리로 인해 transformers import가 실패하는 환경 우회
+_original_find_spec = importlib.util.find_spec
+
+
+def _patched_find_spec(name, *args, **kwargs):
+    if name == "tensorflow" or name.startswith("tensorflow."):
+        return None
+    return _original_find_spec(name, *args, **kwargs)
+
+
+importlib.util.find_spec = _patched_find_spec
 
 import numpy as np
 import streamlit as st
 import torch
+import soundfile as sf
+from scipy.signal import resample
 from transformers import Wav2Vec2ForSequenceClassification, Wav2Vec2FeatureExtractor
 
 MODEL_NAME = "superb/wav2vec2-base-superb-er"
@@ -49,15 +64,17 @@ def load_whisper_model():
 
 
 def load_audio(path: str) -> np.ndarray:
-    import librosa
-    y, _ = librosa.load(path, sr=TARGET_SR, mono=True)
-    return np.asarray(y, dtype=np.float32)
+    data, sr = sf.read(path, dtype="float32")
+    if data.ndim > 1:
+        data = data.mean(axis=1)
+    if sr != TARGET_SR:
+        num_samples = int(len(data) * TARGET_SR / sr)
+        data = resample(data, num_samples).astype(np.float32)
+    return np.asarray(data, dtype=np.float32)
 
 
 def transcribe(whisper_model, wav_path: str) -> str:
-    import librosa
-
-    audio = librosa.load(wav_path, sr=16000, mono=True)[0]
+    audio = load_audio(wav_path)
     audio = np.asarray(audio, dtype=np.float32)
     result = whisper_model.transcribe(audio, language="ko")
     return result["text"].strip()
