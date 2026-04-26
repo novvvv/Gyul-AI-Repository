@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emotion Chat Demo</title>
+    <style>
+      :root {
+        --bg: #1c1c1c;
+        --fg: #e5e5e5;
+        --muted: #a8a8a8;
+        --panel: #232323;
+        --user: #2a2a2a;
+        --bot: #303030;
+        --line: #3a3a3a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Inter", "Pretendard", Arial, sans-serif;
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .app {
+        max-width: 860px;
+        margin: 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+      .top {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .status {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+      }
+      button {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: transparent;
+        color: var(--fg);
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .chat {
+        height: 70vh;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .bubble {
+        max-width: 80%;
+        border-radius: 14px;
+        padding: 10px 12px;
+        line-height: 1.45;
+      }
+      .user {
+        align-self: flex-end;
+        background: var(--user);
+      }
+      .bot {
+        align-self: flex-start;
+        background: var(--bot);
+      }
+      .meta {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .live {
+        border-top: 1px solid var(--line);
+        padding: 10px 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      code {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="top">
+        <div>
+          <div class="title">Emotion Chat Demo</div>
+          <div class="status" id="status">상태: 대기 중</div>
+        </div>
+        <div class="controls">
+          <button id="startBtn">시작</button>
+          <button id="stopBtn" disabled>중지</button>
+        </div>
+      </header>
+
+      <section class="chat" id="chat">
+        <div class="bubble bot">
+          안녕하세요. 말씀하시면 문장 단위로 감정을 분석해 답변할게요.
+        </div>
+      </section>
+
+      <footer class="live" id="liveText">실시간 인식: ...</footer>
+    </main>
+
+    <script>
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const statusEl = document.getElementById("status");
+      const chatEl = document.getElementById("chat");
+      const liveTextEl = document.getElementById("liveText");
+
+      let ws = null;
+      let stream = null;
+      let audioCtx = null;
+      let sourceNode = null;
+      let processorNode = null;
+      let recognition = null;
+
+      let finalizedSentences = [];
+      let pendingEmotionSentences = [];
+
+      function setStatus(text) {
+        statusEl.textContent = `상태: ${text}`;
+      }
+
+      function addUserBubble(text) {
+        const node = document.createElement("div");
+        node.className = "bubble user";
+        node.textContent = text;
+        chatEl.appendChild(node);
+        chatEl.scrollTop = chatEl.scrollHeight;
+      }
+
+      function addAiReplyBubble(reply, label, confidence) {
+        const node = document.createElement("div");
+        node.className = "bubble bot";
+        node.innerHTML = `${reply}<div class="meta">emotion: ${label} | confidence: ${confidence.toFixed(
+          4
+        )}</div>`;
+        chatEl.appendChild(node);
+        chatEl.scrollTop = chatEl.scrollHeight;
+      }
+
+      function floatToInt16Bytes(float32Array) {
+        const out = new Int16Array(float32Array.length);
+        for (let i = 0; i < float32Array.length; i++) {
+          const s = Math.max(-1, Math.min(1, float32Array[i]));
+          out[i] = s < 0 ? s * 32768 : s * 32767;
+        }
+        return out.buffer;
+      }
+
+      async function start() {
+        try {
+          ws = new WebSocket("ws://127.0.0.1:8000/ws/predict");
+          ws.binaryType = "arraybuffer";
+
+          ws.onopen = () => setStatus("연결됨 / 청취 중");
+          ws.onmessage = (event) => {
+            if (typeof event.data !== "string") return;
+            const data = JSON.parse(event.data);
+
+            if (data.error) {
+              setStatus(`오류: ${data.error}`);
+              return;
+            }
+            if (data.type !== "final") return;
+
+            const sentence = pendingEmotionSentences.shift();
+            if (!sentence) return;
+            addAiReplyBubble(
+              data.reply ?? "응답을 생성하지 못했어요.",
+              data.label ?? "-",
+              Number(data.confidence ?? 0)
+            );
+          };
+          ws.onerror = () => setStatus("WebSocket 오류");
+          ws.onclose = () => setStatus("WebSocket 종료");
+
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)({
+            sampleRate: 16000,
+          });
+          sourceNode = audioCtx.createMediaStreamSource(stream);
+          processorNode = audioCtx.createScriptProcessor(4096, 1, 1);
+          processorNode.onaudioprocess = (event) => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) return;
+            const input = event.inputBuffer.getChannelData(0);
+            ws.send(floatToInt16Bytes(input));
+          };
+          sourceNode.connect(processorNode);
+          processorNode.connect(audioCtx.destination);
+
+          startBtn.disabled = true;
+          stopBtn.disabled = false;
+          startSpeechToText();
+        } catch (err) {
+          setStatus(`시작 실패: ${err.message}`);
+        }
+      }
+
+      function startSpeechToText() {
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) {
+          liveTextEl.textContent = "실시간 인식: (브라우저 음성인식 미지원)";
+          return;
+        }
+        recognition = new SR();
+        recognition.lang = "ko-KR";
+        recognition.interimResults = true;
+        recognition.continuous = true;
+
+        recognition.onresult = (event) => {
+          let interim = "";
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const t = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              const sentence = t.trim();
+              if (sentence) {
+                finalizedSentences.push(sentence);
+                pendingEmotionSentences.push(sentence);
+                addUserBubble(sentence);
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                  ws.send(
+                    JSON.stringify({
+                      type: "utterance_text",
+                      text: sentence,
+                    })
+                  );
+                }
+              }
+            } else {
+              interim += t;
+            }
+          }
+          liveTextEl.textContent = `실시간 인식: ${interim || "..."}`;
+        };
+        recognition.onerror = () => {};
+        recognition.onend = () => {
+          if (startBtn.disabled) recognition.start();
+        };
+        recognition.start();
+      }
+
+      async function stop() {
+        if (processorNode) processorNode.disconnect();
+        if (sourceNode) sourceNode.disconnect();
+        if (audioCtx) await audioCtx.close();
+        if (stream) stream.getTracks().forEach((t) => t.stop());
+        if (ws && ws.readyState === WebSocket.OPEN) ws.send("flush");
+        if (ws) ws.close();
+        if (recognition) recognition.stop();
+
+        processorNode = null;
+        sourceNode = null;
+        audioCtx = null;
+        stream = null;
+        ws = null;
+        recognition = null;
+        finalizedSentences = [];
+        pendingEmotionSentences = [];
+        liveTextEl.textContent = "실시간 인식: ...";
+
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        setStatus("중지됨");
+      }
+
+      startBtn.addEventListener("click", start);
+      stopBtn.addEventListener("click", stop);
+    </script>
+  </body>
+</html>
