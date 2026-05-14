@@ -2,9 +2,18 @@
 
 ## 1) 실행 순서
 ```bash
+pip install -r requirements.txt
 export OPENAI_API_KEY="여기에_진짜_API키"
 uvicorn ser_api:app --reload
 python3 -m http.server 5500
+```
+
+Gemini API를 사용할 경우:
+```bash
+export LLM_PROVIDER="gemini"
+export GEMINI_API_KEY="여기에_Gemini_API키"
+export GEMINI_MODEL="gemini-2.5-flash"
+uvicorn ser_api:app --reload
 ```
 
 프론트 테스트 페이지:
