@@ -13,27 +13,45 @@ from app.core.config import (
     VAD_RMS_THRESHOLD,
     VAD_SILENCE_SECONDS,
 )
+from app.memory.session_memory import InMemorySessionMemory, SessionContext
 from app.services.llm_service import LLMReplyService
 from app.services.ser_service import SERService
+
+
+def _context_from_query(websocket: WebSocket) -> SessionContext:
+    return SessionContext(
+        user_id=websocket.query_params.get("user_id", "anonymous"),
+        session_id=websocket.query_params.get("session_id", "default"),
+        persona_id=websocket.query_params.get("persona_id", "default"),
+    )
 
 
 async def _send_final_result(
     websocket: WebSocket,
     ser: SERService,
     llm: LLMReplyService,
+    memory: InMemorySessionMemory,
+    context: SessionContext,
     audio: np.ndarray,
     pending_texts: deque,
 ) -> None:
     final_result = ser.predict_from_audio(audio)
     text_for_reply = pending_texts.popleft() if pending_texts else "방금 발화"
+    history = memory.recent_messages(context)
     ai_reply = await asyncio.to_thread(
         llm.generate_reply,
         text_for_reply,
         final_result["label"],
+        context,
+        history,
     )
+    memory.append_user_message(context, text_for_reply, final_result["label"])
+    memory.append_assistant_message(context, ai_reply)
     await websocket.send_json(
         {
             "type": "final",
+            "session_id": context.session_id,
+            "persona_id": context.persona_id,
             "text": text_for_reply,
             "reply": ai_reply,
             **final_result,
@@ -57,10 +75,30 @@ def _parse_utterance_text(text_msg: str) -> str | None:
     return None
 
 
+def _parse_session_context(
+    text_msg: str,
+    current_context: SessionContext,
+) -> SessionContext | None:
+    try:
+        text_payload = json.loads(text_msg)
+    except json.JSONDecodeError:
+        return None
+
+    if not isinstance(text_payload, dict) or text_payload.get("type") != "session_start":
+        return None
+
+    return SessionContext(
+        user_id=str(text_payload.get("user_id") or current_context.user_id),
+        session_id=str(text_payload.get("session_id") or current_context.session_id),
+        persona_id=str(text_payload.get("persona_id") or current_context.persona_id),
+    )
+
+
 async def predict_websocket(
     websocket: WebSocket,
     ser: SERService,
     llm: LLMReplyService,
+    memory: InMemorySessionMemory,
 ) -> None:
     await websocket.accept()
 
@@ -77,6 +115,7 @@ async def predict_websocket(
     pending_texts = deque()
     speech_active = False
     silence_samples = 0
+    context = _context_from_query(websocket)
 
     try:
         while True:
@@ -92,6 +131,8 @@ async def predict_websocket(
                             websocket,
                             ser,
                             llm,
+                            memory,
+                            context,
                             utterance_buffer,
                             pending_texts,
                         )
@@ -99,6 +140,28 @@ async def predict_websocket(
                     speech_active = False
                     silence_samples = 0
                 else:
+                    next_context = _parse_session_context(text_msg, context)
+                    if next_context:
+                        context = next_context
+                        await websocket.send_json(
+                            {
+                                "type": "session_ready",
+                                "session_id": context.session_id,
+                                "persona_id": context.persona_id,
+                            }
+                        )
+                        continue
+
+                    if text_msg == "session_end":
+                        await websocket.send_json(
+                            {
+                                "type": "session_closed",
+                                "session_id": context.session_id,
+                                "turn_count": len(memory.recent_messages(context)),
+                            }
+                        )
+                        continue
+
                     utterance_text = _parse_utterance_text(text_msg)
                     if utterance_text:
                         pending_texts.append(utterance_text)
@@ -137,6 +200,8 @@ async def predict_websocket(
                     websocket,
                     ser,
                     llm,
+                    memory,
+                    context,
                     utterance_buffer,
                     pending_texts,
                 )
