@@ -2,12 +2,20 @@ import json
 import os
 from urllib import error, request
 
+from app.chains.langchain_conversation import (
+    LangChainConversation,
+    LangChainUnavailableError,
+    UnsupportedLLMProviderError,
+)
 from app.chains.conversation_chain import build_messages
-from app.core.config import OPENAI_MODEL
+from app.core.config import LLM_PROVIDER, OPENAI_MODEL
 from app.memory.session_memory import ConversationTurn, SessionContext
 
 
 class LLMReplyService:
+    def __init__(self) -> None:
+        self.langchain_conversation = LangChainConversation()
+
     def generate_reply(
         self,
         text: str,
@@ -15,11 +23,30 @@ class LLMReplyService:
         context: SessionContext | None = None,
         history: list[ConversationTurn] | None = None,
     ) -> str:
-        api_key = os.getenv("OPENAI_API_KEY")
+        api_key = self._get_api_key()
         if not api_key:
-            return f"OPENAI_API_KEY가 없어서 감정({emotion})만 분석했어요."
+            return f"{self._api_key_name()}가 없어서 감정({emotion})만 분석했어요."
 
         messages = self._build_messages(text, emotion, context, history or [])
+        try:
+            return self.langchain_conversation.invoke(messages)
+        except LangChainUnavailableError:
+            if LLM_PROVIDER != "openai":
+                return (
+                    "Gemini 호출에 필요한 langchain-google-genai 패키지가 없어요. "
+                    "pip install -r requirements.txt를 실행해주세요."
+                )
+            return self._generate_reply_with_openai_rest(api_key, messages)
+        except UnsupportedLLMProviderError as e:
+            return f"AI 답변 호출 실패: {e}"
+        except Exception as e:
+            return f"AI 답변 호출 실패: {e}"
+
+    def _generate_reply_with_openai_rest(
+        self,
+        api_key: str,
+        messages: list[dict[str, str]],
+    ) -> str:
         payload = {
             "model": OPENAI_MODEL,
             "messages": messages,
@@ -60,6 +87,16 @@ class LLMReplyService:
                 persona_id="default",
             )
         return build_messages(context, history, text, emotion)
+
+    def _get_api_key(self) -> str | None:
+        if LLM_PROVIDER == "gemini":
+            return os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+        return os.getenv("OPENAI_API_KEY")
+
+    def _api_key_name(self) -> str:
+        if LLM_PROVIDER == "gemini":
+            return "GOOGLE_API_KEY 또는 GEMINI_API_KEY"
+        return "OPENAI_API_KEY"
 
 
 llm_reply_service = LLMReplyService()
