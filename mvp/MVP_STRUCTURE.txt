@@ -1,0 +1,26 @@
+[MVP 범위 — 현재 레포에 있는 것만]
+1) SER: ser_api.py — Wav2Vec 기반 AutoModelForAudioClassification (model/ 폴더 가중치)
+   - GET /health
+   - POST /predict (파일 업로드 단건)
+   - WebSocket /ws/predict (PCM16 스트림 + VAD, partial/final)
+2) “대화 응답”: 동일 API 내 _generate_ai_reply — OPENAI_API_KEY 있으면 GPT-4o-mini, 없으면 감정만
+3) 웹 데모: web_test.html — 기존 채팅형 데모 (마이크 → WS)
+
+[이번 MVP에서 의도적으로 빼 둠 — 논문/계획서용 자리만]
+- TER 전용 학습 모델 추론 API (stt_04_train_ter 학습 산출물 연동) → Phase 2
+- Whisper 등 외부 STT → Phase 2 (MVP는 브라우저 Web Speech API 또는 수동 텍스트 입력으로 대체)
+
+[런 순서 — 로컬]
+1) kyul 루트에서 model/ 에 SER 체크포인트 배치 (학습에서 save한 것과 동일 구조)
+2) uvicorn ser_api:app --reload
+3) 정적 서버로 web_test.html 또는 mvp/mock_dashboard.html 열기
+
+[데이터 흐름 — MVP]
+사용자 음성(또는 파일)
+  → FastAPI SER (기존)
+  → { label, confidence, probs }
+  → (선택) 브라우저가 인식한 텍스트 또는 입력 텍스트 + 감정 → LLM 한 줄 응답 (키 있을 때만)
+
+[나중에 합치기 좋은 확장 포인트]
+- 동일 wav_id / 동일 발화에 대해 SER logits(7) + TER logits(7) 가중합 → 별도 /predict/fusion 엔드포인트
+- STT 결과를 pending_texts에 넣는 것은 이미 WS 프로토콜에 utterance_text 훅 존재
