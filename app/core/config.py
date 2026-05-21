@@ -28,3 +28,9 @@ LOCAL_LLM_MODEL_ID = os.getenv(
 LOCAL_LLM_MAX_NEW_TOKENS = int(os.getenv("LOCAL_LLM_MAX_NEW_TOKENS", "256"))
 # LOCAL_LLM_TEMPERATURE : 샘플링 무작위성 
 LOCAL_LLM_TEMPERATURE = float(os.getenv("LOCAL_LLM_TEMPERATURE", "0.7"))
+
+# Conversation memory
+MEMORY_BACKEND = os.getenv("MEMORY_BACKEND", "memory").lower()
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+SESSION_MEMORY_TTL_SECONDS = int(os.getenv("SESSION_MEMORY_TTL_SECONDS", "86400"))
+SESSION_MEMORY_MAX_TURNS = int(os.getenv("SESSION_MEMORY_MAX_TURNS", "20"))
