@@ -23,8 +23,15 @@ class LLMReplyService:
         emotion: str,
         context: SessionContext | None = None,
         history: list[ConversationTurn] | None = None,
+가        session_summary: str = "",
     ) -> str:
-        messages = self._build_messages(text, emotion, context, history or [])
+        messages = self._build_messages(
+            text,
+            emotion,
+            context,
+            history or [],
+            session_summary,
+        )
 
         if LLM_PROVIDER in LOCAL_LLM_PROVIDERS:
             return self._generate_reply_with_local_llm(messages)
@@ -98,6 +105,7 @@ class LLMReplyService:
         emotion: str,
         context: SessionContext | None,
         history: list[ConversationTurn],
+        session_summary: str = "",
     ) -> list[dict[str, str]]:
         if context is None:
             context = SessionContext(
@@ -105,7 +113,7 @@ class LLMReplyService:
                 session_id="default",
                 persona_id="default",
             )
-        return build_messages(context, history, text, emotion)
+        return build_messages(context, history, text, emotion, session_summary)
 
     def _get_api_key(self) -> str | None:
         if LLM_PROVIDER == "gemini":
