@@ -49,6 +49,17 @@ export GEMINI_MODEL="gemini-2.5-flash"
 uvicorn ser_api:app --reload
 ```
 
+Redis에 세션 메모리를 저장할 경우:
+```bash
+export MEMORY_BACKEND="redis"
+export REDIS_URL="redis://localhost:6379/0"
+export SESSION_MEMORY_TTL_SECONDS="86400"
+uvicorn ser_api:app --reload
+```
+- 기본값은 `MEMORY_BACKEND=memory`입니다.
+- Redis 모드에서는 `chat:{user_id}:{session_id}:{persona_id}` 키에 최근 대화 turn이 저장됩니다.
+- `SESSION_MEMORY_MAX_TURNS`로 세션별 보관 turn 수를 조정할 수 있습니다.
+
 프론트 테스트 페이지:
 - `http://127.0.0.1:5500/web_test.html`
 
@@ -72,7 +83,7 @@ uvicorn ser_api:app --reload
 - 출력: `partial`/`final` 결과, `final`에서 감정·`reply` 반환
 - MVP 세션 파라미터: `user_id`, `session_id`, `persona_id`
   - 예: `ws://127.0.0.1:8000/ws/predict?user_id=u1&session_id=s1&persona_id=gyul`
-  - 같은 `user_id/session_id/persona_id` 조합에서는 서버 프로세스 메모리 안에서 최근 대화가 유지됩니다.
+  - 같은 `user_id/session_id/persona_id` 조합에서는 선택한 메모리 백엔드 안에서 최근 대화가 유지됩니다.
 
 세션 시작 메시지 예시:
 ```json
