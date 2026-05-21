@@ -8,8 +8,9 @@ from app.chains.langchain_conversation import (
     UnsupportedLLMProviderError,
 )
 from app.chains.conversation_chain import build_messages
-from app.core.config import LLM_PROVIDER, OPENAI_MODEL
+from app.core.config import LLM_PROVIDER, LOCAL_LLM_PROVIDERS, OPENAI_MODEL
 from app.memory.session_memory import ConversationTurn, SessionContext
+from app.services.local_llm_service import local_llm_service
 
 
 class LLMReplyService:
@@ -23,11 +24,15 @@ class LLMReplyService:
         context: SessionContext | None = None,
         history: list[ConversationTurn] | None = None,
     ) -> str:
+        messages = self._build_messages(text, emotion, context, history or [])
+
+        if LLM_PROVIDER in LOCAL_LLM_PROVIDERS:
+            return self._generate_reply_with_local_llm(messages)
+
         api_key = self._get_api_key()
         if not api_key:
             return f"{self._api_key_name()}가 없어서 감정({emotion})만 분석했어요."
 
-        messages = self._build_messages(text, emotion, context, history or [])
         try:
             return self.langchain_conversation.invoke(messages)
         except LangChainUnavailableError:
@@ -72,6 +77,20 @@ class LLMReplyService:
             return f"AI 답변 호출 실패(HTTP {e.code}): {detail[:180]}"
         except Exception as e:
             return f"AI 답변 호출 실패: {e}"
+
+    def _generate_reply_with_local_llm(
+        self,
+        messages: list[dict[str, str]],
+    ) -> str:
+        if not local_llm_service.is_loaded:
+            return (
+                "로컬 LLM이 아직 로드되지 않았어요. "
+                "LLM_PROVIDER=local 로 서버를 시작했는지 확인해주세요."
+            )
+        try:
+            return local_llm_service.generate(messages)
+        except Exception as e:
+            return f"로컬 LLM 답변 생성 실패: {e}"
 
     def _build_messages(
         self,

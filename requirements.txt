@@ -3,8 +3,9 @@ uvicorn
 python-multipart
 numpy
 torch
-transformers
+transformers>=5.0
 librosa
 langchain
 langchain-openai
 langchain-google-genai
+accelerate
