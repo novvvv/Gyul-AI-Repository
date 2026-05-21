@@ -29,8 +29,17 @@ def build_messages(
     history: list[ConversationTurn],
     user_text: str,
     emotion: str,
+    session_summary: str = "",
 ) -> list[dict[str, str]]:
     messages = [{"role": "system", "content": build_system_prompt(context)}]
+
+    if session_summary:
+        messages.append(
+            {
+                "role": "system",
+                "content": f"현재 세션 요약:\n{session_summary}",
+            }
+        )
 
     for turn in history:
         content = turn.content
