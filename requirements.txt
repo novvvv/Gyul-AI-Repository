@@ -9,3 +9,4 @@ langchain
 langchain-openai
 langchain-google-genai
 accelerate
+redis
