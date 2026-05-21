@@ -58,6 +58,7 @@ uvicorn ser_api:app --reload
 ```
 - 기본값은 `MEMORY_BACKEND=memory`입니다.
 - Redis 모드에서는 `chat:{user_id}:{session_id}:{persona_id}` 키에 최근 대화 turn이 저장됩니다.
+- 세션 종료 요약은 `summary:{user_id}:{session_id}:{persona_id}` 키에 저장됩니다.
 - `SESSION_MEMORY_MAX_TURNS`로 세션별 보관 turn 수를 조정할 수 있습니다.
 
 프론트 테스트 페이지:
@@ -99,6 +100,7 @@ uvicorn ser_api:app --reload
 ```text
 session_end
 ```
+- `session_end` 응답에는 현재 turn 수와 `summary`가 포함됩니다.
 
 ### `POST /predict` (Debug)
 - 용도: 파일 업로드 기반 단건 감정 추론
