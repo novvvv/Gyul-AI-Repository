@@ -23,7 +23,7 @@ class LLMReplyService:
         emotion: str,
         context: SessionContext | None = None,
         history: list[ConversationTurn] | None = None,
-가        session_summary: str = "",
+        session_summary: str = "",
     ) -> str:
         messages = self._build_messages(
             text,
