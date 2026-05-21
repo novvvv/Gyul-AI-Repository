@@ -1,2 +1,5 @@
 
 model/model.safetensors
+__pycache__/
+*.pyc
+.idea/

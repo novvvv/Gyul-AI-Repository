@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+numpy
+torch
+transformers
+librosa
+langchain
+langchain-openai
+langchain-google-genai
