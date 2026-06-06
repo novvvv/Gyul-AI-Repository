@@ -12,3 +12,13 @@ click
 loguru
 pydub
 pyyaml
+fastapi
+uvicorn
+python-multipart
+numpy
+librosa
+langchain
+langchain-openai
+langchain-google-genai
+accelerate
+

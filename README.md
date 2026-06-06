@@ -41,6 +41,51 @@ hf auth login
 bash scripts/download_model.sh
 ```
 
+---
+
+# Kyul TTS
+
+Fish Speech S2-Pro 기반 한국어 zero-shot voice cloning TTS 프로젝트입니다.
+
+Reference voice를 이용해 입력 텍스트를 특정 화자 스타일의 음성으로 합성합니다.
+
+## Model Type
+
+이 프로젝트는 직접 fine-tuning한 checkpoint를 포함하지 않습니다.
+
+사전학습된 Fish Speech S2-Pro 모델을 활용하고, reference audio를 prompt token으로 변환하여 음색을 반영하는 inference pipeline입니다.
+
+## Pipeline
+
+```text
+reference wav
+    ↓
+prompt token(fake.npy)
+    ↓
+input text + prompt token
+    ↓
+semantic token(codes_0.npy)
+    ↓
+generated wav
+```
+
+## Features
+
+- Korean text-to-speech
+- Reference voice based voice cloning
+- Fish Speech S2-Pro inference wrapper
+- Prompt token generation
+- Semantic token generation
+- Waveform synthesis
+
+## Setup
+
+```bash
+bash scripts/setup_fish_speech.sh
+hf auth login
+bash scripts/download_model.sh
+```
+
 ## Inference
 
 ```bash
