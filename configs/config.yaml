@@ -1,0 +1,13 @@
+project_name: kyul-tts
+
+fish_speech_dir: /content/fish-speech-s2
+checkpoint_dir: checkpoints/s2-pro
+
+reference_audio: assets/reference/kyul_ref.wav
+reference_text: assets/reference/kyul_ref.txt
+
+output_dir: outputs
+default_output_name: generated.wav
+
+device: cuda
+use_half: true

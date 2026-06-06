@@ -1,0 +1,14 @@
+torch
+torchaudio
+transformers==4.57.3
+huggingface_hub>=0.34.0,<1.0
+tiktoken
+soundfile
+librosa
+numpy
+pandas
+tqdm
+click
+loguru
+pydub
+pyyaml
