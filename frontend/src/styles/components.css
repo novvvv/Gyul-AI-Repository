@@ -1,0 +1,147 @@
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.emotion-panel h2,
+.chat-thread h2 {
+  margin: 0 0 16px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.emotion-panel .badge {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  margin-bottom: 12px;
+}
+
+.emotion-panel .badge.is-active {
+  border-color: var(--accent);
+}
+
+.emotion-panel .badge strong {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.emotion-panel .badge.is-active strong {
+  color: var(--accent);
+}
+
+.emotion-panel .badge .en {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+.emotion-panel .phase {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.emotion-panel .confidence {
+  margin: 0 0 16px;
+  font-size: 0.875rem;
+  color: var(--fg-secondary);
+}
+
+.emotion-panel .bar-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 32px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+}
+
+.emotion-panel .bar-label {
+  color: var(--fg-secondary);
+}
+
+.emotion-panel .bar-track {
+  height: 6px;
+  background: var(--bg-subtle);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.emotion-panel .bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: #d1d5db;
+  transition: width 150ms ease-out;
+}
+
+.emotion-panel .bar-fill.is-top {
+  background: var(--accent);
+}
+
+.emotion-panel .bar-val {
+  text-align: right;
+  color: var(--muted);
+}
+
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.chat-thread .messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 280px;
+  max-height: 52vh;
+}
+
+.chat-thread .bubble {
+  max-width: 85%;
+  padding: 10px 12px;
+  border-radius: var(--radius-card);
+  line-height: 1.55;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+}
+
+.chat-thread .bubble.user {
+  align-self: flex-end;
+  background: var(--bg-subtle);
+  color: var(--fg);
+}
+
+.chat-thread .bubble.bot {
+  align-self: flex-start;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.chat-thread .meta {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.chat-thread .live {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}

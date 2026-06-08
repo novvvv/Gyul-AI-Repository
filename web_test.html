@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gyul · Emotion Chat</title>
+    <style>
+      :root {
+        /* palette */
+        --onyx: #1c1c1b;
+        --walnut: #8a5d52;
+        --greige: #b7ac9b;
+        --ash: #979086;
+        --stucco: #e2e2de;
+
+        /* derived surfaces */
+        --bg: #1c1c1b;
+        --panel: #232220;
+        --panel-2: #2a2825;
+        --line: rgba(183, 172, 155, 0.16);
+        --line-strong: rgba(183, 172, 155, 0.28);
+        --fg: #e2e2de;
+        --muted: #979086;
+        --accent: #8a5d52;
+        --accent-soft: rgba(138, 93, 82, 0.22);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(1200px 600px at 80% -10%, rgba(138, 93, 82, 0.12), transparent 60%),
+          var(--bg);
+        color: var(--fg);
+        font-family: "Pretendard", "Inter", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+        min-height: 100vh;
+        padding: 28px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .shell {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      /* ── header ───────────────────────────── */
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: var(--walnut);
+        display: grid;
+        place-items: center;
+        color: var(--stucco);
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+      }
+      .brand h1 {
+        font-size: 17px;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: 0.2px;
+      }
+      .brand p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+      }
+      button {
+        border: 1px solid var(--line-strong);
+        border-radius: 11px;
+        background: transparent;
+        color: var(--fg);
+        padding: 9px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+      }
+      button:hover:not(:disabled) {
+        background: var(--panel-2);
+      }
+      button.primary {
+        background: var(--walnut);
+        border-color: var(--walnut);
+        color: var(--stucco);
+      }
+      button.primary:hover:not(:disabled) {
+        background: #79504733;
+        background: #946357;
+      }
+      button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* ── layout ───────────────────────────── */
+      .grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.95fr;
+        gap: 18px;
+      }
+      @media (max-width: 880px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+      .card-head {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .card-title {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        color: var(--greige);
+      }
+      .status {
+        font-size: 12px;
+        color: var(--muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ash);
+        transition: background 0.2s ease;
+      }
+      .dot.live {
+        background: #7fae8a;
+        box-shadow: 0 0 0 3px rgba(127, 174, 138, 0.18);
+      }
+      .dot.warn {
+        background: var(--walnut);
+      }
+
+      /* ── chat ─────────────────────────────── */
+      .chat {
+        height: 60vh;
+        min-height: 360px;
+        overflow-y: auto;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .bubble {
+        max-width: 82%;
+        border-radius: 16px;
+        padding: 11px 14px;
+        line-height: 1.5;
+        font-size: 14px;
+        animation: rise 0.18s ease;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+      }
+      .bot {
+        align-self: flex-start;
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        color: var(--stucco);
+        border-top-left-radius: 6px;
+      }
+      .user {
+        align-self: flex-end;
+        background: var(--accent-soft);
+        border: 1px solid rgba(138, 93, 82, 0.4);
+        color: var(--stucco);
+        border-top-right-radius: 6px;
+      }
+      .meta {
+        margin-top: 6px;
+        color: var(--ash);
+        font-size: 11px;
+        letter-spacing: 0.2px;
+      }
+      .live {
+        border-top: 1px solid var(--line);
+        padding: 11px 16px;
+        color: var(--muted);
+        font-size: 12px;
+        min-height: 42px;
+      }
+
+      /* ── camera / face ────────────────────── */
+      .cam-wrap {
+        position: relative;
+        background: #000;
+        aspect-ratio: 4 / 3;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scaleX(-1);
+        display: block;
+      }
+      .cam-empty {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--ash);
+        font-size: 13px;
+        text-align: center;
+        padding: 0 24px;
+      }
+      .face-badge {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        right: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 13px;
+        background: rgba(28, 28, 27, 0.62);
+        backdrop-filter: blur(8px);
+        border: 1px solid var(--line-strong);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+      .face-badge.show {
+        opacity: 1;
+      }
+      .face-emoji {
+        font-size: 22px;
+        line-height: 1;
+      }
+      .face-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--stucco);
+      }
+      .face-conf {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--greige);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .face-bars {
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .bar-row {
+        display: grid;
+        grid-template-columns: 64px 1fr 40px;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .bar-track {
+        height: 7px;
+        border-radius: 99px;
+        background: var(--panel-2);
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 99px;
+        background: var(--walnut);
+        transition: width 0.35s ease;
+      }
+      .bar-val {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        color: var(--ash);
+      }
+
+      .hint {
+        padding: 12px 16px;
+        font-size: 11.5px;
+        color: var(--ash);
+        border-top: 1px solid var(--line);
+        line-height: 1.5;
+      }
+      .hint code {
+        color: var(--greige);
+        font-size: 11px;
+      }
+      .chat::-webkit-scrollbar {
+        width: 9px;
+      }
+      .chat::-webkit-scrollbar-thumb {
+        background: var(--line-strong);
+        border-radius: 99px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="top">
+        <div class="brand">
+          <div class="mark">G</div>
+          <div>
+            <h1>Gyul · Emotion Chat</h1>
+            <p>음성 + 얼굴 표정으로 감정을 함께 읽어요</p>
+          </div>
+        </div>
+        <div class="controls">
+          <button id="startBtn" class="primary">시작</button>
+          <button id="stopBtn" disabled>중지</button>
+        </div>
+      </header>
+
+      <div class="grid">
+        <!-- chat column -->
+        <section class="card">
+          <div class="card-head">
+            <span class="card-title">대화</span>
+            <span class="status">
+              <span class="dot" id="voiceDot"></span>
+              <span id="status">대기 중</span>
+            </span>
+          </div>
+          <div class="chat" id="chat">
+            <div class="bubble bot">
+              안녕하세요. 말씀하시면 문장 단위로 음성 감정을 분석해 답변할게요.
+            </div>
+          </div>
+          <footer class="live" id="liveText">실시간 인식: …</footer>
+        </section>
+
+        <!-- face column -->
+        <section class="card">
+          <div class="card-head">
+            <span class="card-title">얼굴 표정</span>
+            <span class="status">
+              <span class="dot" id="faceDot"></span>
+              <span id="faceStatus">카메라 꺼짐</span>
+            </span>
+          </div>
+
+          <div class="cam-wrap">
+            <video id="video" playsinline muted></video>
+            <div class="cam-empty" id="camEmpty">시작을 누르면 카메라로<br />표정을 분석합니다</div>
+            <div class="face-badge" id="faceBadge">
+              <span class="face-emoji" id="faceEmoji">🙂</span>
+              <span class="face-label" id="faceLabel">—</span>
+              <span class="face-conf" id="faceConf"></span>
+            </div>
+          </div>
+
+          <div class="face-bars" id="faceBars"></div>
+
+          <div class="hint">
+            얼굴 감정: PyTorch 표정 모델(<code>FER 7감정</code>) · 음성 감정과 분리 동작.
+            첫 분석 시 모델 로딩에 잠시 시간이 걸릴 수 있어요.
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // ============================================================
+      // 공통 설정 / 엘리먼트
+      // ============================================================
+      const API_HTTP = "http://127.0.0.1:8000";
+      const WS_URL = "ws://127.0.0.1:8000/ws/predict";
+      const FACE_INTERVAL_MS = 1500;
+
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+
+      const statusEl = document.getElementById("status");
+      const voiceDot = document.getElementById("voiceDot");
+      const chatEl = document.getElementById("chat");
+      const liveTextEl = document.getElementById("liveText");
+
+      const videoEl = document.getElementById("video");
+      const camEmpty = document.getElementById("camEmpty");
+      const faceDot = document.getElementById("faceDot");
+      const faceStatus = document.getElementById("faceStatus");
+      const faceBadge = document.getElementById("faceBadge");
+      const faceEmoji = document.getElementById("faceEmoji");
+      const faceLabel = document.getElementById("faceLabel");
+      const faceConf = document.getElementById("faceConf");
+      const faceBars = document.getElementById("faceBars");
+
+      // 감정 라벨 → 한국어 / 이모지 (음성 SER + 얼굴 FER 라벨 모두 커버)
+      const EMOTION_KR = {
+        happy: "행복",
+        happiness: "행복",
+        sad: "슬픔",
+        sadness: "슬픔",
+        angry: "분노",
+        anger: "분노",
+        disgust: "혐오",
+        fear: "두려움",
+        surprise: "놀람",
+        neutral: "중립",
+      };
+      const EMOTION_EMOJI = {
+        happy: "😊",
+        happiness: "😊",
+        sad: "😢",
+        sadness: "😢",
+        angry: "😠",
+        anger: "😠",
+        disgust: "🤢",
+        fear: "😨",
+        surprise: "😮",
+        neutral: "😐",
+      };
+      const krEmotion = (label) => EMOTION_KR[(label || "").toLowerCase()] || label || "—";
+      const emojiEmotion = (label) => EMOTION_EMOJI[(label || "").toLowerCase()] || "🙂";
+
+      let stream = null;
+
+      // ============================================================
+      // 음성 채팅 모듈 (WebSocket SER + 브라우저 STT)
+      // ============================================================
+      const voice = (() => {
+        let ws = null;
+        let audioCtx = null;
+        let sourceNode = null;
+        let processorNode = null;
+        let recognition = null;
+        let pendingEmotionSentences = [];
+
+        function setStatus(text, state) {
+          statusEl.textContent = text;
+          voiceDot.className = "dot" + (state ? " " + state : "");
+        }
+
+        function addUserBubble(text) {
+          const node = document.createElement("div");
+          node.className = "bubble user";
+          node.textContent = text;
+          chatEl.appendChild(node);
+          chatEl.scrollTop = chatEl.scrollHeight;
+        }
+
+        function addAiReplyBubble(reply, label, confidence) {
+          const node = document.createElement("div");
+          node.className = "bubble bot";
+          const conf = Number(confidence ?? 0);
+          node.innerHTML =
+            `${reply}<div class="meta">음성 감정 · ${krEmotion(label)} (${(conf * 100).toFixed(
+              1
+            )}%)</div>`;
+          chatEl.appendChild(node);
+          chatEl.scrollTop = chatEl.scrollHeight;
+        }
+
+        function floatToInt16Bytes(float32Array) {
+          const out = new Int16Array(float32Array.length);
+          for (let i = 0; i < float32Array.length; i++) {
+            const s = Math.max(-1, Math.min(1, float32Array[i]));
+            out[i] = s < 0 ? s * 32768 : s * 32767;
+          }
+          return out.buffer;
+        }
+
+        function connectWs() {
+          ws = new WebSocket(WS_URL);
+          ws.binaryType = "arraybuffer";
+          ws.onopen = () => setStatus("연결됨 · 청취 중", "live");
+          ws.onmessage = (event) => {
+            if (typeof event.data !== "string") return;
+            const data = JSON.parse(event.data);
+            if (data.error) {
+              setStatus(`오류: ${data.error}`, "warn");
+              return;
+            }
+            if (data.type !== "final") return;
+            const sentence = pendingEmotionSentences.shift();
+            if (!sentence) return;
+            addAiReplyBubble(
+              data.reply ?? "응답을 생성하지 못했어요.",
+              data.label ?? "-",
+              Number(data.confidence ?? 0)
+            );
+          };
+          ws.onerror = () => setStatus("WebSocket 오류", "warn");
+          ws.onclose = () => setStatus("연결 종료", "warn");
+        }
+
+        function attachAudio(mediaStream) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)({
+            sampleRate: 16000,
+          });
+          sourceNode = audioCtx.createMediaStreamSource(mediaStream);
+          processorNode = audioCtx.createScriptProcessor(4096, 1, 1);
+          processorNode.onaudioprocess = (event) => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) return;
+            const input = event.inputBuffer.getChannelData(0);
+            ws.send(floatToInt16Bytes(input));
+          };
+          sourceNode.connect(processorNode);
+          processorNode.connect(audioCtx.destination);
+        }
+
+        function startSpeechToText() {
+          const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+          if (!SR) {
+            liveTextEl.textContent = "실시간 인식: (브라우저 음성인식 미지원)";
+            return;
+          }
+          recognition = new SR();
+          recognition.lang = "ko-KR";
+          recognition.interimResults = true;
+          recognition.continuous = true;
+          recognition.onresult = (event) => {
+            let interim = "";
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+              const t = event.results[i][0].transcript;
+              if (event.results[i].isFinal) {
+                const sentence = t.trim();
+                if (sentence) {
+                  pendingEmotionSentences.push(sentence);
+                  addUserBubble(sentence);
+                  if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ type: "utterance_text", text: sentence }));
+                  }
+                }
+              } else {
+                interim += t;
+              }
+            }
+            liveTextEl.textContent = `실시간 인식: ${interim || "…"}`;
+          };
+          recognition.onerror = () => {};
+          recognition.onend = () => {
+            if (startBtn.disabled) recognition.start();
+          };
+          recognition.start();
+        }
+
+        return {
+          start(mediaStream) {
+            connectWs();
+            attachAudio(mediaStream);
+            startSpeechToText();
+          },
+          stop() {
+            if (processorNode) processorNode.disconnect();
+            if (sourceNode) sourceNode.disconnect();
+            if (audioCtx) audioCtx.close();
+            if (ws && ws.readyState === WebSocket.OPEN) ws.send("flush");
+            if (ws) ws.close();
+            if (recognition) recognition.stop();
+            processorNode = sourceNode = audioCtx = ws = recognition = null;
+            pendingEmotionSentences = [];
+            liveTextEl.textContent = "실시간 인식: …";
+            setStatus("중지됨");
+          },
+        };
+      })();
+
+      // ============================================================
+      // 얼굴 감정 모듈 (웹캠 캡처 → /predict_face)
+      // ============================================================
+      const face = (() => {
+        let timer = null;
+        let busy = false;
+        const canvas = document.createElement("canvas");
+
+        function setStatus(text, state) {
+          faceStatus.textContent = text;
+          faceDot.className = "dot" + (state ? " " + state : "");
+        }
+
+        function renderBars(probs) {
+          const entries = Object.entries(probs || {}).sort((a, b) => b[1] - a[1]);
+          faceBars.innerHTML = entries
+            .map(([label, p]) => {
+              const pct = (Number(p) * 100).toFixed(0);
+              return `
+                <div class="bar-row">
+                  <span>${krEmotion(label)}</span>
+                  <span class="bar-track"><span class="bar-fill" style="width:${pct}%"></span></span>
+                  <span class="bar-val">${pct}</span>
+                </div>`;
+            })
+            .join("");
+        }
+
+        function renderTop(label, confidence) {
+          faceBadge.classList.add("show");
+          faceEmoji.textContent = emojiEmotion(label);
+          faceLabel.textContent = krEmotion(label);
+          faceConf.textContent = `${(Number(confidence) * 100).toFixed(1)}%`;
+        }
+
+        async function captureAndSend() {
+          if (busy || !videoEl.videoWidth) return;
+          busy = true;
+          try {
+            canvas.width = videoEl.videoWidth;
+            canvas.height = videoEl.videoHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
+            const image = canvas.toDataURL("image/jpeg", 0.7);
+
+            const res = await fetch(`${API_HTTP}/predict_face`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ image }),
+            });
+            if (!res.ok) {
+              setStatus("분석 일시 오류", "warn");
+              return;
+            }
+            const data = await res.json();
+            setStatus("분석 중", "live");
+            renderTop(data.label, data.confidence);
+            renderBars(data.probs);
+          } catch (e) {
+            setStatus("서버 연결 실패", "warn");
+          } finally {
+            busy = false;
+          }
+        }
+
+        return {
+          async start(mediaStream) {
+            videoEl.srcObject = mediaStream;
+            await videoEl.play().catch(() => {});
+            camEmpty.style.display = "none";
+            setStatus("모델 준비 중…", "live");
+            timer = setInterval(captureAndSend, FACE_INTERVAL_MS);
+          },
+          stop() {
+            if (timer) clearInterval(timer);
+            timer = null;
+            videoEl.srcObject = null;
+            camEmpty.style.display = "grid";
+            faceBadge.classList.remove("show");
+            faceBars.innerHTML = "";
+            setStatus("카메라 꺼짐");
+          },
+        };
+      })();
+
+      // ============================================================
+      // 세션 제어 (음성 + 얼굴 동시 시작/중지)
+      // ============================================================
+      async function start() {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } },
+          });
+          voice.start(stream);
+          face.start(stream);
+          startBtn.disabled = true;
+          stopBtn.disabled = false;
+        } catch (err) {
+          statusEl.textContent = `시작 실패: ${err.message}`;
+          voiceDot.className = "dot warn";
+        }
+      }
+
+      function stop() {
+        voice.stop();
+        face.stop();
+        if (stream) stream.getTracks().forEach((t) => t.stop());
+        stream = null;
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      }
+
+      startBtn.addEventListener("click", start);
+      stopBtn.addEventListener("click", stop);
+    </script>
+  </body>
+</html>

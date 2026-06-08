@@ -1,0 +1,145 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-btn);
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.brand-text strong {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.brand-text small {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 4px;
+}
+
+.site-header nav a {
+  padding: 6px 12px;
+  border-radius: var(--radius-btn);
+  color: var(--fg-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 150ms ease-out, border-color 150ms ease-out;
+}
+
+.site-header nav a:hover {
+  background: var(--bg-subtle);
+  text-decoration: none;
+}
+
+.site-header nav a.active {
+  color: var(--accent);
+  background: var(--accent-subtle);
+  border-color: var(--border);
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* Landing page — warm LP tone (QShop-style) */
+.app-shell:has(.landing-page) .site-header {
+  background: #fbf9f6;
+  border-bottom-color: #ebe6df;
+}
+
+.app-shell:has(.landing-page) .logo {
+  background: #8b7fd4;
+}
+
+.app-shell:has(.landing-page) .site-header nav a.active {
+  color: #6f63b8;
+  background: #ede9f8;
+  border-color: #ddd6f0;
+}
+
+.app-shell:has(.landing-page) .site-footer {
+  background: #fbf9f6;
+  border-top-color: #ebe6df;
+  color: #9a938c;
+}
+
+/* Demo page — soft earthy (no harsh white) */
+.app-shell:has(.demo-page) {
+  background: #e8e4dc;
+}
+
+.app-shell:has(.demo-page) .site-header {
+  background: #ebe8e2;
+  border-bottom-color: rgba(106, 93, 82, 0.14);
+}
+
+.app-shell:has(.demo-page) .logo {
+  background: #8a5d52;
+  color: #e2e2de;
+}
+
+.app-shell:has(.demo-page) .site-header nav a.active {
+  color: #6f4a41;
+  background: rgba(138, 93, 82, 0.14);
+  border-color: rgba(138, 93, 82, 0.22);
+}
+
+.app-shell:has(.demo-page) .site-footer {
+  background: #e8e4dc;
+  border-top-color: rgba(106, 93, 82, 0.14);
+  color: #979086;
+}
