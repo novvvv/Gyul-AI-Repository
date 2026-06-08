@@ -78,20 +78,46 @@ generated wav
 - Semantic token generation
 - Waveform synthesis
 
-## Setup
+## Google Colab에서 실행하기 (추천 ⭐)
 
+macOS 로컬 환경보다 **Google Colab(GPU)** 환경에서 구동하는 것을 강력히 추천합니다. 자세한 사용법은 [Colab_Guide.md](file:///Users/nuyoes/Desktop/3-1/Gyul-AI-Repository/Colab_Guide.md) 파일을 참고하세요.
+
+## 로컬 Setup (macOS 등)
+
+로컬에서 가볍게 코드가 정상 작동하는지 검사하려면 다음 단위 테스트를 실행할 수 있습니다.
 ```bash
-bash scripts/setup_fish_speech.sh
-hf auth login
-bash scripts/download_model.sh
+python -m unittest tests/test_model.py
 ```
 
-## Inference
+만약 로컬 환경에서 직접 실물 인퍼런스를 구축하고 싶다면 아래 단계를 수행해야 합니다.
+
+```bash
+# 1. 의존성 패키지 설치
+pip install --upgrade pip
+pip install llvmlite numba
+pip install -r requirements.txt
+
+# 2. fish-speech 설치 및 빌드
+git clone https://github.com/fishaudio/fish-speech.git fish-speech-s2
+cd fish-speech-s2
+pip install -e .
+cd ..
+
+# 3. huggingface 로그인 및 모델 다운로드
+huggingface-cli login
+mkdir -p fish-speech-s2/checkpoints/s2-pro
+huggingface-cli download fishaudio/s2-pro --local-dir fish-speech-s2/checkpoints/s2-pro
+```
+
+## 로컬 Inference
+
+로컬 디렉토리 경로를 전달하여 음성을 합성합니다.
 
 ```bash
 python scripts/run_inference.py \
   --text "안녕하세요. 음성 합성 테스트입니다." \
-  --output sample.wav
+  --output sample.wav \
+  --fish-speech-dir ./fish-speech-s2
 ```
 
 Generated files are saved in:
