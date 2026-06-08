@@ -1,0 +1,73 @@
+canonical_emotions:
+  neutral:
+    tag: "(indifferent)"
+    aliases:
+      - neutral
+      - normal
+      - calm
+      - plain
+      - default
+      - 중립
+      - 일반
+      - 평온
+  happy:
+    tag: "(happy)"
+    aliases:
+      - happy
+      - happiness
+      - joy
+      - joyful
+      - 기쁨
+      - 행복
+      - 즐거움
+  sad:
+    tag: "(sad)"
+    aliases:
+      - sad
+      - sadness
+      - sorrow
+      - 슬픔
+      - 우울
+  angry:
+    tag: "(angry)"
+    aliases:
+      - angry
+      - anger
+      - mad
+      - 분노
+      - 화남
+      - 화
+  anxious:
+    tag: "(anxious)"
+    aliases:
+      - anxious
+      - anxiety
+      - fear
+      - fearful
+      - afraid
+      - 불안
+      - 공포
+      - 두려움
+  hurt:
+    tag: "(painful)"
+    aliases:
+      - hurt
+      - wounded
+      - pain
+      - painful
+      - 상처
+      - 아픔
+      - 혐오
+      - disgust
+  embarrassed:
+    tag: "(embarrassed)"
+    aliases:
+      - embarrassed
+      - embarrassment
+      - awkward
+      - surprise
+      - surprised
+      - 당황
+      - 놀람
+
+default_emotion: neutral

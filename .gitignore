@@ -15,16 +15,23 @@ checkpoints/
 fish-speech/
 fish-speech-s2/
 fish-speech-clean/
+external/
 
 *.npy
 fake.npy
 fake.wav
 codes_*.npy
+*.protos
+*.raw
 
 data/raw/
 data/processed/
 data/metadata/
+data/protos/
+results/
+generated_samples/
 *.csv
 
 token
 .huggingface/
+.ipynb_checkpoints/
