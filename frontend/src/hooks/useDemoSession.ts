@@ -79,17 +79,54 @@ export function useDemoSession(
   const getFaceExpressionRef = useRef(options.getFaceExpression);
   getFaceExpressionRef.current = options.getFaceExpression;
   const ttsAudioRef = useRef<HTMLAudioElement | null>(null);
+  /** TTS 재생 중 사용자 STT·마이크 업로드 차단 */
+  const inputBlockedRef = useRef(false);
 
-  const playReplyAudio = useCallback((b64: string, format = "mp3") => {
-    ttsAudioRef.current?.pause();
-    const mime = format === "mp3" ? "audio/mpeg" : `audio/${format}`;
-    const audio = new Audio(`data:${mime};base64,${b64}`);
-    ttsAudioRef.current = audio;
-    setBotSpeaking(true);
-    audio.onended = () => setBotSpeaking(false);
-    audio.onerror = () => setBotSpeaking(false);
-    void audio.play().catch(() => setBotSpeaking(false));
+  const blockUserInput = useCallback(() => {
+    inputBlockedRef.current = true;
+    const rec = recognitionRef.current;
+    if (rec) {
+      try {
+        rec.abort();
+      } catch {
+        rec.stop();
+      }
+    }
+    setLiveText("(결 이 말하는 중...)");
   }, []);
+
+  const unblockUserInput = useCallback(() => {
+    inputBlockedRef.current = false;
+    setLiveText("...");
+    const rec = recognitionRef.current;
+    if (!rec || wsRef.current?.readyState !== WebSocket.OPEN) return;
+    try {
+      rec.start();
+    } catch {
+      /* 이미 실행 중 */
+    }
+  }, []);
+
+  const playReplyAudio = useCallback(
+    (b64: string, format = "mp3") => {
+      ttsAudioRef.current?.pause();
+      blockUserInput();
+      const mime = format === "mp3" ? "audio/mpeg" : `audio/${format}`;
+      const audio = new Audio(`data:${mime};base64,${b64}`);
+      ttsAudioRef.current = audio;
+      setBotSpeaking(true);
+
+      const finish = () => {
+        setBotSpeaking(false);
+        unblockUserInput();
+      };
+
+      audio.onended = finish;
+      audio.onerror = finish;
+      void audio.play().catch(finish);
+    },
+    [blockUserInput, unblockUserInput],
+  );
 
   const sendUtteranceText = useCallback((text: string) => {
     const ws = wsRef.current;
@@ -110,6 +147,8 @@ export function useDemoSession(
     recognition.continuous = true;
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
+      if (inputBlockedRef.current) return;
+
       let interim = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const t = event.results[i][0].transcript;
@@ -132,8 +171,13 @@ export function useDemoSession(
 
     recognition.onerror = () => {};
     recognition.onend = () => {
+      if (inputBlockedRef.current) return;
       if (wsRef.current?.readyState === WebSocket.OPEN) {
-        recognition.start();
+        try {
+          recognition.start();
+        } catch {
+          /* 이미 실행 중 */
+        }
       }
     };
     recognition.start();
@@ -228,6 +272,7 @@ export function useDemoSession(
 
       const processor = audioCtx.createScriptProcessor(4096, 1, 1);
       processor.onaudioprocess = (e) => {
+        if (inputBlockedRef.current) return;
         if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
         const input = e.inputBuffer.getChannelData(0);
         wsRef.current.send(floatToInt16Bytes(input));
@@ -260,6 +305,7 @@ export function useDemoSession(
 
     ttsAudioRef.current?.pause();
     ttsAudioRef.current = null;
+    inputBlockedRef.current = false;
     setBotSpeaking(false);
 
     wsRef.current = null;
