@@ -23,12 +23,13 @@ FACE_MODEL_ID = os.getenv("FACE_MODEL_ID", "trpakov/vit-face-expression")
 ENABLE_FACE = os.getenv("ENABLE_FACE", "1").strip().lower() not in ("0", "false", "no")
 
 
-# Local LLM 
-LOCAL_LLM_PROVIDERS = frozenset({"local", "exaone", "huggingface"})
-LOCAL_LLM_MODEL_ID = os.getenv(
-    "LOCAL_LLM_MODEL_ID",
-    "LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct",
+# Local LLM (Kanana — OPENAI_API_KEY 없을 때 기본 폴백)
+KANANA_MODEL_ID = os.getenv(
+    "KANANA_MODEL_ID",
+    "kakaocorp/kanana-1.5-2.1b-instruct-2505",
 )
+LOCAL_LLM_PROVIDERS = frozenset({"local", "exaone", "huggingface", "kanana"})
+LOCAL_LLM_MODEL_ID = os.getenv("LOCAL_LLM_MODEL_ID", KANANA_MODEL_ID)
 
 # LOCAL_LLM_MAX_NEW_TOKENS : 최대 생성 토큰 수 
 LOCAL_LLM_MAX_NEW_TOKENS = int(os.getenv("LOCAL_LLM_MAX_NEW_TOKENS", "256"))

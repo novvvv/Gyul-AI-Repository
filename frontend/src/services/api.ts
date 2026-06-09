@@ -1,4 +1,5 @@
 import { API_BASE } from "../config";
+import type { SessionReportResponse, SessionSnapshot } from "../types/sessionReport";
 
 export type HealthResponse = {
   ok: boolean;
@@ -6,6 +7,8 @@ export type HealthResponse = {
   llm_provider?: string;
   face_enabled?: boolean;
   face_loaded?: boolean;
+  text_llm_backend?: string;
+  text_llm_loaded?: boolean;
 };
 
 export async function fetchHealth(): Promise<HealthResponse> {
@@ -62,6 +65,20 @@ export async function predictFaceExpression(
     throw new Error(`predict_face ${res.status}`);
   }
   return res.json() as Promise<FaceExpressionResponse>;
+}
+
+export async function requestSessionReport(
+  snapshot: SessionSnapshot,
+): Promise<SessionReportResponse> {
+  const res = await fetch(`${API_BASE}/session/report`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(snapshot),
+  });
+  if (!res.ok) {
+    throw new Error(`report ${res.status}`);
+  }
+  return res.json() as Promise<SessionReportResponse>;
 }
 
 export function buildWsUrl(params: {

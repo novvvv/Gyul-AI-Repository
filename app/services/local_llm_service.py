@@ -32,6 +32,11 @@ class LocalLLMService:
         import torch
         from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
+        if "kanana" in self.model_id.lower():
+            from app.llm.kanana_support import patch_kanana_llama_config
+
+            patch_kanana_llama_config()
+
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_id,
             trust_remote_code=True,

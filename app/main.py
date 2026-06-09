@@ -4,7 +4,8 @@ from fastapi import FastAPI, File, HTTPException, UploadFile, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from app.core.config import ENABLE_FACE, LOCAL_LLM_PROVIDERS, LLM_PROVIDER
+from app.core.config import ENABLE_FACE
+from app.llm.text_generator import ensure_kanana_loaded, resolve_text_backend
 from app.memory.session_memory import session_memory
 from app.services.face_detect_service import face_detect_service
 from app.services.face_service import face_service
@@ -16,9 +17,11 @@ from app.vision.predict import (
     analyze_face_image,
     detect_faces_in_image,
 )
+from app.routes.session_report import router as session_report_router
 from app.ws.predict import predict_websocket
 
 app = FastAPI(title="SER API")
+app.include_router(session_report_router)
 
 # 정적 페이지(http.server:5500)에서 /predict_face 등 HTTP 호출을 허용.
 app.add_middleware(
@@ -37,8 +40,12 @@ class FaceRequest(BaseModel):
 @app.on_event("startup")
 def load_model() -> None:
     ser_service.load()
-    if LLM_PROVIDER in LOCAL_LLM_PROVIDERS:
-        local_llm_service.load()
+    if resolve_text_backend() == "kanana":
+        try:
+            ensure_kanana_loaded()
+        except Exception:
+            # 첫 대화/보고서 요청 시 lazy load 재시도
+            pass
 
 
 @app.get("/health")
@@ -47,9 +54,10 @@ def health() -> dict:
     if ENABLE_FACE:
         payload["face_enabled"] = True
         payload["face_loaded"] = face_service.is_loaded
-    if LLM_PROVIDER in LOCAL_LLM_PROVIDERS:
-        payload["llm_loaded"] = local_llm_service.is_loaded
-        payload["llm_provider"] = LLM_PROVIDER
+    payload["text_llm_backend"] = resolve_text_backend()
+    payload["text_llm_loaded"] = (
+        resolve_text_backend() == "openai" or local_llm_service.is_loaded
+    )
     return payload
 
 

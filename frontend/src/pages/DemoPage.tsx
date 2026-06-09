@@ -1,4 +1,5 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiPersonaPanel } from "../components/AiPersonaPanel";
 import { CameraPanel } from "../components/CameraPanel";
 import { ConnectionStatus } from "../components/ConnectionStatus";
@@ -12,6 +13,7 @@ import { useHealth } from "../hooks/useHealth";
 import "../styles/demo.css";
 
 export function DemoPage() {
+  const navigate = useNavigate();
   const session = useMemo(
     () => ({
       userId: DEMO_SESSION.userId,
@@ -22,16 +24,6 @@ export function DemoPage() {
   );
 
   const { health, error: healthError } = useHealth();
-  const {
-    status,
-    running,
-    liveText,
-    messages,
-    emotion,
-    botEmotion,
-    start,
-    stop,
-  } = useDemoSession(session);
 
   const {
     videoRef,
@@ -44,15 +36,45 @@ export function DemoPage() {
     stop: stopCam,
   } = useFaceDetect();
 
+  const faceExpressionRef = useRef(faceExpression);
+  faceExpressionRef.current = faceExpression;
+
+  const {
+    status,
+    running,
+    liveText,
+    messages,
+    emotion,
+    botEmotion,
+    start,
+    stop,
+    buildSnapshot,
+    getTurnCount,
+  } = useDemoSession(session, {
+    getFaceExpression: () => faceExpressionRef.current,
+  });
+
   const handleStart = useCallback(() => {
     void start();
     void startCam();
   }, [start, startCam]);
 
-  const handleStop = useCallback(() => {
-    void stop();
+  const handlePause = useCallback(async () => {
+    await stop();
     stopCam();
   }, [stop, stopCam]);
+
+  const handleFinishReport = useCallback(async () => {
+    if (running) {
+      await stop();
+      stopCam();
+    }
+
+    const snapshot = buildSnapshot();
+    if (!snapshot) return;
+
+    navigate("/demo/report/loading", { state: { snapshot } });
+  }, [buildSnapshot, navigate, running, stop, stopCam]);
 
   const aiSpeaking = useMemo(() => {
     const last = messages[messages.length - 1];
@@ -67,7 +89,7 @@ export function DemoPage() {
           <h1>음성 + 표정 대화 체험</h1>
           <p className="sub">
             편하게 말해 보세요. 목소리에서 읽은 감정과 말한 내용을 바탕으로 AI가
-            공감형 답변을 이어갑니다. 카메라로는 얼굴 위치를 함께 인식합니다.
+            공감형 답변을 이어갑니다. <strong>종료(레포트)</strong>로 세션 리포트를 확인하세요.
           </p>
         </div>
         <ConnectionStatus
@@ -77,8 +99,10 @@ export function DemoPage() {
         />
         <MicControls
           running={running}
+          canFinishReport={getTurnCount() > 0}
           onStart={handleStart}
-          onStop={handleStop}
+          onStop={() => void handlePause()}
+          onFinishReport={() => void handleFinishReport()}
         />
       </header>
 

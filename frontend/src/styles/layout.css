@@ -143,3 +143,30 @@
   border-top-color: rgba(106, 93, 82, 0.14);
   color: #979086;
 }
+
+/* Report page — black-brown prose document */
+.app-shell:has(.rpt-page) {
+  background: #ebe6de;
+}
+
+.app-shell:has(.rpt-page) .site-header {
+  background: #f0ebe4;
+  border-bottom-color: #cfc5b8;
+}
+
+.app-shell:has(.rpt-page) .logo {
+  background: #3d342c;
+  color: #f5f1ea;
+}
+
+.app-shell:has(.rpt-page) .site-header nav a.active {
+  color: #3d342c;
+  background: rgba(61, 52, 44, 0.08);
+  border-color: rgba(61, 52, 44, 0.16);
+}
+
+.app-shell:has(.rpt-page) .site-footer {
+  background: #ebe6de;
+  border-top-color: #cfc5b8;
+  color: #8a7f72;
+}

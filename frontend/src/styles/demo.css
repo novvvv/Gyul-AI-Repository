@@ -184,6 +184,25 @@
   color: var(--lp-text);
 }
 
+.demo-page .mic-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.demo-page button.report-finish {
+  background: #2d6a4f;
+  border-color: #2d6a4f;
+  color: #f0f7f2;
+  font-weight: 600;
+}
+
+.demo-page button.report-finish:hover:not(:disabled) {
+  background: #1b4332;
+  border-color: #1b4332;
+}
+
 /* Pills */
 .demo-page .pill {
   border-radius: 999px;

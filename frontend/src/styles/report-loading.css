@@ -1,0 +1,102 @@
+.rpt-loading-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: #ebe6de;
+  font-family: Pretendard, sans-serif;
+}
+
+.rpt-loading-card {
+  width: min(480px, 100%);
+  padding: 44px 40px;
+  background: #f7f3ec;
+  border: 1px solid #cfc5b8;
+  text-align: center;
+}
+
+.rpt-loading-brand {
+  margin: 0 0 20px;
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8a7f72;
+}
+
+.rpt-loading-card h1 {
+  margin: 0 0 12px;
+  font-family: "Noto Serif KR", serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #1a1612;
+}
+
+.rpt-loading-phase {
+  margin: 0 0 28px;
+  font-size: 0.88rem;
+  color: #6b5d4f;
+  min-height: 1.4em;
+  transition: opacity 0.3s ease;
+}
+
+.rpt-loading-bar-track {
+  height: 6px;
+  background: #e2dbd2;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.rpt-loading-bar-fill {
+  height: 100%;
+  background: #3d342c;
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.rpt-loading-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: #8a7f72;
+  margin-bottom: 20px;
+}
+
+.rpt-loading-hint {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.65;
+  color: #8a7f72;
+}
+
+.rpt-loading-retry {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 1px solid #3d342c;
+  background: #3d342c;
+  color: #f7f3ec;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.app-shell:has(.rpt-loading-page) {
+  background: #ebe6de;
+}
+
+.app-shell:has(.rpt-loading-page) .site-header {
+  background: #f0ebe4;
+  border-bottom-color: #cfc5b8;
+}
+
+.app-shell:has(.rpt-loading-page) .logo {
+  background: #3d342c;
+  color: #f5f1ea;
+}
+
+.app-shell:has(.rpt-loading-page) .site-footer {
+  background: #ebe6de;
+  border-top-color: #cfc5b8;
+  color: #8a7f72;
+}

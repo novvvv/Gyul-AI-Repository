@@ -6,6 +6,8 @@ import {
   type ChatMessage,
   type SerWsMessage,
 } from "../types/ser";
+import type { SessionSnapshot, SessionTurnRecord } from "../types/sessionReport";
+import type { FaceExpressionSnapshot } from "./useFaceDetect";
 
 function floatToInt16Bytes(float32Array: Float32Array): ArrayBuffer {
   const out = new Int16Array(float32Array.length);
@@ -33,11 +35,18 @@ export type EmotionSnapshot = {
   phase: "idle" | "partial" | "final";
 };
 
-export function useDemoSession(session: {
-  userId: string;
-  sessionId: string;
-  personaId: string;
-}) {
+type DemoSessionOptions = {
+  getFaceExpression?: () => FaceExpressionSnapshot;
+};
+
+export function useDemoSession(
+  session: {
+    userId: string;
+    sessionId: string;
+    personaId: string;
+  },
+  options: DemoSessionOptions = {},
+) {
   const [status, setStatus] = useState("대기 중");
   const [running, setRunning] = useState(false);
   const [liveText, setLiveText] = useState("...");
@@ -64,6 +73,10 @@ export function useDemoSession(session: {
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const pendingSentencesRef = useRef<string[]>([]);
+  const turnLogRef = useRef<SessionTurnRecord[]>([]);
+  const startedAtRef = useRef<string | null>(null);
+  const getFaceExpressionRef = useRef(options.getFaceExpression);
+  getFaceExpressionRef.current = options.getFaceExpression;
 
   const sendUtteranceText = useCallback((text: string) => {
     const ws = wsRef.current;
@@ -165,6 +178,21 @@ export function useDemoSession(session: {
             ? (data.label as EmotionLabel)
             : "neutral",
         );
+
+        const face = getFaceExpressionRef.current?.() ?? null;
+        turnLogRef.current.push({
+          user_text: sentence,
+          voice_emotion: {
+            label: data.label,
+            confidence: data.confidence,
+            probs: data.probs,
+          },
+          face_emotion: face
+            ? { label: face.label, confidence: face.confidence }
+            : null,
+          bot_reply: data.reply ?? "",
+          at: new Date().toISOString(),
+        });
       };
 
       ws.onerror = () => setStatus("WebSocket 오류");
@@ -191,6 +219,8 @@ export function useDemoSession(session: {
       processor.connect(audioCtx.destination);
       processorRef.current = processor;
 
+      turnLogRef.current = [];
+      startedAtRef.current = new Date().toISOString();
       setRunning(true);
       startSpeechToText();
     } catch (err) {
@@ -225,6 +255,22 @@ export function useDemoSession(session: {
     setEmotion((e) => ({ ...e, phase: "idle" }));
   }, []);
 
+  const getTurnCount = useCallback(() => turnLogRef.current.length, []);
+
+  const buildSnapshot = useCallback((): SessionSnapshot | null => {
+    if (turnLogRef.current.length === 0) return null;
+    return {
+      session: {
+        user_id: session.userId,
+        session_id: session.sessionId,
+        persona_id: session.personaId,
+        started_at: startedAtRef.current ?? new Date().toISOString(),
+        ended_at: new Date().toISOString(),
+      },
+      turns: [...turnLogRef.current],
+    };
+  }, [session.personaId, session.sessionId, session.userId]);
+
   return {
     status,
     running,
@@ -234,5 +280,7 @@ export function useDemoSession(session: {
     botEmotion,
     start,
     stop,
+    buildSnapshot,
+    getTurnCount,
   };
 }
