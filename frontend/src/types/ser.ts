@@ -11,6 +11,8 @@ export type SerFinalMessage = {
   confidence: number;
   probs: Record<string, number>;
   reply?: string;
+  reply_audio_b64?: string;
+  reply_audio_format?: string;
   text?: string;
   session_id?: string;
   persona_id?: string;

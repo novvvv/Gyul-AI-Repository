@@ -9,9 +9,11 @@ API_PORT="${API_PORT:-8000}"
 WEB_PORT="${WEB_PORT:-5173}"
 API_HOST="${API_HOST:-127.0.0.1}"
 WEB_HOST="${WEB_HOST:-127.0.0.1}"
+PYENV_PYTHON_VERSION="${PYENV_PYTHON_VERSION:-3.11.6}"
 
 API_PID=""
 WEB_PID=""
+PYTHON=""
 
 cleanup() {
   echo ""
@@ -27,23 +29,40 @@ trap cleanup EXIT INT TERM
 setup_python() {
   if command -v pyenv >/dev/null 2>&1; then
     export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    if command -v pyenv >/dev/null 2>&1; then
-      eval "$(pyenv init - bash 2>/dev/null || pyenv init - 2>/dev/null || true)"
-    fi
-    if pyenv versions --bare 2>/dev/null | grep -qx "3.11.6"; then
-      pyenv shell 3.11.6
+    export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+    if pyenv versions --bare 2>/dev/null | grep -qx "$PYENV_PYTHON_VERSION"; then
+      export PYENV_VERSION="$PYENV_PYTHON_VERSION"
+      PYTHON="$PYENV_ROOT/versions/$PYENV_PYTHON_VERSION/bin/python3"
     fi
   fi
 
-  if ! command -v python3 >/dev/null 2>&1; then
-    echo "python3가 필요합니다."
+  if [[ -z "$PYTHON" || ! -x "$PYTHON" ]]; then
+    PYTHON="$(command -v python3 || true)"
+  fi
+
+  if [[ -z "$PYTHON" || ! -x "$PYTHON" ]]; then
+    echo "python3가 필요합니다. pyenv로 Python ${PYENV_PYTHON_VERSION} 설치를 권장합니다."
+    echo "  pyenv install ${PYENV_PYTHON_VERSION}"
     exit 1
   fi
 
-  if ! python3 -c "import uvicorn" 2>/dev/null; then
+  local py_major py_minor
+  read -r py_major py_minor < <("$PYTHON" -c 'import sys; print(sys.version_info.major, sys.version_info.minor)')
+  echo "Python: $("$PYTHON" --version) ($PYTHON)"
+
+  if (( py_major < 3 || (py_major == 3 && py_minor < 10) )); then
+    echo ""
+    echo "[오류] Python 3.10 이상이 필요합니다 (현재 ${py_major}.${py_minor})."
+    echo "       conda(base)나 시스템 python3 대신 pyenv 3.11.6을 사용하세요:"
+    echo "         pyenv install ${PYENV_PYTHON_VERSION}"
+    echo "         PYENV_VERSION=${PYENV_PYTHON_VERSION} ./start.sh"
+    exit 1
+  fi
+
+  if ! "$PYTHON" -c "import uvicorn, transformers; assert int(transformers.__version__.split('.')[0]) >= 5" 2>/dev/null; then
     echo "Python 패키지 설치 중..."
-    python3 -m pip install -r requirements.txt
+    "$PYTHON" -m pip install -U pip
+    "$PYTHON" -m pip install -r requirements.txt
   fi
 }
 
@@ -91,10 +110,15 @@ if [[ -n "${OPENAI_API_KEY:-}" ]]; then
 else
   echo " LLM  : Kanana (OPENAI_API_KEY 없음)"
 fi
+if [[ -n "${FISH_AUDIO_API_KEY:-}" ]]; then
+  echo " TTS  : Fish Audio"
+else
+  echo " TTS  : off (FISH_AUDIO_API_KEY 없음)"
+fi
 echo "============================================"
 echo ""
 
-python3 -m uvicorn ser_api:app --reload --host "$API_HOST" --port "$API_PORT" &
+"$PYTHON" -m uvicorn ser_api:app --reload --host "$API_HOST" --port "$API_PORT" &
 API_PID=$!
 
 (

@@ -59,6 +59,7 @@ export function useDemoSession(
     },
   ]);
   const [botEmotion, setBotEmotion] = useState<EmotionLabel>("neutral");
+  const [botSpeaking, setBotSpeaking] = useState(false);
   const [emotion, setEmotion] = useState<EmotionSnapshot>({
     label: "neutral",
     confidence: 0,
@@ -77,6 +78,18 @@ export function useDemoSession(
   const startedAtRef = useRef<string | null>(null);
   const getFaceExpressionRef = useRef(options.getFaceExpression);
   getFaceExpressionRef.current = options.getFaceExpression;
+  const ttsAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const playReplyAudio = useCallback((b64: string, format = "mp3") => {
+    ttsAudioRef.current?.pause();
+    const mime = format === "mp3" ? "audio/mpeg" : `audio/${format}`;
+    const audio = new Audio(`data:${mime};base64,${b64}`);
+    ttsAudioRef.current = audio;
+    setBotSpeaking(true);
+    audio.onended = () => setBotSpeaking(false);
+    audio.onerror = () => setBotSpeaking(false);
+    void audio.play().catch(() => setBotSpeaking(false));
+  }, []);
 
   const sendUtteranceText = useCallback((text: string) => {
     const ws = wsRef.current;
@@ -179,6 +192,10 @@ export function useDemoSession(
             : "neutral",
         );
 
+        if (data.reply_audio_b64) {
+          playReplyAudio(data.reply_audio_b64, data.reply_audio_format);
+        }
+
         const face = getFaceExpressionRef.current?.() ?? null;
         turnLogRef.current.push({
           user_text: sentence,
@@ -226,7 +243,7 @@ export function useDemoSession(
     } catch (err) {
       setStatus(`시작 실패: ${err instanceof Error ? err.message : String(err)}`);
     }
-  }, [session, startSpeechToText]);
+  }, [session, startSpeechToText, playReplyAudio]);
 
   const stop = useCallback(async () => {
     processorRef.current?.disconnect();
@@ -240,6 +257,10 @@ export function useDemoSession(
     wsRef.current?.close();
 
     recognitionRef.current?.stop();
+
+    ttsAudioRef.current?.pause();
+    ttsAudioRef.current = null;
+    setBotSpeaking(false);
 
     wsRef.current = null;
     streamRef.current = null;
@@ -278,6 +299,7 @@ export function useDemoSession(
     messages,
     emotion,
     botEmotion,
+    botSpeaking,
     start,
     stop,
     buildSnapshot,

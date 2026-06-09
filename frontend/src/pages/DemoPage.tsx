@@ -46,6 +46,7 @@ export function DemoPage() {
     messages,
     emotion,
     botEmotion,
+    botSpeaking,
     start,
     stop,
     buildSnapshot,
@@ -76,10 +77,7 @@ export function DemoPage() {
     navigate("/demo/report/loading", { state: { snapshot } });
   }, [buildSnapshot, navigate, running, stop, stopCam]);
 
-  const aiSpeaking = useMemo(() => {
-    const last = messages[messages.length - 1];
-    return running && last?.role === "bot";
-  }, [messages, running]);
+  const aiSpeaking = running && botSpeaking;
 
   return (
     <div className="demo-page">

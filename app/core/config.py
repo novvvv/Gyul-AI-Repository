@@ -35,3 +35,17 @@ LOCAL_LLM_MODEL_ID = os.getenv("LOCAL_LLM_MODEL_ID", KANANA_MODEL_ID)
 LOCAL_LLM_MAX_NEW_TOKENS = int(os.getenv("LOCAL_LLM_MAX_NEW_TOKENS", "256"))
 # LOCAL_LLM_TEMPERATURE : 샘플링 무작위성 
 LOCAL_LLM_TEMPERATURE = float(os.getenv("LOCAL_LLM_TEMPERATURE", "0.7"))
+
+# Fish Audio TTS (https://fish.audio) — FISH_AUDIO_API_KEY 있을 때 활성화
+FISH_AUDIO_API_KEY = os.getenv("FISH_AUDIO_API_KEY", "")
+# Fish Audio 문서 예시 voice (playground 샘플). .env로 교체 가능.
+FISH_AUDIO_VOICE_ID = os.getenv(
+    "FISH_AUDIO_VOICE_ID",
+    "7f92f8afb8ec43bf81429cc1c9199cb1",
+)
+FISH_AUDIO_MODEL = os.getenv("FISH_AUDIO_MODEL", "s2-pro")
+ENABLE_FISH_TTS = os.getenv("ENABLE_FISH_TTS", "1").strip().lower() not in (
+    "0",
+    "false",
+    "no",
+)

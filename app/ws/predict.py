@@ -14,6 +14,7 @@ from app.core.config import (
     VAD_SILENCE_SECONDS,
 )
 from app.memory.session_memory import InMemorySessionMemory, SessionContext
+from app.services.fish_tts_service import fish_tts_service
 from app.services.llm_service import LLMReplyService
 from app.services.ser_service import SERService
 
@@ -47,16 +48,27 @@ async def _send_final_result(
     )
     memory.append_user_message(context, text_for_reply, final_result["label"])
     memory.append_assistant_message(context, ai_reply)
-    await websocket.send_json(
-        {
-            "type": "final",
-            "session_id": context.session_id,
-            "persona_id": context.persona_id,
-            "text": text_for_reply,
-            "reply": ai_reply,
-            **final_result,
-        }
-    )
+
+    payload: dict = {
+        "type": "final",
+        "session_id": context.session_id,
+        "persona_id": context.persona_id,
+        "text": text_for_reply,
+        "reply": ai_reply,
+        **final_result,
+    }
+
+    if fish_tts_service.is_enabled:
+        audio_b64 = await asyncio.to_thread(
+            fish_tts_service.synthesize_b64,
+            ai_reply,
+            final_result["label"],
+        )
+        if audio_b64:
+            payload["reply_audio_b64"] = audio_b64
+            payload["reply_audio_format"] = "mp3"
+
+    await websocket.send_json(payload)
 
 
 def _parse_utterance_text(text_msg: str) -> str | None:

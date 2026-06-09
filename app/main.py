@@ -9,6 +9,7 @@ from app.llm.text_generator import ensure_kanana_loaded, resolve_text_backend
 from app.memory.session_memory import session_memory
 from app.services.face_detect_service import face_detect_service
 from app.services.face_service import face_service
+from app.services.fish_tts_service import fish_tts_service
 from app.services.llm_service import llm_reply_service
 from app.services.local_llm_service import local_llm_service
 from app.services.ser_service import ser_service
@@ -58,6 +59,9 @@ def health() -> dict:
     payload["text_llm_loaded"] = (
         resolve_text_backend() == "openai" or local_llm_service.is_loaded
     )
+    payload["fish_tts_enabled"] = fish_tts_service.is_enabled
+    if fish_tts_service.is_enabled:
+        payload["fish_tts_voice_id"] = fish_tts_service.voice_id
     return payload
 
 

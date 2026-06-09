@@ -9,6 +9,8 @@ export type HealthResponse = {
   face_loaded?: boolean;
   text_llm_backend?: string;
   text_llm_loaded?: boolean;
+  fish_tts_enabled?: boolean;
+  fish_tts_voice_id?: string;
 };
 
 export async function fetchHealth(): Promise<HealthResponse> {
