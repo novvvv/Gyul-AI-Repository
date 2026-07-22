@@ -7,6 +7,11 @@ os.environ["USE_TF"] = "0"
 # Spring 연동 (docs/fastapi-integration-guide.md §1) — Spring과 동일 값 주입 필수
 JWT_SECRET = os.getenv("JWT_SECRET", "")
 
+# Kafka 분석 리포트 발행 (가이드 §3)
+ENABLE_KAFKA = os.getenv("ENABLE_KAFKA", "1").strip().lower() not in ("0", "false", "no")
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
+KAFKA_REPORT_TOPIC = os.getenv("KAFKA_REPORT_TOPIC", "interview.analysis-report")
+
 # 대화 세션 메모리 (가이드 §4 — FastAPI는 Redis DB 0만 사용, DB 1은 Spring 전용)
 MEMORY_BACKEND = os.getenv("MEMORY_BACKEND", "memory").strip().lower()
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
