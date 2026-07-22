@@ -19,3 +19,5 @@ aiokafka
 # test
 pytest
 httpx
+fakeredis
+websockets
