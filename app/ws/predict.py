@@ -13,7 +13,7 @@ from app.core.config import (
     VAD_RMS_THRESHOLD,
     VAD_SILENCE_SECONDS,
 )
-from app.memory.session_memory import InMemorySessionMemory, SessionContext
+from app.memory.session_memory import SessionContext, SessionMemory
 from app.services.fish_tts_service import fish_tts_service
 from app.services.llm_service import LLMReplyService
 from app.services.ser_service import SERService
@@ -31,7 +31,7 @@ async def _send_final_result(
     websocket: WebSocket,
     ser: SERService,
     llm: LLMReplyService,
-    memory: InMemorySessionMemory,
+    memory: SessionMemory,
     context: SessionContext,
     audio: np.ndarray,
     pending_texts: deque,
@@ -110,7 +110,7 @@ async def predict_websocket(
     websocket: WebSocket,
     ser: SERService,
     llm: LLMReplyService,
-    memory: InMemorySessionMemory,
+    memory: SessionMemory,
 ) -> None:
     await websocket.accept()
 

@@ -7,6 +7,12 @@ os.environ["USE_TF"] = "0"
 # Spring 연동 (docs/fastapi-integration-guide.md §1) — Spring과 동일 값 주입 필수
 JWT_SECRET = os.getenv("JWT_SECRET", "")
 
+# 대화 세션 메모리 (가이드 §4 — FastAPI는 Redis DB 0만 사용, DB 1은 Spring 전용)
+MEMORY_BACKEND = os.getenv("MEMORY_BACKEND", "memory").strip().lower()
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+SESSION_MEMORY_TTL_SECONDS = int(os.getenv("SESSION_MEMORY_TTL_SECONDS", "86400"))
+SESSION_MEMORY_MAX_TURNS = int(os.getenv("SESSION_MEMORY_MAX_TURNS", "20"))
+
 MODEL_DIR = os.getenv("GYUL_MODEL_DIR", "model")
 TARGET_SR = int(os.getenv("GYUL_TARGET_SR", "16000"))
 MIN_CHUNK_SECONDS = float(os.getenv("GYUL_MIN_CHUNK_SECONDS", "1.0"))
