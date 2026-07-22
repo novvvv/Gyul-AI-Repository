@@ -17,7 +17,9 @@ from fastapi.websockets import WebSocketDisconnect
 
 from app.core.security import TokenError, verify_access_token
 from app.memory.session_memory import SessionContext, SessionMemory
+from app.services.kafka_producer import report_kafka_producer
 from app.services.llm_service import LLMReplyService
+from app.services.report_builder import build_analysis_report
 from app.services.ser_service import SERService
 from app.ws.interview_session import InterviewSessionState
 from app.ws.pipeline import (
@@ -108,12 +110,23 @@ async def interview_websocket(
 
     assembler = UtteranceAssembler()
     pending_texts = deque()
+    report_published = False
 
     async def finalize_turn(audio) -> None:
         turn = await run_final_turn(
             websocket, ser, llm, memory, context, audio, pending_texts
         )
         state.record_turn(turn)
+
+    async def publish_report() -> None:
+        # 대화 종료 시 분석 리포트 발행 (가이드 §3). sessionId 멱등이라
+        # 중복 호출 가능성은 Spring 측에서 흡수되지만 이중 발행은 피한다.
+        nonlocal report_published
+        if report_published or state.turn_count == 0:
+            return
+        report_published = True
+        report = await build_analysis_report(state)
+        await report_kafka_producer.publish_report(report)
 
     try:
         while True:
@@ -130,6 +143,7 @@ async def interview_websocket(
                     continue
 
                 if text_msg == "session_end":
+                    await publish_report()
                     await websocket.send_json(
                         {
                             "type": "session_closed",
@@ -185,3 +199,11 @@ async def interview_websocket(
 
     except WebSocketDisconnect:
         pass
+    finally:
+        # 비정상 종료라도 대화가 있었으면 발행 (at-least-once)
+        try:
+            await publish_report()
+        except Exception:
+            logger.exception(
+                "리포트 발행 실패 (sessionId=%s)", state.session_id
+            )
