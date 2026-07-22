@@ -19,6 +19,7 @@ from app.vision.predict import (
     detect_faces_in_image,
 )
 from app.routes.session_report import router as session_report_router
+from app.ws.interview import interview_websocket
 from app.ws.predict import predict_websocket
 
 app = FastAPI(title="SER API")
@@ -127,3 +128,8 @@ async def detect_face(body: FaceRequest) -> dict:
 @app.websocket("/ws/predict")
 async def ws_predict(websocket: WebSocket) -> None:
     await predict_websocket(websocket, ser_service, llm_reply_service, session_memory)
+
+
+@app.websocket("/ws/interview")
+async def ws_interview(websocket: WebSocket) -> None:
+    await interview_websocket(websocket)
