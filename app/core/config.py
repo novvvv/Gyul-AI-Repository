@@ -4,6 +4,9 @@ import os
 os.environ["TRANSFORMERS_NO_TF"] = "1"
 os.environ["USE_TF"] = "0"
 
+# Spring 연동 (docs/fastapi-integration-guide.md §1) — Spring과 동일 값 주입 필수
+JWT_SECRET = os.getenv("JWT_SECRET", "")
+
 MODEL_DIR = os.getenv("GYUL_MODEL_DIR", "model")
 TARGET_SR = int(os.getenv("GYUL_TARGET_SR", "16000"))
 MIN_CHUNK_SECONDS = float(os.getenv("GYUL_MIN_CHUNK_SECONDS", "1.0"))
