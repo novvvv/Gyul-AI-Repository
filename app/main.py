@@ -10,6 +10,7 @@ from app.memory.session_memory import session_memory
 from app.services.face_detect_service import face_detect_service
 from app.services.face_service import face_service
 from app.services.fish_tts_service import fish_tts_service
+from app.services.kafka_producer import report_kafka_producer
 from app.services.llm_service import llm_reply_service
 from app.services.local_llm_service import local_llm_service
 from app.services.ser_service import ser_service
@@ -48,6 +49,16 @@ def load_model() -> None:
         except Exception:
             # 첫 대화/보고서 요청 시 lazy load 재시도
             pass
+
+
+@app.on_event("startup")
+async def start_kafka_producer() -> None:
+    await report_kafka_producer.start()
+
+
+@app.on_event("shutdown")
+async def stop_kafka_producer() -> None:
+    await report_kafka_producer.stop()
 
 
 @app.get("/health")

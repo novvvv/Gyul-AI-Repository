@@ -9,9 +9,21 @@ SR = 16000
 
 @pytest.fixture
 def client(jwt_secret, monkeypatch):
+    import app.ws.interview as interview_module
     from app.main import app
+    from app.services.kafka_producer import report_kafka_producer
     from app.services.llm_service import llm_reply_service
     from app.services.ser_service import ser_service
+
+    # 리포트 빌더(LLM 호출)와 Kafka 발행은 기본 스텁 — 발행 검증 테스트에서 재패치
+    async def noop_build(state):
+        return {"schemaVersion": 1, "sessionId": state.session_id, "email": state.email}
+
+    async def noop_publish(report):
+        return True
+
+    monkeypatch.setattr(interview_module, "build_analysis_report", noop_build)
+    monkeypatch.setattr(report_kafka_producer, "publish_report", noop_publish)
 
     # SER/LLM을 가짜로 대체해 모델 없이 파이프라인 흐름만 검증
     monkeypatch.setattr(ser_service, "feature_extractor", object())
@@ -79,6 +91,95 @@ def test_flush_finalizes_pending_speech(client):
             message = ws.receive_json()
         assert message["type"] == "final"
         assert message["text"] == "잘 부탁드립니다"
+
+
+def test_session_end_publishes_analysis_report(client, monkeypatch):
+    import app.ws.interview as interview_module
+    from app.services.kafka_producer import report_kafka_producer
+
+    published = []
+
+    async def fake_build(state):
+        return {"schemaVersion": 1, "sessionId": state.session_id, "email": state.email}
+
+    async def fake_publish(report):
+        published.append(report)
+        return True
+
+    monkeypatch.setattr(interview_module, "build_analysis_report", fake_build)
+    monkeypatch.setattr(report_kafka_producer, "publish_report", fake_publish)
+
+    token = make_access_token()
+    with client.websocket_connect(f"/ws/interview?token={token}") as ws:
+        ready = ws.receive_json()
+
+        ws.send_json({"type": "utterance_text", "text": "안녕하세요"})
+        ws.send_bytes(_pcm_bytes(3000, 0.5))
+        ws.send_text("flush")
+        message = ws.receive_json()
+        while message["type"] == "partial":
+            message = ws.receive_json()
+        assert message["type"] == "final"
+
+        ws.send_text("session_end")
+        closed = ws.receive_json()
+        assert closed["type"] == "session_closed"
+
+    # session_end 경로 1회만 발행 (finally 중복 발행 없음)
+    assert len(published) == 1
+    assert published[0]["sessionId"] == ready["session_id"]
+    assert published[0]["email"] == "ai-test@example.com"
+
+
+def test_disconnect_without_session_end_still_publishes(client, monkeypatch):
+    import app.ws.interview as interview_module
+    from app.services.kafka_producer import report_kafka_producer
+
+    published = []
+
+    async def fake_build(state):
+        return {"schemaVersion": 1, "sessionId": state.session_id, "email": state.email}
+
+    async def fake_publish(report):
+        published.append(report)
+        return True
+
+    monkeypatch.setattr(interview_module, "build_analysis_report", fake_build)
+    monkeypatch.setattr(report_kafka_producer, "publish_report", fake_publish)
+
+    token = make_access_token()
+    with client.websocket_connect(f"/ws/interview?token={token}") as ws:
+        ws.receive_json()  # session_ready
+        ws.send_json({"type": "utterance_text", "text": "안녕하세요"})
+        ws.send_bytes(_pcm_bytes(3000, 0.5))
+        ws.send_text("flush")
+        message = ws.receive_json()
+        while message["type"] == "partial":
+            message = ws.receive_json()
+        assert message["type"] == "final"
+        # session_end 없이 그냥 연결 종료
+
+    assert len(published) == 1
+
+
+def test_empty_session_publishes_nothing(client, monkeypatch):
+    from app.services.kafka_producer import report_kafka_producer
+
+    published = []
+
+    async def fake_publish(report):
+        published.append(report)
+        return True
+
+    monkeypatch.setattr(report_kafka_producer, "publish_report", fake_publish)
+
+    token = make_access_token()
+    with client.websocket_connect(f"/ws/interview?token={token}") as ws:
+        ws.receive_json()  # session_ready
+        ws.send_text("session_end")
+        ws.receive_json()  # session_closed
+
+    assert published == []
 
 
 def test_session_start_changes_persona_only(client):
