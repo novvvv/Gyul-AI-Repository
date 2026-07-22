@@ -48,6 +48,13 @@ def test_alg_none_rejected(jwt_secret):
     assert exc.value.reason == "invalid"
 
 
+def test_hs384_and_hs512_accepted(jwt_secret):
+    # JJWT는 시크릿 길이(≥384/512비트)에 따라 HS384/512를 자동 선택한다 (이슈 #20)
+    for algorithm in ("HS384", "HS512"):
+        payload = verify_access_token(make_access_token(algorithm=algorithm))
+        assert payload["sub"] == "ai-test@example.com"
+
+
 def test_refresh_style_token_without_member_id_rejected(jwt_secret):
     # Refresh Token에는 memberId/role claim이 없다 (가이드 §1.2)
     token = make_access_token(memberId=None, role=None)
