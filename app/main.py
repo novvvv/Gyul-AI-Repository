@@ -132,4 +132,4 @@ async def ws_predict(websocket: WebSocket) -> None:
 
 @app.websocket("/ws/interview")
 async def ws_interview(websocket: WebSocket) -> None:
-    await interview_websocket(websocket)
+    await interview_websocket(websocket, ser_service, llm_reply_service, session_memory)
