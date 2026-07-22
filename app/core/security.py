@@ -15,6 +15,10 @@ logger = logging.getLogger(__name__)
 # 시계 오차 허용 (가이드 §1.3 — 만료 오판 방지용 최소값)
 LEEWAY_SECONDS = 10
 
+# HMAC 계열만 허용 — alg 혼동 공격(none/RS256) 방어는 유지하면서,
+# JJWT가 시크릿 길이에 따라 HS384/512를 자동 선택하는 동작(이슈 #20)과 호환.
+ALLOWED_ALGORITHMS = ["HS256", "HS384", "HS512"]
+
 
 class TokenError(Exception):
     def __init__(self, reason: str) -> None:
@@ -37,7 +41,7 @@ def verify_access_token(token: str) -> dict:
         payload = jwt.decode(
             token,
             config.JWT_SECRET,
-            algorithms=["HS256"],
+            algorithms=ALLOWED_ALGORITHMS,
             leeway=LEEWAY_SECONDS,
         )
     except jwt.ExpiredSignatureError:
