@@ -10,3 +10,12 @@ langchain
 langchain-openai
 langchain-google-genai
 accelerate
+opencv-python
+insightface
+PyJWT
+redis
+aiokafka
+
+# test
+pytest
+httpx
