@@ -9,6 +9,9 @@ import {
 import type { SessionSnapshot, SessionTurnRecord } from "../types/sessionReport";
 import type { FaceExpressionSnapshot } from "./useFaceDetect";
 
+/** TTS 낭독 배속 (1 = 원속도) */
+const TTS_PLAYBACK_RATE = 1.5;
+
 function floatToInt16Bytes(float32Array: Float32Array): ArrayBuffer {
   const out = new Int16Array(float32Array.length);
   for (let i = 0; i < float32Array.length; i++) {
@@ -113,6 +116,9 @@ export function useDemoSession(
       blockUserInput();
       const mime = format === "mp3" ? "audio/mpeg" : `audio/${format}`;
       const audio = new Audio(`data:${mime};base64,${b64}`);
+      // 낭독 속도 2배 (피치는 유지)
+      audio.preservesPitch = true;
+      audio.playbackRate = TTS_PLAYBACK_RATE;
       ttsAudioRef.current = audio;
       setBotSpeaking(true);
 

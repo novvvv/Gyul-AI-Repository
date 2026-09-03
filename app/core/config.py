@@ -50,6 +50,17 @@ LOCAL_LLM_MAX_NEW_TOKENS = int(os.getenv("LOCAL_LLM_MAX_NEW_TOKENS", "256"))
 # LOCAL_LLM_TEMPERATURE : 샘플링 무작위성 
 LOCAL_LLM_TEMPERATURE = float(os.getenv("LOCAL_LLM_TEMPERATURE", "0.7"))
 
+# OpenAI TTS (audio/speech) — OPENAI_API_KEY 있을 때 활성화.
+# 주의: Whisper(audio/transcriptions)는 STT다. 낭독은 이 엔드포인트를 쓴다.
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_TTS_MODEL = os.getenv("OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+OPENAI_TTS_VOICE = os.getenv("OPENAI_TTS_VOICE", "shimmer")
+ENABLE_OPENAI_TTS = os.getenv("ENABLE_OPENAI_TTS", "1").strip().lower() not in (
+    "0",
+    "false",
+    "no",
+)
+
 # Fish Audio TTS (https://fish.audio) — FISH_AUDIO_API_KEY 있을 때 활성화
 FISH_AUDIO_API_KEY = os.getenv("FISH_AUDIO_API_KEY", "")
 # Fish Audio 문서 예시 voice (playground 샘플). .env로 교체 가능.

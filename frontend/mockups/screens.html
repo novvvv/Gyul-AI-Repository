@@ -1,0 +1,1730 @@
+<title>결 화면 목업</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+
+<style>
+/* ══════════════════════════════════════════════
+   결 · 토큰
+   WHITE #FFFFF7 · WHITE SAND #E7E7DD · BLACK #1D1D1B
+   구조 모티프 = 이음선(seam). 두 자아가 만나는 자리에
+   언제나 세로 실선 하나가 선다.
+   ══════════════════════════════════════════════ */
+:root {
+  color-scheme: light;
+
+  --bg:        #FFFFF7;
+  --sand:      #E7E7DD;
+  --sand-lite: #F1F1E8;
+  --sunken:    #FAFAF3;
+
+  --ink:   #1D1D1B;
+  --ink-2: #56564F;
+  --ink-3: #918F85;
+
+  --rule:      #DEDED2;
+  --rule-soft: #EDEDE3;
+
+  --on-ink: #FFFFF7;
+
+  --e-happiness: #D99411;
+  --e-fear:      #CE81A8;
+  --e-sadness:   #2E7FBE;
+  --e-disgust:   #12A07C;
+  --e-angry:     #DC6B1C;
+  --e-surprise:  #63AEDC;
+  --e-neutral:   #A8A89C;
+
+  --ui: "Space Grotesk", "NexonLv1Gothic", "넥슨Lv1고딕",
+        -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard",
+        "Segoe UI", Roboto, "Noto Sans KR", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--ui); font-size: 15px; line-height: 1.62;
+  letter-spacing: -.004em; -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3 { margin: 0; letter-spacing: -.02em; text-wrap: balance; font-weight: 700; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.screen { display: none; }
+.screen.is-active { display: block; }
+.num { font-variant-numeric: tabular-nums; }
+.dot-sw { width: 8px; height: 8px; border-radius: 2px; flex: none; box-shadow: inset 0 0 0 1px rgba(29,29,27,.12); }
+
+/* ── 상단 ── */
+.topbar {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: baseline; gap: 34px;
+  padding: 0 40px; height: 56px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border-bottom: 1px solid var(--rule);
+}
+.brand {
+  background: none; border: 0; padding: 0; cursor: pointer; color: inherit;
+  font-family: inherit; font-size: 17px; font-weight: 700; letter-spacing: -.02em;
+  align-self: center;
+}
+.topnav { display: flex; gap: 24px; margin-left: auto; align-self: center; }
+.topnav button {
+  appearance: none; border: 0; background: none; padding: 0; cursor: pointer;
+  font: inherit; font-size: 13.5px; color: var(--ink-3);
+  border-bottom: 1.5px solid transparent; padding-bottom: 2px;
+}
+.topnav button:hover { color: var(--ink-2); }
+.topnav button[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+
+/* ── 부품 ── */
+.btn {
+  appearance: none; font: inherit; font-size: 14px; font-weight: 500;
+  padding: 9px 18px; cursor: pointer; border-radius: 3px;
+  border: 1px solid var(--ink); background: transparent; color: var(--ink);
+  transition: background 120ms ease, color 120ms ease;
+}
+.btn:hover { background: var(--sand-lite); }
+.btn.solid { background: var(--ink); color: var(--on-ink); }
+.btn.solid:hover { background: #000; }
+.btn.bare { border-color: transparent; padding-left: 0; padding-right: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.btn.bare:hover { background: none; color: var(--ink-2); }
+.btn.sm { font-size: 13px; padding: 6px 13px; }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.rule { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ══════════════════════════════════════════════
+   1. 랜딩 — 좌측 정렬 · 이음선 구조
+   ══════════════════════════════════════════════ */
+.lp { padding: 0 40px; }
+.lp-inner { max-width: 1120px; margin: 0 auto; }
+
+.hero { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: 72px; align-items: center; padding: 92px 0 84px; }
+.hero .eyebrow { display: block; margin-bottom: 22px; }
+.hero h1 {
+  font-size: clamp(40px, 5.4vw, 66px); line-height: 1.06;
+  letter-spacing: -.035em; margin-bottom: 26px;
+}
+.hero h1 .low { display: block; color: var(--ink-3); }
+.hero .lead { font-size: 17px; line-height: 1.78; color: var(--ink-2); max-width: 26em; margin-bottom: 32px; }
+.hero .acts { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.hero .fine { margin-top: 22px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+
+.hero-fig { }
+.hero-fig figcaption {
+  margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule);
+  font-size: 13px; line-height: 1.7; color: var(--ink-2);
+}
+.hero-fig figcaption b { color: var(--ink); font-weight: 600; }
+
+/* 랜딩 섹션 — 좌우 비대칭, 이음선 */
+.band { padding: 78px 0; border-top: 1px solid var(--rule); }
+.band-grid { display: grid; grid-template-columns: 240px minmax(0,1fr); gap: 56px; align-items: start; }
+.band-grid > h2 { font-size: 22px; line-height: 1.35; letter-spacing: -.028em; }
+.band-grid > h2 .eyebrow { display: block; margin-bottom: 12px; }
+
+.seam-two { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0; }
+.seam-two .col { padding: 0 30px; }
+.seam-two .col:first-child { padding-left: 0; }
+.seam-two .col:last-child { padding-right: 0; }
+.seam-two .seam { background: var(--rule); }
+.seam-two h3 { font-size: 14px; margin-bottom: 12px; color: var(--ink-3); font-weight: 600; }
+.seam-two .col.mine h3 { color: var(--ink); }
+.seam-two p { font-size: 14.5px; line-height: 1.8; color: var(--ink-2); }
+.seam-two p b { color: var(--ink); font-weight: 600; }
+
+.steps { display: grid; gap: 0; }
+.step { display: grid; grid-template-columns: 34px minmax(0,1fr) 132px; gap: 24px; padding: 22px 0; border-top: 1px solid var(--rule-soft); align-items: baseline; }
+.step:first-child { border-top: 0; padding-top: 0; }
+.step .n { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.step h3 { font-size: 17px; letter-spacing: -.024em; margin-bottom: 6px; }
+.step p { font-size: 14px; color: var(--ink-2); line-height: 1.75; }
+.step .t { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); text-align: right; }
+
+.closing { padding: 84px 0 96px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 48px; align-items: end; }
+.closing h2 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.18; letter-spacing: -.032em; max-width: 14em; }
+.closing p { margin-top: 14px; font-size: 15.5px; color: var(--ink-2); max-width: 30em; }
+.foot { padding: 22px 0 32px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+/* ══════════════════════════════════════════════
+   2. 대화 — 채팅 UI
+   ══════════════════════════════════════════════ */
+.session { max-width: 1180px; margin: 0 auto; padding: 26px 40px 56px; }
+
+.s-top { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 16px; }
+.s-top .t { flex: 1 1 auto; min-width: 0; }
+.s-top h1 { font-size: 19px; letter-spacing: -.026em; margin-top: 4px; }
+.s-top .st { font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: inline-flex; align-items: center; gap: 7px; }
+.s-top .st i { width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+.s-top .acts { display: flex; gap: 10px; align-items: center; }
+
+.track { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-bottom: 26px; }
+.track .leg { padding: 11px 20px 13px 0; border-right: 1px solid var(--rule-soft); }
+.track .leg:last-child { border-right: 0; }
+.track .leg + .leg { padding-left: 20px; }
+.track .leg .k { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); display: block; margin-bottom: 4px; }
+.track .leg .nm { font-size: 13.5px; font-weight: 500; color: var(--ink-3); }
+.track .leg.done .nm { color: var(--ink-2); }
+.track .leg.now { border-top: 2px solid var(--ink); margin-top: -1px; }
+.track .leg.now .nm { color: var(--ink); font-weight: 700; }
+
+.s-grid { display: grid; grid-template-columns: minmax(0,1fr) 264px; gap: 32px; align-items: start; }
+
+/* ── 채팅 창 ── */
+.chat {
+  border: 1px solid var(--ink); background: var(--bg);
+  display: flex; flex-direction: column; height: 610px; min-height: 0;
+}
+.chat-hd {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 18px; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+}
+.chat-hd .who { color: var(--ink); font-weight: 600; }
+.chat-hd .r { margin-left: auto; }
+
+.log { flex: 1; overflow-y: auto; padding: 24px 22px 10px; display: flex; flex-direction: column; gap: 6px; }
+.log::-webkit-scrollbar { width: 10px; }
+.log::-webkit-scrollbar-thumb { background: var(--sand); border: 3px solid var(--bg); border-radius: 5px; }
+
+.row { display: flex; gap: 9px; max-width: 80%; align-items: flex-end; }
+.row.ai { margin-right: auto; }
+.row.me { margin-left: auto; flex-direction: row-reverse; }
+.row + .row { margin-top: 14px; }
+.row.same { margin-top: 4px; }
+
+.av {
+  width: 25px; height: 25px; flex: none; border-radius: 50%;
+  display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  background: var(--ink); color: var(--on-ink); letter-spacing: -.02em;
+  margin-bottom: 2px;
+}
+.av.ghost { background: transparent; }
+
+.bub {
+  padding: 11px 15px; font-size: 15px; line-height: 1.66;
+  border-radius: 14px; max-width: 100%; word-break: keep-all; overflow-wrap: anywhere;
+}
+.row.ai .bub { background: var(--sand-lite); border: 1px solid var(--rule); border-bottom-left-radius: 3px; }
+.row.me .bub { background: var(--ink); color: var(--on-ink); border-bottom-right-radius: 3px; }
+
+.stamp { font-family: var(--mono); font-size: 10px; color: var(--ink-3); flex: none; padding-bottom: 3px; }
+
+.meta { display: flex; gap: 12px; margin-top: 6px; padding: 0 4px; }
+.row.me + .meta { justify-content: flex-end; }
+.meta .sg { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.meta .tagd { font-family: var(--ui); font-size: 11px; font-weight: 600; color: var(--ink); border-bottom: 1.5px solid var(--sand); }
+
+/* AI 말풍선 부가 */
+.bub .play { display: flex; align-items: center; gap: 8px; margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.bub .play button { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-size: 10.5px; color: var(--ink-2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 10px; }
+.eq i { width: 2px; background: var(--ink); animation: eq 900ms ease-in-out infinite; }
+.eq i:nth-child(2){animation-delay:.15s} .eq i:nth-child(3){animation-delay:.3s} .eq i:nth-child(4){animation-delay:.45s}
+@keyframes eq { 0%,100%{height:3px} 50%{height:10px} }
+
+/* 1단계 답변을 인용한 꼬리표 (2단계) */
+.recall { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--rule); font-size: 12.5px; line-height: 1.6; color: var(--ink-3); }
+.recall b { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+
+/* 타이핑 */
+.dots3 { display: inline-flex; gap: 4px; align-items: center; height: 17px; }
+.dots3 i { width: 5px; height: 5px; border-radius: 50%; background: var(--ink-3); animation: bob 1.1s ease-in-out infinite; }
+.dots3 i:nth-child(2){animation-delay:.16s} .dots3 i:nth-child(3){animation-delay:.32s}
+@keyframes bob { 0%,100%{opacity:.25} 50%{opacity:1} }
+
+/* ── 입력줄 ── */
+.bar { border-top: 1px solid var(--rule); padding: 14px 16px; display: grid; gap: 10px; }
+.bar-main { display: grid; grid-template-columns: 46px minmax(0,1fr) auto; gap: 14px; align-items: center; }
+
+.mic {
+  width: 46px; height: 46px; border-radius: 50%; flex: none; cursor: pointer;
+  border: 1.5px solid var(--ink); background: var(--bg); color: var(--ink);
+  display: grid; place-items: center; transition: background 130ms ease, color 130ms ease;
+}
+.mic:hover { background: var(--sand-lite); }
+.mic svg { width: 19px; height: 19px; }
+.bar[data-state="listening"] .mic,
+.bar[data-state="hearing"] .mic,
+.bar[data-state="sending"] .mic { background: var(--ink); color: var(--on-ink); }
+.bar[data-state="listening"] .mic { animation: ring 2s ease-out infinite; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(29,29,27,.22); } 100% { box-shadow: 0 0 0 12px rgba(29,29,27,0); } }
+.bar[data-state="speaking"] .mic,
+.bar[data-state="thinking"] .mic { opacity: .3; cursor: not-allowed; }
+
+.bar-txt { min-width: 0; }
+.bar-state { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 3px; }
+.bar-say { font-size: 15px; line-height: 1.55; color: var(--ink-3); }
+.bar-say.live { color: var(--ink); }
+.bar-acts { display: flex; gap: 12px; align-items: center; }
+.bar-hint { font-family: var(--mono); font-size: 10px; color: var(--ink-3); padding-left: 60px; }
+
+.wave { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; margin-left: 4px; vertical-align: -2px; }
+.wave i { width: 2px; background: var(--ink-3); animation: wv 780ms ease-in-out infinite; }
+@keyframes wv { 0%,100%{height:3px} 50%{height:14px} }
+
+.bar-input { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; align-items: end; }
+.bar-input textarea {
+  font: inherit; font-size: 15px; line-height: 1.6; color: var(--ink);
+  background: var(--sand-lite); border: 1px solid var(--rule); border-radius: 4px;
+  padding: 11px 13px; resize: none; min-height: 62px; width: 100%;
+}
+.bar-input textarea:focus { outline: none; border-color: var(--ink); background: var(--bg); }
+
+.bar-err { font-size: 14px; line-height: 1.6; color: var(--ink); }
+.bar-err b { font-weight: 600; }
+
+/* 시작 전 */
+.gate { border: 1px solid var(--ink); padding: 40px 36px; }
+.gate h2 { font-size: 20px; letter-spacing: -.026em; margin-bottom: 12px; }
+.gate p { font-size: 14.5px; line-height: 1.78; color: var(--ink-2); margin-bottom: 24px; max-width: 34em; }
+.gate .perms { display: grid; margin-bottom: 26px; max-width: 34em; }
+.gate .perm { display: grid; grid-template-columns: 20px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--rule-soft); font-size: 14px; }
+.gate .perm:first-child { border-top: 1px solid var(--rule); }
+.gate .perm .st { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.gate .perm .ic { width: 20px; height: 20px; color: var(--ink-2); }
+
+/* ── AI 페르소나 ── */
+.persona { border: 1px solid var(--ink); }
+.persona-hd { display: flex; gap: 13px; align-items: center; padding: 14px 15px 12px; }
+.persona-fig { width: 58px; height: 62px; flex: none; border: 1px solid var(--rule); background: var(--sand-lite); display: block; }
+.persona-nm { font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
+.persona-role { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 3px; }
+.persona-desc { padding: 0 15px 13px; font-size: 12.5px; line-height: 1.68; color: var(--ink-2); }
+.persona-ft { display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  padding: 8px 15px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+.persona-ft button { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-size: 10px;
+  color: var(--ink-2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.persona-pick { border-top: 1px solid var(--rule); }
+.persona-opt { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; gap: 11px; align-items: center;
+  width: 100%; text-align: left; padding: 11px 15px; background: none; border: 0;
+  border-top: 1px solid var(--rule-soft); font: inherit; cursor: pointer; color: inherit; }
+.persona-opt:first-child { border-top: 0; }
+.persona-opt:hover:not(.locked) { background: var(--sand-lite); }
+.persona-opt[aria-pressed="true"] { background: var(--sand-lite); }
+.persona-opt .nm { font-size: 13.5px; font-weight: 600; }
+.persona-opt .d { font-size: 11.5px; color: var(--ink-3); margin-top: 1px; }
+.persona-opt .st { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); }
+.persona-opt.locked { opacity: .45; cursor: not-allowed; }
+.persona-opt svg { display: block; width: 34px; height: 36px; border: 1px solid var(--rule); background: var(--bg); }
+.av svg { width: 100%; height: 100%; display: block; }
+.av.char { background: var(--sand-lite); border: 1px solid var(--rule); overflow: hidden; padding: 0; }
+
+/* ── 우측 ── */
+.side { display: grid; gap: 24px; }
+.cam { display: block; width: 100%; border: 1px solid var(--rule); }
+.cam-meta { margin-top: 8px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.now-sig { display: grid; }
+.now-sig .r { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: baseline; padding: 10px 0; border-top: 1px solid var(--rule-soft); }
+.now-sig .r:first-child { border-top: 1px solid var(--ink); }
+.now-sig .k { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.now-sig .v { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; }
+.now-sig .n { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.hint { font-size: 12.5px; line-height: 1.7; color: var(--ink-2); padding-left: 14px; border-left: 2px solid var(--ink); }
+.hint b { font-weight: 600; }
+
+.baseline .hd { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--ink); }
+.baseline .hd .k { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.baseline .hd .n { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); }
+.baseline .row { display: grid; grid-template-columns: 52px minmax(0,1fr) 32px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule-soft); font-size: 12px; max-width: none; }
+.baseline .row:last-of-type { border-bottom: 0; }
+.baseline .row .nm { color: var(--ink-2); }
+.baseline .row .t { height: 4px; background: var(--sand); }
+.baseline .row .t i { display: block; height: 100%; background: var(--ink); }
+.baseline .row.low .t i { background: var(--ink-3); }
+.baseline .row .st { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); text-align: right; }
+.baseline .row.low .st { color: var(--ink); }
+.baseline .foot { margin-top: 11px; padding-top: 11px; border-top: 1px solid var(--rule); font-size: 12px; line-height: 1.65; color: var(--ink-2); }
+.baseline .foot b { font-weight: 600; color: var(--ink); }
+
+/* ══════════════════════════════════════════════
+   3. 생성 중
+   ══════════════════════════════════════════════ */
+.wait { max-width: 460px; margin: 0 auto; padding: 160px 40px 200px; }
+.wait h1 { font-size: 22px; letter-spacing: -.026em; margin-bottom: 10px; }
+.wait .phase { font-size: 15px; color: var(--ink-2); margin-bottom: 34px; min-height: 24px; }
+.wait .bar { height: 2px; background: var(--sand); }
+.wait .bar i { display: block; height: 100%; background: var(--ink); transition: width 900ms ease-out; }
+.wait .meta { margin-top: 12px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+
+/* ══════════════════════════════════════════════
+   4·5. 문서
+   ══════════════════════════════════════════════ */
+.doc { max-width: 800px; margin: 0 auto; padding: 40px 40px 120px; }
+.crumbs { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-bottom: 26px; }
+.crumbs button { appearance: none; background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.crumbs button:hover { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; }
+.crumbs .sep { margin: 0 7px; opacity: .5; }
+
+.doc-head { padding-bottom: 30px; }
+.doc-head h1 { font-size: clamp(30px, 4vw, 42px); line-height: 1.12; letter-spacing: -.034em; }
+.doc-head .sub { margin-top: 14px; font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.doc-head .acts { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.sec { padding: 52px 0; border-top: 1px solid var(--rule); }
+.sec:first-of-type { border-top: 1px solid var(--ink); }
+.sec > h2 { font-size: 15px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 24px; }
+.sec > .cap { font-size: 13.5px; color: var(--ink-3); line-height: 1.75; margin: -16px 0 26px; max-width: 46em; }
+
+/* ── 6각형 + 발산 막대 ── */
+.compare { display: grid; grid-template-columns: 296px minmax(0,1fr); gap: 44px; align-items: center; }
+.hex-svg { width: 100%; height: auto; display: block; }
+.hex-key { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule-soft); display: grid; gap: 10px; }
+.hex-key .row { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--ink-2); }
+.hex-key .sw { width: 20px; height: 11px; flex: none; }
+.hex-key .sw.a { background: var(--sand); box-shadow: inset 0 0 0 1.5px var(--ink-3); }
+.hex-key .sw.b { box-shadow: inset 0 0 0 2px var(--ink); }
+.hex-key b { color: var(--ink); font-weight: 600; }
+
+.div-head { display: grid; grid-template-columns: 62px 1fr 1fr 58px; gap: 0; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 9px; border-bottom: 1px solid var(--ink); }
+.div-head .l { text-align: right; padding-right: 12px; }
+.div-head .r { padding-left: 12px; }
+.div-head .e { text-align: right; }
+
+.div-row { display: grid; grid-template-columns: 62px 1fr 1fr 58px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); }
+.div-row:last-child { border-bottom: 0; }
+.div-row .nm { font-size: 13.5px; font-weight: 500; padding-right: 14px; text-align: right; }
+.div-row .neg, .div-row .pos { height: 13px; position: relative; }
+.div-row .neg { border-right: 1px solid var(--ink); }
+.div-row .neg i { position: absolute; right: 0; top: 0; height: 100%; background: var(--ink); }
+.div-row .pos i { position: absolute; left: 0; top: 0; height: 100%; background: var(--bg); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.div-row .d { font-family: var(--mono); font-size: 13px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.div-row .raw { display: none; }
+.div-foot { margin-top: 14px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); display: grid; grid-template-columns: 62px 1fr 1fr 58px; }
+.div-foot .l { text-align: right; padding-right: 12px; }
+.div-foot .r { padding-left: 12px; }
+
+/* ── 결론 ── */
+.verdict { font-size: clamp(20px, 2.6vw, 26px); line-height: 1.5; letter-spacing: -.026em; font-weight: 500; max-width: 22em; }
+.verdict b { font-weight: 700; }
+.verdict .marks { margin-top: 26px; display: flex; gap: 40px; flex-wrap: wrap; }
+.verdict .mark { }
+.verdict .mark .v { font-size: 34px; font-weight: 700; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict .mark .k { margin-top: 8px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+
+/* ── 같은 주제, 두 답변 (이음선) ── */
+.pair { padding: 26px 0; border-bottom: 1px solid var(--rule-soft); }
+.pair:last-child { border-bottom: 0; }
+.pair-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.pair-hd .topic { font-size: 14px; font-weight: 600; }
+.pair-hd .delta { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.pair-body { display: grid; grid-template-columns: 1fr 1px 1fr; }
+.pair-body .seam { background: var(--ink); }
+.pair-body .side { padding: 0 26px; }
+.pair-body .side:first-child { padding-left: 0; }
+.pair-body .side:last-child { padding-right: 0; }
+.pair-body .who { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); display: block; margin-bottom: 11px; }
+.pair-body .side.b .who { color: var(--ink); }
+.pair-body .say { font-size: 15px; line-height: 1.78; margin-bottom: 13px; }
+.pair-body .side.a .say { color: var(--ink-2); }
+.pair-body .sig { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+
+.prose { font-size: 15.5px; line-height: 1.88; color: var(--ink-2); max-width: 40em; }
+.prose p + p { margin-top: 17px; }
+.prose b { color: var(--ink); font-weight: 600; }
+
+.facts { margin-top: 28px; display: grid; }
+.facts .row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px; padding: 12px 0; border-top: 1px solid var(--rule-soft); font-size: 14px; color: var(--ink-2); align-items: baseline; }
+.facts .row:first-child { border-top: 1px solid var(--rule); }
+.facts .row .v { font-family: var(--mono); font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.asks { display: grid; }
+.asks li { list-style: none; padding: 18px 0 18px 34px; border-top: 1px solid var(--rule-soft); font-size: 15.5px; line-height: 1.7; position: relative; }
+.asks li:first-child { border-top: 0; padding-top: 0; }
+.asks li::before { content: counter(a, decimal-leading-zero); counter-increment: a; position: absolute; left: 0; top: 18px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.asks li:first-child::before { top: 0; }
+.asks { counter-reset: a; margin: 0; padding: 0; }
+
+.handoff { margin-top: 56px; padding-top: 30px; border-top: 1px solid var(--ink); display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.handoff h3 { font-size: 19px; letter-spacing: -.026em; margin-bottom: 7px; }
+.handoff p { font-size: 14px; color: var(--ink-2); max-width: 34em; }
+
+.tail { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule-soft); font-size: 12.5px; color: var(--ink-3); line-height: 1.75; max-width: 44em; }
+
+/* ── 컬쳐핏 ── */
+.rules { display: grid; margin-top: 4px; }
+.rules li { list-style: none; padding: 13px 0; border-top: 1px solid var(--rule-soft); font-size: 14.5px; color: var(--ink-2); line-height: 1.72; }
+.rules li:first-child { border-top: 1px solid var(--rule); }
+.rules b { color: var(--ink); font-weight: 600; }
+.rules { margin: 0; padding: 0; }
+
+.co { padding: 30px 0; border-top: 1px solid var(--rule); }
+.co:first-child { border-top: 1px solid var(--ink); }
+.co-hd { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 26px; align-items: start; margin-bottom: 18px; }
+.co-name { font-size: 21px; letter-spacing: -.028em; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.co-name .rk { font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--ink-3); }
+.co-sub { margin-top: 7px; font-size: 13px; color: var(--ink-3); }
+.co-score { text-align: right; }
+.co-score .v { font-size: 38px; font-weight: 700; line-height: .95; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.co-score .k { margin-top: 6px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.co-bar { height: 3px; background: var(--sand); margin-bottom: 20px; }
+.co-bar i { display: block; height: 100%; background: var(--ink); }
+.co:not(:first-child) .co-bar i { background: var(--ink-3); }
+.co-why { display: grid; gap: 12px; }
+.co-why .r { display: grid; grid-template-columns: 46px minmax(0,1fr); gap: 16px; font-size: 14.5px; line-height: 1.75; color: var(--ink-2); }
+.co-why .r .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); padding-top: 4px; }
+.co-why .r.watch { color: var(--ink-3); }
+.co-tags { margin-top: 18px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+
+.sample { margin: 30px 0 0; padding-left: 18px; border-left: 2px solid var(--ink); font-size: 13.5px; line-height: 1.75; color: var(--ink-2); max-width: 46em; }
+.sample b { color: var(--ink); font-weight: 600; }
+
+/* ══════════════════════════════════════════════
+   6. 로그인 — 이음선 분할
+   ══════════════════════════════════════════════ */
+.auth { min-height: calc(100vh - 56px); display: grid; grid-template-columns: 1fr 1px 1fr; }
+.auth .seam { background: var(--rule); }
+.auth-side { padding: 72px 60px; display: flex; flex-direction: column; justify-content: center; }
+.auth-side.brand-side { background: var(--sand-lite); align-items: flex-start; }
+.auth-fig { width: 118px; height: 126px; border: 1px solid var(--rule); background: var(--bg); margin-bottom: 30px; }
+.auth-fig svg { display: block; width: 100%; height: 100%; }
+.auth-side h2 { font-size: 30px; line-height: 1.2; letter-spacing: -.032em; margin-bottom: 16px; max-width: 12em; }
+.auth-side .lede { font-size: 15px; line-height: 1.8; color: var(--ink-2); max-width: 26em; }
+.auth-side .marks { margin-top: 34px; display: grid; gap: 11px; }
+.auth-side .marks div { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 12px; font-size: 13.5px; color: var(--ink-2); }
+.auth-side .marks .n { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+
+.form { width: 100%; max-width: 340px; }
+.form h1 { font-size: 26px; letter-spacing: -.03em; margin-bottom: 8px; }
+.form .sub { font-size: 14px; color: var(--ink-3); margin-bottom: 34px; }
+.field { display: grid; gap: 7px; margin-bottom: 18px; }
+.field label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.field input {
+  font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+  border: 0; border-bottom: 1px solid var(--ink-3); padding: 9px 2px; width: 100%; border-radius: 0;
+}
+.field input:focus { outline: none; border-bottom-color: var(--ink); border-bottom-width: 2px; padding-bottom: 8px; }
+.field input::placeholder { color: var(--ink-3); }
+.form .row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 26px 0 22px; font-size: 13px; }
+.form .row label { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); cursor: pointer; }
+.form .row a, .form .alt a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.form .btn { width: 100%; padding: 12px; }
+.form .alt { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 13.5px; color: var(--ink-2); }
+.form .note { margin-top: 16px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); line-height: 1.7; }
+
+/* ══════════════════════════════════════════════
+   7. 마이페이지
+   ══════════════════════════════════════════════ */
+.acct { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; flex-wrap: wrap; padding-bottom: 30px; }
+.acct .em { font-size: 22px; letter-spacing: -.028em; font-weight: 700; }
+.acct .sub { margin-top: 8px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+
+.tally { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.tally .c { padding: 20px 18px 22px; border-right: 1px solid var(--rule-soft); }
+.tally .c:last-child { border-right: 0; }
+.tally .k { font-size: 11.5px; color: var(--ink-3); margin-bottom: 9px; }
+.tally .v { font-size: 32px; font-weight: 700; line-height: 1; letter-spacing: -.032em; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; gap: 5px; }
+.tally .v small { font-size: 13px; font-weight: 450; color: var(--ink-3); letter-spacing: 0; }
+.tally .s { margin-top: 8px; font-size: 11.5px; color: var(--ink-3); }
+
+/* 낙차 추이 */
+.trend { display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 26px; align-items: end; }
+.trend-plot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: end; height: 148px; }
+.tp { display: grid; align-content: end; gap: 9px; text-align: center; }
+.tp .bar { background: var(--sand); position: relative; }
+.tp:last-child .bar { background: var(--ink); }
+.tp .val { font-family: var(--mono); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tp .lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+.trend-key { font-size: 12.5px; line-height: 1.7; color: var(--ink-2); }
+.trend-key b { display: block; font-size: 14px; color: var(--ink); margin-bottom: 5px; }
+
+/* 세션 목록 */
+.ses { display: grid; grid-template-columns: 96px minmax(0,1fr) auto; gap: 24px; align-items: center;
+  padding: 20px 0; border-top: 1px solid var(--rule); }
+.ses:first-of-type { border-top: 1px solid var(--ink); }
+.ses .when { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+.ses .when em { display: block; font-style: normal; font-size: 10px; margin-top: 3px; }
+.ses .ttl { font-size: 16px; font-weight: 600; letter-spacing: -.02em; }
+.ses .facts { margin-top: 7px; display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.ses .facts b { color: var(--ink-2); font-weight: 500; }
+.ses .go { display: flex; gap: 10px; align-items: center; }
+.ses.draft { background: var(--sand-lite); padding-left: 16px; padding-right: 16px; margin: 0 -16px; }
+.ses.draft .ttl { color: var(--ink-2); }
+.pill { display: inline-block; font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase;
+  border: 1px solid var(--ink); padding: 2px 7px; margin-left: 9px; vertical-align: 2px; }
+.pill.soft { border-color: var(--ink-3); color: var(--ink-3); }
+
+/* 계정 칩 (상단) */
+.acct-chip { display: flex; align-items: center; gap: 9px; margin-left: 26px; align-self: center; }
+.acct-chip .av2 { width: 24px; height: 26px; border: 1px solid var(--rule); background: var(--sand-lite); overflow: hidden; }
+.acct-chip .av2 svg { display: block; width: 100%; height: 100%; }
+.acct-chip .em { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.acct-chip button { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-family: var(--mono);
+  font-size: 11px; color: var(--ink-2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .auth { grid-template-columns: 1fr; min-height: 0; }
+  .auth .seam { height: 1px; }
+  .auth-side { padding: 44px 26px; }
+  .trend { grid-template-columns: 1fr; gap: 20px; align-items: start; }
+  .ses { grid-template-columns: 1fr; gap: 12px; }
+  .ses .go { justify-content: flex-start; }
+  .tally { grid-template-columns: 1fr; }
+  .tally .c { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  .acct-chip .em { display: none; }
+}
+
+/* ── 전환기 ── */
+.switcher {
+  position: fixed; left: 40px; bottom: 26px; z-index: 60;
+  border: 1px solid var(--ink); background: var(--bg);
+}
+.sw-row { display: flex; }
+.sw-row + .sw-row { border-top: 1px solid var(--rule); }
+.switcher button {
+  appearance: none; border: 0; border-right: 1px solid var(--rule); background: none;
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  padding: 7px 13px; cursor: pointer; white-space: nowrap;
+}
+.switcher button:last-child { border-right: 0; }
+.switcher button:hover { color: var(--ink); background: var(--sand-lite); }
+.switcher button[aria-current="true"], .switcher button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+.sw-row.states { background: var(--sand-lite); }
+.sw-row.states .lb { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding: 8px 11px 7px; border-right: 1px solid var(--rule); align-self: center; }
+.sw-row.states button { font-size: 10.5px; padding: 6px 10px; }
+
+@media (max-width: 1080px) {
+  .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 64px; }
+  .hero-fig { max-width: 420px; }
+  .band-grid { grid-template-columns: 1fr; gap: 26px; }
+  .s-grid { grid-template-columns: 1fr; gap: 44px; }
+  .side { position: static; grid-template-columns: 240px minmax(0,1fr); display: grid; gap: 30px; align-items: start; }
+  .compare { grid-template-columns: 1fr; gap: 34px; }
+}
+@media (max-width: 720px) {
+  .topbar, .lp, .session, .doc { padding-left: 22px; padding-right: 22px; }
+  .topbar { gap: 18px; }
+  .topnav { gap: 15px; }
+  .seam-two, .pair-body { grid-template-columns: 1fr; }
+  .seam-two .col, .pair-body .side { padding: 0; }
+  .seam-two .seam, .pair-body .seam { height: 1px; margin: 22px 0; }
+  .step { grid-template-columns: 28px minmax(0,1fr); gap: 16px; }
+  .step .t { grid-column: 2; text-align: left; margin-top: 8px; }
+  .closing { grid-template-columns: 1fr; align-items: start; gap: 26px; }
+  .track { grid-template-columns: 1fr; }
+  .track .leg { border-right: 0; padding-left: 0 !important; padding-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  .side { grid-template-columns: 1fr; }
+  .co-hd { grid-template-columns: 1fr; gap: 12px; }
+  .co-score { text-align: left; display: flex; align-items: baseline; gap: 10px; }
+  .co-score .k { margin-top: 0; }
+  .switcher { left: 22px; right: 22px; bottom: 18px; }
+  .switcher button { flex: 1; padding: 7px 4px; text-align: center; }
+  .div-head, .div-row, .div-foot { grid-template-columns: 54px 1fr 1fr 46px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<header class="topbar" id="topbar">
+  <button class="brand" type="button" data-go="landing">결</button>
+  <nav class="topnav">
+    <button type="button" data-go="landing" aria-current="page">소개</button>
+    <button type="button" data-go="self" data-auth>대화</button>
+    <button type="button" data-go="report" data-auth>리포트</button>
+    <button type="button" data-go="my" data-auth>내 기록</button>
+  </nav>
+  <div class="acct-chip" id="acct-chip">
+    <span class="av2" id="acct-av"></span>
+    <span class="em">nov@gyul.kr</span>
+    <button type="button" data-go="login">로그아웃</button>
+  </div>
+  <div class="acct-chip" id="acct-out" hidden>
+    <button class="btn sm" type="button" data-go="login">로그인</button>
+  </div>
+</header>
+
+<!-- ══════ 1. 랜딩 ══════ -->
+<main class="screen is-active lp" id="s-landing">
+  <div class="lp-inner">
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">두 번의 대화 · 하나의 차이</span>
+        <h1>편할 때의 나와<span class="low">면접에서의 나</span></h1>
+        <p class="lead">같은 사람이 상황에 따라 어떻게 달라지는지, 결은 두 번의 대화로 비교합니다.
+          먼저 편하게 이야기하고, 다음에 면접을 봅니다. 그 사이의 간격이 리포트가 됩니다.</p>
+        <div class="acts">
+          <button class="btn solid" type="button" data-go="session">대화 시작하기</button>
+          <button class="btn bare" type="button" data-go="report">리포트 예시 보기</button>
+        </div>
+        <p class="fine">브라우저에서 바로 · 두 대화 합쳐 약 25분</p>
+      </div>
+
+      <figure class="hero-fig" style="margin:0">
+        <svg class="hex-svg" viewBox="0 0 300 286" id="hero-hex" aria-hidden="true"></svg>
+        <figcaption>
+          여섯 축 가운데 <b>다섯이 줄고 하나가 늘었습니다.</b>
+          면접에서 더 구체적으로 말한 대신, 자기개방과 감정 표현이 28점씩 내려갔습니다.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="band">
+      <div class="band-grid">
+        <h2><span class="eyebrow">왜 두 번인가</span>한 번만 보면 그게 원래 모습인지 알 수 없다</h2>
+        <div class="seam-two">
+          <div class="col">
+            <h3>한 번만 보는 진단</h3>
+            <p>면접 결과 하나로 “표현이 적은 사람”이라고 말합니다.
+              평소엔 잘 말하던 사람이 그 자리에서만 굳었을 가능성은 보이지 않습니다.</p>
+          </div>
+          <div class="seam"></div>
+          <div class="col mine">
+            <h3>결의 두 대화</h3>
+            <p>편한 대화를 기준선으로 먼저 잡고, 같은 사람의 면접 대화를 겹칩니다.
+              <b>무엇이 얼마나 달라졌는지</b>가 숫자로 남습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="band-grid">
+        <h2><span class="eyebrow">진행 방식</span>세 단계</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="n">01</span>
+            <div>
+              <h3>자가분석 대화</h3>
+              <p>요즘 어떤지, 무엇이 신경 쓰이는지 편하게 이야기합니다. 평가하지 않고 듣기만 합니다.</p>
+            </div>
+            <span class="t">10분 · 6문항</span>
+          </div>
+          <div class="step">
+            <span class="n">02</span>
+            <div>
+              <h3>면접 대화</h3>
+              <p>같은 주제를 면접 상황에서 다시 묻습니다. 말투도 질문도 면접 그대로입니다.</p>
+            </div>
+            <span class="t">15분 · 8문항</span>
+          </div>
+          <div class="step">
+            <span class="n">03</span>
+            <div>
+              <h3>차이 리포트</h3>
+              <p>여섯 축으로 두 대화를 겹쳐 봅니다. 어디가 얼마나 달라졌는지 한 장에 담깁니다.</p>
+            </div>
+            <span class="t">컬쳐핏 포함</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div>
+        <h2>기준선부터 만들어 볼까요</h2>
+        <p>첫 대화는 면접이 아닙니다. 편하게 말하는 것부터 시작합니다.</p>
+      </div>
+      <button class="btn solid" type="button" data-go="session">자가분석 대화 시작</button>
+    </section>
+
+    <div class="foot">
+      <span>결 — 두 대화의 차이로 읽는 자기분석</span>
+      <span>2026</span>
+    </div>
+  </div>
+</main>
+
+<!-- ══════ 2a. 자가분석 대화 (1단계) ══════ -->
+<main class="screen session" id="s-self">
+  <div class="s-top">
+    <div class="t">
+      <span class="eyebrow">1단계 · 자가분석 대화</span>
+      <h1>편하게 이야기해 주세요</h1>
+    </div>
+    <span class="st"><i></i>연결됨 · Kanana</span>
+    <div class="acts">
+      <button class="btn sm" type="button">일시정지</button>
+      <button class="btn sm" type="button" data-go="session">면접으로</button>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="leg now"><span class="k">01 · 6발화 · 09:12</span><span class="nm">자가분석 대화</span></div>
+    <div class="leg"><span class="k">02 · 대기</span><span class="nm">면접 대화</span></div>
+    <div class="leg"><span class="k">03 · 대기</span><span class="nm">차이 리포트</span></div>
+  </div>
+
+  <div class="s-grid">
+    <div>
+      <div class="gate" data-gate hidden>
+        <h2>마이크와 카메라를 켤게요</h2>
+        <p>음성으로 답하면 목소리에서 감정을 읽습니다. 카메라는 표정 분석에만 쓰이고 영상은 저장하지 않습니다.
+          말하기 어려운 환경이면 키보드로 답해도 됩니다.</p>
+        <div class="perms">
+          <div class="perm">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>마이크 — 음성 인식과 감정 분석</span><span class="st">허용됨</span>
+          </div>
+          <div class="perm">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m15 12 6-3.5v11L15 16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span>카메라 — 표정 분석 (영상 저장 안 함)</span><span class="st">요청 필요</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+          <button class="btn solid" type="button" data-state-go="listening">대화 시작</button>
+          <button class="btn bare" type="button" data-state-go="typing">키보드로만 진행</button>
+        </div>
+      </div>
+      <div data-live>
+        <div class="chat">
+          <div class="chat-hd">
+            <span class="who">결</span>
+            <span class="r">자유 대화 · 기준선 수집 중</span>
+          </div>
+          <div class="log" data-log></div>
+          <div class="bar" data-bar data-state="hearing">
+            <div data-bar-line></div>
+            <p class="bar-hint" data-bar-hint></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="persona" data-persona></div>
+      <div>
+        <svg class="cam" viewBox="0 0 160 120" role="img" aria-label="카메라 미리보기. 얼굴 1명 인식됨.">
+          <rect width="160" height="120" fill="var(--sand-lite)"/>
+          <g fill="none" stroke="var(--ink-3)" stroke-width="2" opacity=".38">
+            <circle cx="80" cy="46" r="25"/><path d="M28 120c0-24 23-38 52-38s52 14 52 38"/>
+          </g>
+          <g stroke="var(--ink)" stroke-width="1.6" fill="none">
+            <path d="M51 33v-10h10M109 33v-10h-10M51 63v10h10M109 63v10h-10"/>
+          </g>
+        </svg>
+        <div class="cam-meta"><span>얼굴 1 인식</span><span>0.94</span></div>
+      </div>
+
+      <div class="now-sig">
+        <div class="r"><span class="k">음성</span><span class="v"><span class="dot-sw" style="background:var(--e-fear)"></span>두려움</span><span class="n">68%</span></div>
+        <div class="r"><span class="k">표정</span><span class="v"><span class="dot-sw" style="background:var(--e-sadness)"></span>슬픔</span><span class="n">55%</span></div>
+      </div>
+
+      <div class="baseline">
+        <div class="hd"><span class="k">기준선 수집</span><span class="n">6발화</span></div>
+        <div id="bl-rows"></div>
+        <p class="foot" id="bl-foot"></p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- ══════ 2b. 면접 대화 (2단계) ══════ -->
+<main class="screen session" id="s-session">
+  <div class="s-top">
+    <div class="t">
+      <span class="eyebrow">2단계 · 면접 대화</span>
+      <h1>같은 주제를 면접에서 다시 묻습니다</h1>
+    </div>
+    <span class="st"><i></i>연결됨 · Kanana</span>
+    <div class="acts">
+      <button class="btn sm" type="button">일시정지</button>
+      <button class="btn sm solid" type="button" data-go="loading">종료 · 리포트</button>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="leg done"><span class="k">01 · 완료 · 6발화</span><span class="nm">자가분석 대화</span></div>
+    <div class="leg now"><span class="k">02 · 3/8문항 · 12:04</span><span class="nm">면접 대화</span></div>
+    <div class="leg"><span class="k">03 · 대기</span><span class="nm">차이 리포트</span></div>
+  </div>
+
+  <div class="s-grid">
+    <div>
+      <div class="gate" data-gate hidden>
+        <h2>마이크와 카메라를 켤게요</h2>
+        <p>음성으로 답하면 목소리에서 감정을 읽습니다. 카메라는 표정 분석에만 쓰이고 영상은 저장하지 않습니다.
+          말하기 어려운 환경이면 키보드로 답해도 됩니다.</p>
+        <div class="perms">
+          <div class="perm">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>마이크 — 음성 인식과 감정 분석</span><span class="st">허용됨</span>
+          </div>
+          <div class="perm">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m15 12 6-3.5v11L15 16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span>카메라 — 표정 분석 (영상 저장 안 함)</span><span class="st">요청 필요</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+          <button class="btn solid" type="button" data-state-go="listening">대화 시작</button>
+          <button class="btn bare" type="button" data-state-go="typing">키보드로만 진행</button>
+        </div>
+      </div>
+      <div data-live>
+        <div class="chat">
+          <div class="chat-hd">
+            <span class="who">면접관</span>
+            <span class="r">질문 3 / 8</span>
+          </div>
+          <div class="log" data-log></div>
+          <div class="bar" data-bar data-state="hearing">
+            <div data-bar-line></div>
+            <p class="bar-hint" data-bar-hint></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="persona" data-persona></div>
+      <div>
+        <svg class="cam" viewBox="0 0 160 120" role="img" aria-label="카메라 미리보기. 얼굴 1명 인식됨.">
+          <rect width="160" height="120" fill="var(--sand-lite)"/>
+          <g fill="none" stroke="var(--ink-3)" stroke-width="2" opacity=".38">
+            <circle cx="80" cy="46" r="25"/><path d="M28 120c0-24 23-38 52-38s52 14 52 38"/>
+          </g>
+          <g stroke="var(--ink)" stroke-width="1.6" fill="none">
+            <path d="M51 33v-10h10M109 33v-10h-10M51 63v10h10M109 63v10h-10"/>
+          </g>
+        </svg>
+        <div class="cam-meta"><span>얼굴 1 인식</span><span>0.94</span></div>
+      </div>
+
+      <div class="now-sig">
+        <div class="r"><span class="k">음성</span><span class="v"><span class="dot-sw" style="background:var(--e-neutral)"></span>중립</span><span class="n">74%</span></div>
+        <div class="r"><span class="k">표정</span><span class="v"><span class="dot-sw" style="background:var(--e-neutral)"></span>중립</span><span class="n">69%</span></div>
+      </div>
+
+      <p class="hint"><b>1단계보다 감정 표현이 줄었습니다.</b><br>
+        같은 주제에서 1단계에는 두려움 68%였는데, 지금은 중립 74%입니다.</p>
+    </aside>
+  </div>
+</main>
+
+<!-- ══════ 3. 생성 중 ══════ -->
+<main class="screen wait" id="s-loading">
+  <span class="eyebrow">03 · 차이 리포트</span>
+  <h1 style="margin-top:14px">두 대화를 겹쳐 보고 있어요</h1>
+  <p class="phase" id="loading-phase">1단계 자가분석 대화를 읽는 중</p>
+  <div class="bar"><i id="loading-fill" style="width:8%"></i></div>
+  <div class="meta"><span id="loading-elapsed">0초</span><span id="loading-eta">약 90초 남음</span></div>
+</main>
+
+<!-- ══════ 4. 리포트 ══════ -->
+<main class="screen doc" id="s-report">
+  <p class="crumbs">
+    <button type="button" data-go="landing">결</button><span class="sep">/</span>대화 기록<span class="sep">/</span>2026-09-02
+  </p>
+
+  <div class="doc-head">
+    <h1>두 대화의 차이</h1>
+    <p class="sub">자가분석 6문항 · 면접 8문항 · 24분 · 2026-09-02</p>
+    <div class="acts">
+      <button class="btn sm" type="button">다운로드</button>
+      <button class="btn sm" type="button" data-go="session">다시 대화</button>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="compare">
+      <div>
+        <svg class="hex-svg" viewBox="0 0 300 286" id="report-hex" role="img"
+             aria-label="육각형 비교. 자가분석 대비 면접. 자기개방 82대 54, 감정 표현 76대 48, 일관성 84대 61, 안정감 71대 52, 주도성 63대 45, 구체성 58대 79."></svg>
+        <div class="hex-key">
+          <div class="row"><span class="sw a"></span><b>편할 때</b>&nbsp;— 자가분석 대화</div>
+          <div class="row"><span class="sw b"></span><b>면접에서</b>&nbsp;— 면접 대화</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="div-head">
+          <span></span><span class="l">줄어듦</span><span class="r">늘어남</span><span class="e">차이</span>
+        </div>
+        <div id="div-rows"></div>
+        <div class="div-foot"><span></span><span class="l">−30</span><span class="r">+30</span><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="verdict">
+      면접에서는 더 <b>구체적으로</b> 말했지만, 자기개방과 감정 표현이 <b>28점씩</b> 떨어졌습니다.
+      정돈된 대신 닫혔다고 볼 수 있습니다.
+    </p>
+    <div class="marks" style="margin-top:30px;display:flex;gap:44px;flex-wrap:wrap">
+      <div class="mark"><div class="v">−28</div><div class="k">가장 큰 하락 · 자기개방</div></div>
+      <div class="mark"><div class="v">+21</div><div class="k">유일한 상승 · 구체성</div></div>
+      <div class="mark"><div class="v">1→3</div><div class="k">음성·표정 불일치</div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>같은 주제, 두 답변</h2>
+    <p class="cap">두 대화에서 같은 주제가 나온 지점을 짝지었습니다. 차이가 크게 벌어진 순서입니다.</p>
+    <div id="pairs"></div>
+  </section>
+
+  <section class="sec">
+    <h2>이 차이가 말하는 것</h2>
+    <div class="prose">
+      <p>면접 답변은 더 짧고 정돈됐습니다. 「원인은 커뮤니케이션 부족이었고, 이후 주간 싱크를 도입했습니다」처럼
+        문제와 해결이 한 문장에 담깁니다. 구체성이 21점 오른 건 그래서입니다.</p>
+      <p>대신 그 문장에서 <b>사람이 사라집니다.</b> 편한 대화에서는 「팀원들이 저를 어떻게 볼지가 겁났다」처럼
+        당시의 감정과 관계가 함께 나왔는데, 면접에서는 사실과 조치만 남았습니다.
+        음성·표정 불일치가 1회에서 3회로 늘어난 것도 같은 이야기입니다 — 말은 담담한데 몸은 그렇지 않았습니다.</p>
+    </div>
+    <div class="facts">
+      <div class="row"><span>답변 평균 길이</span><span class="v">4.1문장 → 2.8문장</span></div>
+      <div class="row"><span>1인칭 감정 표현</span><span class="v">12회 → 3회</span></div>
+      <div class="row"><span>「저」 대신 「저희 팀」을 쓴 구간</span><span class="v">5회</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>다음 면접 전에</h2>
+    <ol class="asks">
+      <li>면접에서 감정을 덜어낸 건 의도한 선택이었나요, 아니면 그렇게 말해야 한다고 느끼신 건가요?</li>
+      <li>「팀원들이 어떻게 볼지 겁났다」를 면접 언어로 옮기면 어떤 문장이 될까요?</li>
+      <li>구체성은 이미 충분합니다. 여기에 한 문장만 더 붙인다면, 무엇을 붙여야 사람이 보일까요?</li>
+    </ol>
+  </section>
+
+  <div class="handoff">
+    <div>
+      <h3>컬쳐핏 추천이 준비됐어요</h3>
+      <p>두 대화에서 읽힌 성향으로 잘 맞을 조직 문화와 회사 다섯 곳을 골랐습니다.</p>
+    </div>
+    <button class="btn solid" type="button" data-go="fit">컬쳐핏 보기</button>
+  </div>
+
+  <p class="tail">이 리포트는 심리 검사나 진단이 아닙니다. 두 대화에서 관찰된 신호를 비교한 기록이며,
+    감정 분석 결과에는 오차가 있을 수 있습니다.</p>
+</main>
+
+<!-- ══════ 5. 컬쳐핏 ══════ -->
+<main class="screen doc" id="s-fit">
+  <p class="crumbs">
+    <button type="button" data-go="landing">결</button><span class="sep">/</span>
+    <button type="button" data-go="report">두 대화의 차이</button><span class="sep">/</span>컬쳐핏
+  </p>
+
+  <div class="doc-head">
+    <h1>컬쳐핏 추천</h1>
+    <p class="sub">두 대화 기준 · 5곳 · 2026-09-02</p>
+    <div class="acts">
+      <button class="btn sm" type="button">다운로드</button>
+      <button class="btn sm" type="button" data-go="report">리포트로 돌아가기</button>
+    </div>
+    <p class="sample"><b>아래 회사는 실제 기업이 아닌 예시입니다.</b>
+      기업 데이터가 연결되면 실제 채용 중인 회사와 공고 기준으로 바뀝니다.
+      지금은 매칭 방식이 어떻게 보이는지 확인하는 용도입니다.</p>
+  </div>
+
+  <section class="sec">
+    <h2>매칭 기준</h2>
+    <p class="cap">두 대화의 평균이 아니라 <b>차이</b>를 씁니다. 평소 값은 그 사람이 가진 폭이고,
+      면접 값은 낯선 상황에서 실제로 나오는 값입니다.</p>
+    <ul class="rules">
+      <li><b>평소 값이 높은 축</b>은 그 문화에서 발휘될 수 있는 잠재력으로 봅니다.</li>
+      <li><b>낙차가 큰 축</b>은 적응 기간에 부담이 될 수 있는 지점으로 봅니다.</li>
+      <li>자기개방·감정 표현의 낙차가 커서 <b>초반 심리적 안전감을 갖춘 조직</b>에 가중치를 뒀습니다.</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>잘 맞을 회사</h2>
+    <div id="co-list"></div>
+  </section>
+
+  <p class="tail">컬쳐핏 해석은 참고용이며 채용 결과를 예측하지 않습니다.
+    회사 문화는 팀과 시기에 따라 크게 다를 수 있으므로, 실제 지원 전에 직접 확인하시길 권합니다.</p>
+</main>
+
+<!-- ══════ 6. 로그인 ══════ -->
+<main class="screen auth" id="s-login">
+  <div class="auth-side brand-side">
+    <span class="auth-fig" id="login-fig"></span>
+    <h2>편할 때의 나와<br>면접에서의 나</h2>
+    <p class="lede">두 번의 대화로 그 사이의 간격을 봅니다.
+      기록은 계정에 남고, 다음 면접 전에 다시 열어볼 수 있습니다.</p>
+    <div class="marks">
+      <div><span class="n">01</span><span>자가분석 대화로 기준선을 만듭니다</span></div>
+      <div><span class="n">02</span><span>같은 주제를 면접에서 다시 묻습니다</span></div>
+      <div><span class="n">03</span><span>여섯 축의 차이를 한 장으로 받습니다</span></div>
+    </div>
+  </div>
+  <div class="seam"></div>
+  <div class="auth-side">
+    <div class="form">
+      <h1>로그인</h1>
+      <p class="sub">이어서 대화하거나 지난 기록을 확인합니다.</p>
+
+      <div class="field">
+        <label for="lg-em">이메일</label>
+        <input id="lg-em" type="email" placeholder="name@example.com" value="nov@gyul.kr" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="lg-pw">비밀번호</label>
+        <input id="lg-pw" type="password" placeholder="••••••••" value="password" autocomplete="current-password">
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" checked> 로그인 유지</label>
+        <a href="#" onclick="return false">비밀번호 찾기</a>
+      </div>
+
+      <button class="btn solid" type="button" data-go="my">로그인</button>
+
+      <p class="alt">계정이 없으신가요? <a href="#" onclick="return false">회원가입</a></p>
+      <p class="note">인증은 Spring 서버가 처리합니다 · JWT HS256 · 발급된 토큰으로 대화 소켓에 접속합니다</p>
+    </div>
+  </div>
+</main>
+
+<!-- ══════ 7. 마이페이지 ══════ -->
+<main class="screen doc" id="s-my">
+  <p class="crumbs"><button type="button" data-go="landing">결</button><span class="sep">/</span>내 기록</p>
+
+  <div class="acct">
+    <div>
+      <p class="em">nov@gyul.kr</p>
+      <p class="sub">가입 2026-06-14 · member_id 1042</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn sm" type="button">계정 설정</button>
+      <button class="btn sm solid" type="button" data-go="self">새 대화 시작</button>
+    </div>
+  </div>
+
+  <div class="tally">
+    <div class="c">
+      <div class="k">완료한 세션</div>
+      <div class="v">3<small>회</small></div>
+      <div class="s">최근 2026-09-02</div>
+    </div>
+    <div class="c">
+      <div class="k">평균 낙차</div>
+      <div class="v">14<small>점</small></div>
+      <div class="s">첫 세션 23점 → 9점 줄어듦</div>
+    </div>
+    <div class="c">
+      <div class="k">가장 큰 낙차 축</div>
+      <div class="v" style="font-size:22px">자기개방</div>
+      <div class="s">−28 → −15로 좁혀지는 중</div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <h2>낙차 추이</h2>
+    <p class="cap">세션마다 여섯 축의 평균 낙차입니다. 낮을수록 편할 때와 면접에서의 모습이 가깝습니다.</p>
+    <div class="trend">
+      <div class="trend-plot" id="trend"></div>
+      <p class="trend-key"><b>간격이 좁아지고 있습니다.</b>
+        세 번의 세션에서 평균 낙차가 23점에서 14점으로 줄었습니다.
+        특히 자기개방 축이 −28에서 −15로 절반 가까이 회복됐습니다.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>대화 기록</h2>
+    <div id="ses-list"></div>
+  </section>
+
+  <p class="tail">세션 기록과 리포트는 계정에 저장됩니다. 음성과 영상 원본은 저장하지 않으며,
+    분석된 수치와 텍스트만 남습니다. 계정 설정에서 전체 삭제할 수 있습니다.</p>
+</main>
+
+<nav class="switcher" aria-label="목업 탐색">
+  <div class="sw-row">
+    <button type="button" data-go="landing" aria-current="true">랜딩</button>
+    <button type="button" data-go="login">로그인</button>
+    <button type="button" data-go="self">자가분석</button>
+    <button type="button" data-go="session">면접</button>
+    <button type="button" data-go="loading">대기</button>
+    <button type="button" data-go="report">리포트</button>
+    <button type="button" data-go="fit">컬쳐핏</button>
+    <button type="button" data-go="my">내 기록</button>
+  </div>
+  <div class="sw-row states" id="statebar" hidden><span class="lb">대화 상태</span></div>
+</nav>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var KO = { happiness:"기쁨", fear:"두려움", sadness:"슬픔", disgust:"혐오", angry:"분노", surprise:"놀람", neutral:"중립" };
+  function color(l) { return "var(--e-" + (KO[l] ? l : "neutral") + ")"; }
+  function ko(l) { return KO[l] || l; }
+  function sw(l) { return '<span class="dot-sw" style="background:' + color(l) + '"></span>'; }
+
+  /* ══ 여섯 축 ══ */
+  var AXES = [
+    { name: "자기개방", self: 82, itv: 54 },
+    { name: "구체성",   self: 58, itv: 79 },
+    { name: "일관성",   self: 84, itv: 61 },
+    { name: "안정감",   self: 71, itv: 52 },
+    { name: "주도성",   self: 63, itv: 45 },
+    { name: "감정 표현", self: 76, itv: 48 }
+  ];
+
+  /* ── 육각형 ── */
+  function hex(el, o) {
+    if (!el) return;
+    var cx = o.cx, cy = o.cy, R = o.r;
+    function pt(i, v) {
+      var a = (Math.PI * 2 * i) / 6 - Math.PI / 2;
+      var r = (R * v) / 100;
+      return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    }
+    function poly(vals) {
+      return vals.map(function (v, i) { return pt(i, v).map(function (n) { return n.toFixed(1); }).join(","); }).join(" ");
+    }
+    function add(tag, at) {
+      var n = document.createElementNS(NS, tag);
+      Object.keys(at).forEach(function (k) { n.setAttribute(k, at[k]); });
+      el.appendChild(n);
+      return n;
+    }
+
+    [25, 50, 75, 100].forEach(function (s) {
+      add("polygon", { points: poly(AXES.map(function () { return s; })), fill: "none",
+        stroke: s === 100 ? "var(--ink-3)" : "var(--rule)", "stroke-width": "1" });
+    });
+    AXES.forEach(function (_, i) {
+      var e = pt(i, 100);
+      add("line", { x1: cx, y1: cy, x2: e[0].toFixed(1), y2: e[1].toFixed(1), stroke: "var(--rule)", "stroke-width": "1" });
+    });
+
+    add("polygon", { points: poly(AXES.map(function (a) { return a.self; })),
+      fill: "var(--sand)", stroke: "var(--ink-3)", "stroke-width": "1.5", "stroke-linejoin": "round" });
+
+    add("polygon", { points: poly(AXES.map(function (a) { return a.itv; })),
+      fill: "var(--bg)", "fill-opacity": ".4", stroke: "var(--ink)", "stroke-width": "2", "stroke-linejoin": "round" });
+
+    AXES.forEach(function (a, i) {
+      var p = pt(i, a.itv);
+      add("circle", { cx: p[0].toFixed(1), cy: p[1].toFixed(1), r: "3.2", fill: "var(--ink)" });
+    });
+
+    AXES.forEach(function (a, i) {
+      var p = pt(i, o.labelR);
+      var anchor = p[0] > cx + 6 ? "start" : p[0] < cx - 6 ? "end" : "middle";
+      var t = add("text", { x: p[0].toFixed(1), y: (p[1] + 3).toFixed(1), "text-anchor": anchor,
+        fill: "var(--ink-2)", "font-size": o.ls, "font-weight": "600", "letter-spacing": "-.01em" });
+      t.textContent = a.name;
+      var d = a.itv - a.self;
+      var dt = add("text", { x: p[0].toFixed(1), y: (p[1] + 16).toFixed(1), "text-anchor": anchor,
+        fill: "var(--ink-3)", "font-size": o.ds, "font-family": "ui-monospace, monospace" });
+      dt.textContent = (d > 0 ? "+" : "") + d;
+    });
+  }
+
+  hex(document.getElementById("report-hex"), { cx: 150, cy: 140, r: 92, labelR: 125, ls: "12", ds: "10.5" });
+  hex(document.getElementById("hero-hex"),  { cx: 150, cy: 140, r: 92, labelR: 125, ls: "12", ds: "10.5" });
+
+  /* ── 발산 막대 (0을 가운데 두고 좌우로) ── */
+  var MAX = 30;
+  var rows = document.getElementById("div-rows");
+  if (rows) {
+    AXES.slice().sort(function (a, b) { return (a.itv - a.self) - (b.itv - b.self); }).forEach(function (a) {
+      var d = a.itv - a.self;
+      var w = Math.min(100, (Math.abs(d) / MAX) * 100);
+      var el = document.createElement("div");
+      el.className = "div-row";
+      el.title = a.name + " — 편할 때 " + a.self + " / 면접에서 " + a.itv;
+      el.innerHTML =
+        '<span class="nm">' + a.name + "</span>" +
+        '<span class="neg">' + (d < 0 ? '<i style="width:' + w + '%"></i>' : "") + "</span>" +
+        '<span class="pos">' + (d > 0 ? '<i style="width:' + w + '%"></i>' : "") + "</span>" +
+        '<span class="d">' + (d > 0 ? "+" : "") + d + "</span>";
+      rows.appendChild(el);
+    });
+  }
+
+  /* ── 같은 주제, 두 답변 ── */
+  var PAIRS = [
+    { topic: "실패한 프로젝트", gap: "감정 표현 −31",
+      a: { say: "그때 진짜 무서웠어요. 팀원들이 저를 어떻게 볼지가 제일 겁났어요.", sig: ["fear", 68] },
+      b: { say: "커뮤니케이션 부족이 원인이었고, 이후 주간 싱크를 도입해 재발을 막았습니다.", sig: ["neutral", 74] } },
+    { topic: "팀에서의 역할", gap: "자기개방 −26",
+      a: { say: "사실 저는 나서는 걸 잘 못해요. 그래서 늘 뒤에서 정리하는 쪽이었어요.", sig: ["sadness", 59] },
+      b: { say: "팀 내에서는 조율과 문서화를 맡아 왔습니다.", sig: ["neutral", 71] } },
+    { topic: "앞으로의 계획", gap: "주도성 −14",
+      a: { say: "요즘은 초안을 일부러 덜 다듬어서 보여줘요. 반응이 빨리 오니까 오히려 편하더라고요.", sig: ["happiness", 66] },
+      b: { say: "앞으로는 초기 단계에서 피드백을 받는 방식으로 일하려 합니다.", sig: ["neutral", 63] } }
+  ];
+  var ph = document.getElementById("pairs");
+  if (ph) {
+    PAIRS.forEach(function (p) {
+      var el = document.createElement("div");
+      el.className = "pair";
+      el.innerHTML =
+        '<div class="pair-hd"><span class="topic">' + p.topic + '</span><span class="delta">' + p.gap + "</span></div>" +
+        '<div class="pair-body">' +
+          '<div class="side a"><span class="who">편할 때</span>' +
+            '<p class="say">“' + p.a.say + '”</p>' +
+            '<span class="sig">' + sw(p.a.sig[0]) + "음성 " + ko(p.a.sig[0]) + " " + p.a.sig[1] + "%</span></div>" +
+          '<div class="seam"></div>' +
+          '<div class="side b"><span class="who">면접에서</span>' +
+            '<p class="say">“' + p.b.say + '”</p>' +
+            '<span class="sig">' + sw(p.b.sig[0]) + "음성 " + ko(p.b.sig[0]) + " " + p.b.sig[1] + "%</span></div>" +
+        "</div>";
+      ph.appendChild(el);
+    });
+  }
+
+  /* ══════════════════════════════════════════
+     AI 캐릭터 — 인라인 SVG. 브랜드 선화 스타일.
+     mood: idle | listen | think | speak
+     ══════════════════════════════════════════ */
+  var ART = {"gyul": {"speak": "<g stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"><path d=\"M6 40h108M6 55h108M6 70h108\"/></g>\n  <path d=\"M14 128c0-25 20-40 46-40s46 15 46 40\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <g transform=\"rotate(-7 60 56)\">\n    <ellipse cx=\"60\" cy=\"52\" rx=\"30\" ry=\"31\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\"/>\n    <path d=\"M30 55q-5 2-4 7t6 4M90 55q5 2 4 7t-6 4\"/>\n    <circle cx=\"51\" cy=\"51\" r=\"3.4\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"69\" cy=\"51\" r=\"3.4\" fill=\"currentColor\" stroke=\"none\"/>\n    <path d=\"M60 58v4\"/>\n    <ellipse cx=\"60\" cy=\"69\" rx=\"6.4\" ry=\"4.8\" fill=\"var(--ch-sand,#E7E7DD)\"/>\n  </g>", "idle": "<g stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"><path d=\"M6 40h108M6 55h108M6 70h108\"/></g>\n  <path d=\"M14 128c0-25 20-40 46-40s46 15 46 40\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <g transform=\"rotate(-7 60 56)\">\n    <ellipse cx=\"60\" cy=\"52\" rx=\"30\" ry=\"31\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\"/>\n    <path d=\"M30 55q-5 2-4 7t6 4M90 55q5 2 4 7t-6 4\"/>\n    <circle cx=\"51\" cy=\"52\" r=\"3.2\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"69\" cy=\"52\" r=\"3.2\" fill=\"currentColor\" stroke=\"none\"/>\n    <path d=\"M60 58v4\"/>\n    <path d=\"M50 67q10 8 20 0\"/>\n  </g>", "listen": "<g stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"><path d=\"M6 40h108M6 55h108M6 70h108\"/></g>\n  <path d=\"M14 128c0-25 20-40 46-40s46 15 46 40\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <g transform=\"rotate(-7 60 56)\">\n    <ellipse cx=\"60\" cy=\"52\" rx=\"30\" ry=\"31\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\"/>\n    <path d=\"M30 55q-5 2-4 7t6 4M90 55q5 2 4 7t-6 4\"/>\n    <path d=\"M45 52q6-8 12 0M63 52q6-8 12 0\"/>\n    <path d=\"M60 58v4\"/>\n    <path d=\"M50 67q10 8 20 0\"/>\n  </g>", "think": "<g stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"><path d=\"M6 40h108M6 55h108M6 70h108\"/></g>\n  <path d=\"M14 128c0-25 20-40 46-40s46 15 46 40\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <g transform=\"rotate(-7 60 56)\">\n    <ellipse cx=\"60\" cy=\"52\" rx=\"30\" ry=\"31\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n    <path d=\"M32 46c2-15 13-24 28-24s26 9 28 24\"/>\n    <path d=\"M30 55q-5 2-4 7t6 4M90 55q5 2 4 7t-6 4\"/>\n    <path d=\"M46 49q5-7 11 0M64 49q5-7 11 0\"/>\n    <path d=\"M60 58v4\"/>\n    <path d=\"M54 69h12\"/>\n  </g><circle cx=\"98\" cy=\"26\" r=\"3\" fill=\"currentColor\" stroke=\"none\" opacity=\".45\"/><circle cx=\"107\" cy=\"17\" r=\"2\" fill=\"currentColor\" stroke=\"none\" opacity=\".3\"/>"}, "itv": {"speak": "<path d=\"M110 6v118\" stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"/>\n  <path d=\"M12 128c1-23 19-36 48-36s47 13 48 36\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <path d=\"M44 94l16 15 16-15\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M60 109l5 7-5 12-5-12z\" fill=\"currentColor\" stroke=\"none\"/>\n  <rect x=\"31\" y=\"19\" width=\"58\" height=\"64\" rx=\"21\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26h-7c-2-9-10-14-22-14s-20 5-22 14z\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26\"/>\n  <path d=\"M41 37h15M64 37h15\"/>\n  <rect x=\"40\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <rect x=\"61\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <path d=\"M59 52h2\"/>\n  <circle cx=\"49.5\" cy=\"52\" r=\"2.9\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"70.5\" cy=\"52\" r=\"2.9\" fill=\"currentColor\" stroke=\"none\"/>\n  <ellipse cx=\"60\" cy=\"71\" rx=\"5.4\" ry=\"4\" fill=\"var(--ch-sand,#E7E7DD)\"/>", "idle": "<path d=\"M110 6v118\" stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"/>\n  <path d=\"M12 128c1-23 19-36 48-36s47 13 48 36\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <path d=\"M44 94l16 15 16-15\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M60 109l5 7-5 12-5-12z\" fill=\"currentColor\" stroke=\"none\"/>\n  <rect x=\"31\" y=\"19\" width=\"58\" height=\"64\" rx=\"21\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26h-7c-2-9-10-14-22-14s-20 5-22 14z\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26\"/>\n  <path d=\"M41 38h15M64 38h15\"/>\n  <rect x=\"40\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <rect x=\"61\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <path d=\"M59 52h2\"/>\n  <circle cx=\"49.5\" cy=\"52\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"70.5\" cy=\"52\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/>\n  <path d=\"M52 71h16\"/>", "think": "<path d=\"M110 6v118\" stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"/>\n  <path d=\"M12 128c1-23 19-36 48-36s47 13 48 36\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <path d=\"M44 94l16 15 16-15\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M60 109l5 7-5 12-5-12z\" fill=\"currentColor\" stroke=\"none\"/>\n  <rect x=\"31\" y=\"19\" width=\"58\" height=\"64\" rx=\"21\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26h-7c-2-9-10-14-22-14s-20 5-22 14z\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26\"/>\n  <path d=\"M41 36h15M64 38h15\"/>\n  <rect x=\"40\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <rect x=\"61\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <path d=\"M59 52h2\"/>\n  <circle cx=\"51.5\" cy=\"50\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"72.5\" cy=\"50\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/>\n  <path d=\"M52 71h16\"/>", "listen": "<path d=\"M110 6v118\" stroke=\"var(--ch-sand,#E7E7DD)\" stroke-width=\"4\"/>\n  <path d=\"M12 128c1-23 19-36 48-36s47 13 48 36\" fill=\"var(--ch-fill,#F1F1E8)\"/>\n  <path d=\"M44 94l16 15 16-15\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M60 109l5 7-5 12-5-12z\" fill=\"currentColor\" stroke=\"none\"/>\n  <rect x=\"31\" y=\"19\" width=\"58\" height=\"64\" rx=\"21\" fill=\"var(--ch-bg,#FFFFF7)\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26h-7c-2-9-10-14-22-14s-20 5-22 14z\" fill=\"var(--ch-sand,#E7E7DD)\" stroke=\"none\"/>\n  <path d=\"M31 43c0-17 12-26 29-26s29 9 29 26\"/>\n  <path d=\"M41 38.5h15M64 38.5h15\"/>\n  <rect x=\"40\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <rect x=\"61\" y=\"45\" width=\"19\" height=\"15\" rx=\"7\"/>\n  <path d=\"M59 52h2\"/>\n  <circle cx=\"49.5\" cy=\"52\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"70.5\" cy=\"52\" r=\"2.6\" fill=\"currentColor\" stroke=\"none\"/>\n  <path d=\"M52 71h16\"/>"}};
+
+  function face(kind, mood) {
+    var set = ART[kind === "gyul" ? "gyul" : "itv"];
+    var inner = set[mood || "idle"] || set.idle;
+    return '<svg viewBox="0 0 120 128" fill="none" stroke="currentColor" stroke-width="2.6" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ' +
+      'style="color:var(--ink);--ch-bg:var(--bg);--ch-sand:var(--sand);--ch-fill:var(--sand-lite)">' +
+      inner + "</svg>";
+  }
+
+  /* ── 페르소나 정의 (백엔드 PERSONA_SYSTEM_PROMPTS 와 대응) ── */
+  var PERSONAS = {
+    self: [
+      { id:"gyul", kind:"gyul", name:"결", role:"자기분석 대화 상대",
+        desc:"되묻고 공감하며 이야기를 넓힙니다. 진단하지 않고, 사용자가 스스로 말을 찾도록 기다립니다.",
+        ready:true },
+      { id:"dam", kind:"gyul", name:"담", role:"조용한 관찰자",
+        desc:"말수를 줄이고 여백을 둡니다. 침묵을 견디는 편이 편한 사람에게 맞습니다.",
+        ready:false }
+    ],
+    session: [
+      { id:"interviewer", kind:"itv", name:"정", role:"차분한 면접관",
+        desc:"경청하되 흐름을 유지합니다. 필요할 때만 짧은 꼬리 질문을 던집니다.",
+        ready:true },
+      { id:"press", kind:"itv", name:"강", role:"압박 면접관",
+        desc:"근거를 계속 되묻습니다. 긴장 상황에서의 낙차를 크게 보고 싶을 때 씁니다.",
+        ready:false }
+    ]
+  };
+  var chosen = { self: "gyul", session: "interviewer" };
+  var picking = { self: false, session: false };
+
+  function personaOf(sk) {
+    return PERSONAS[sk].filter(function (x) { return x.id === chosen[sk]; })[0];
+  }
+
+  function renderPersona(sk, mood) {
+    var host = scope("[data-persona]");
+    if (!host) return;
+    var pr = personaOf(sk);
+
+    var pick = "";
+    if (picking[sk]) {
+      pick = '<div class="persona-pick">' + PERSONAS[sk].map(function (o) {
+        return '<button class="persona-opt' + (o.ready ? "" : " locked") + '" type="button"' +
+          ' aria-pressed="' + (o.id === chosen[sk] ? "true" : "false") + '"' +
+          (o.ready ? ' data-pick="' + o.id + '"' : " disabled") + ">" +
+          face(o.kind, "idle") +
+          '<span><span class="nm">' + o.name + '</span><span class="d">' + o.role + "</span></span>" +
+          '<span class="st">' + (o.ready ? (o.id === chosen[sk] ? "사용 중" : "선택") : "준비 중") + "</span>" +
+          "</button>";
+      }).join("") + "</div>";
+    }
+
+    host.innerHTML =
+      '<div class="persona-hd"><span class="persona-fig">' + face(pr.kind, mood) + "</span>" +
+        '<span><span class="persona-nm">' + pr.name + '</span>' +
+        '<span class="persona-role">' + pr.role + "</span></span></div>" +
+      '<p class="persona-desc">' + pr.desc + "</p>" +
+      '<div class="persona-ft"><span>persona_id · ' + pr.id + "</span>" +
+        '<button type="button" data-pick-toggle>' + (picking[sk] ? "닫기" : "변경") + "</button></div>" +
+      pick;
+  }
+
+  document.addEventListener("click", function (e) {
+    var sk = activeKey();
+    if (!sk) return;
+    var tg = e.target.closest("[data-pick-toggle]");
+    if (tg) { picking[sk] = !picking[sk]; renderPersona(sk, moodFor(curState)); return; }
+    var op = e.target.closest("[data-pick]");
+    if (op) { chosen[sk] = op.dataset.pick; picking[sk] = false; setState(curState); }
+  });
+
+  function moodFor(st) {
+    if (st === "speaking") return "speak";
+    if (st === "thinking") return "think";
+    if (st === "listening" || st === "hearing" || st === "sending") return "listen";
+    return "idle";
+  }
+
+  /* ══ 대화 — 채팅 UI + 음성 상태 기계 ══ */
+
+  var SCRIPTS = {
+    self: {
+      key: "self", who: "결",
+      msgs: [
+        { r:"ai", t:"요즘 가장 자주 하는 고민이 뭐예요?", at:"09:03" },
+        { r:"me", t:"진로를 좀 바꿔볼까 계속 생각 중이에요.", at:"09:03", v:["neutral",61], f:["neutral",58] },
+        { r:"ai", t:"그 생각이 언제부터 자주 들었어요?", at:"09:05" },
+        { r:"me", t:"작년에 맡았던 프로젝트가 잘 안 끝났거든요. 그때부터인 것 같아요.", at:"09:06", v:["sadness",64], f:["neutral",60] },
+        { r:"ai", t:"그 프로젝트 이야기를 조금 더 들려주실래요?", at:"09:08", tts:true }
+      ],
+      answer: { r:"me", t:"그때 진짜 무서웠어요. 팀원들이 저를 어떻게 볼지가 제일 겁났어요.", at:"09:12", v:["fear",68], f:["sadness",55] },
+      interim: "그때 진짜 무서웠어요. 팀원들이 저를 어떻게",
+      final: "그때 진짜 무서웠어요. 팀원들이 저를 어떻게 볼지가 제일 겁났어요."
+    },
+    session: {
+      key: "session", who: "면접관",
+      msgs: [
+        { r:"ai", t:"최근에 스스로 잘했다고 느낀 순간을 하나 말씀해 주세요.", at:"11:40" },
+        { r:"me", t:"작은 기능 하나를 끝까지 다듬어서 내보낸 적이 있습니다.", at:"11:41", v:["neutral",63], f:["neutral",58] },
+        { r:"ai", t:"가장 아쉬웠던 프로젝트와 그 원인을 설명해 주세요.", at:"12:01", tts:true,
+          recall:"“그때 진짜 무서웠어요. 팀원들이 저를 어떻게 볼지가 제일 겁났어요.”" }
+      ],
+      answer: { r:"me", t:"커뮤니케이션 부족이 원인이었고, 이후 주간 싱크를 도입해 재발을 막았습니다.", at:"12:04", v:["neutral",74], f:["neutral",69], drop:true },
+      interim: "커뮤니케이션이 부족했던 게 원인이었고, 그래서 이후에는",
+      final: "커뮤니케이션 부족이 원인이었고, 이후 주간 싱크를 도입해 재발을 막았습니다."
+    }
+  };
+
+  function activeKey() {
+    var el = document.querySelector(".screen.session.is-active");
+    return el ? (el.id === "s-self" ? "self" : "session") : null;
+  }
+  function scope(sel) {
+    var el = document.querySelector(".screen.session.is-active");
+    return el ? el.querySelector(sel) : null;
+  }
+
+  function bubble(m, sc, speaking, last) {
+    var av = m.r === "ai"
+      ? '<span class="av char">' + face(personaOf(sc.key).kind, "idle") + "</span>"
+      : '<span class="av ghost"></span>';
+
+    var inner = m.t;
+    if (m.recall) {
+      inner += '<div class="recall"><b>1단계에서는</b>' + m.recall + "</div>";
+    }
+    if (m.tts) {
+      inner += speaking && last
+        ? '<div class="play"><span class="eq"><i></i><i></i><i></i><i></i></span>읽어주는 중 0:04 / 0:07<button type="button">음소거</button></div>'
+        : '<div class="play"><button type="button">다시 듣기</button></div>';
+    }
+
+    var row = '<div class="row ' + m.r + '">' + av +
+      '<div class="bub">' + inner + "</div>" +
+      '<span class="stamp">' + (m.at || "") + "</span></div>";
+
+    if (m.r === "me" && m.v) {
+      row += '<div class="meta" style="justify-content:flex-end">' +
+        '<span class="sg">' + sw(m.v[0]) + ko(m.v[0]) + " " + m.v[1] + "%</span>" +
+        '<span class="sg">' + sw(m.f[0]) + ko(m.f[0]) + " " + m.f[1] + "%</span>" +
+        (m.drop ? '<span class="tagd">1단계 대비 −31</span>' : "") + "</div>";
+    }
+    return row;
+  }
+
+  function renderLog(key, opts) {
+    var log = scope("[data-log]");
+    var sc = SCRIPTS[key];
+    if (!log || !sc) return;
+    var list = sc.msgs.concat(opts.answer ? [sc.answer] : []);
+    var html = list.map(function (m, i) {
+      return bubble(m, sc, opts.speaking, i === list.length - 1);
+    }).join("");
+    if (opts.thinking) {
+      html += '<div class="row ai"><span class="av char">' + face(personaOf(sc.key).kind, "think") + "</span>" +
+        '<div class="bub"><span class="dots3"><i></i><i></i><i></i></span></div></div>';
+    }
+    log.innerHTML = html;
+    log.scrollTop = log.scrollHeight;
+  }
+
+  var MIC = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  var STOP = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="7.5" y="7.5" width="9" height="9" rx="1.5" fill="currentColor"/></svg>';
+
+  var STATES = {
+    idle:      { label:"대기", gate:true },
+    listening: { label:"듣는 중", st:"듣는 중", say:"말씀하시면 인식이 시작됩니다.", icon:STOP,
+                 acts:[["bare","키보드","typing"]], hint:"침묵 0.7초를 감지하면 자동으로 전송합니다." },
+    hearing:   { label:"인식 중", st:"인식 중", interim:true, live:true, wave:true, icon:STOP,
+                 acts:[["bare","키보드","typing"]], hint:"확정되지 않은 텍스트입니다. 계속 말하면 이어집니다." },
+    sending:   { label:"전송", st:"발화 종료 · 전송", final:true, live:true, icon:STOP,
+                 acts:[["bare","계속 말하기","hearing"]], hint:"침묵 0.7초 감지 — 이 발화를 보냅니다." },
+    thinking:  { label:"생각 중", st:"응답 생성 중", say:"답변을 만들고 있어요.", icon:MIC,
+                 answer:true, thinking:true, acts:[["bare","취소",null]], hint:"Kanana · 보통 3–6초." },
+    speaking:  { label:"말하는 중", st:"읽어주는 중 · 마이크 잠김", say:"AI가 말하는 동안에는 입력이 잠깁니다.", icon:MIC,
+                 answer:true, speaking:true, acts:[["bare","음소거",null],["bare","건너뛰기","listening"]],
+                 hint:"재생이 끝나면 자동으로 다시 듣기 시작합니다." },
+    typing:    { label:"키보드", input:true,
+                 hint:"브라우저 음성인식이 없으면(Firefox·Safari) 자동으로 이 모드가 됩니다. 음성 감정 분석은 동작하지 않습니다." },
+    error:     { label:"끊김", st:"연결 오류", err:true, icon:MIC,
+                 acts:[["btn","다시 연결","listening"],["bare","키보드로 계속","typing"]],
+                 hint:"지금까지의 답변은 저장돼 있습니다." }
+  };
+  var ORDER = ["idle","listening","hearing","sending","thinking","speaking","typing","error"];
+  var curState = "hearing";
+
+  function waveBars(n) {
+    var o = '<span class="wave">';
+    for (var i = 0; i < n; i++) o += '<i style="animation-delay:' + (i * .09).toFixed(2) + 's"></i>';
+    return o + "</span>";
+  }
+  function actsHtml(a) {
+    if (!a) return "";
+    return a.map(function (x) {
+      return '<button class="' + (x[0] === "bare" ? "btn bare sm" : "btn sm") + '" type="button"' +
+        (x[2] ? ' data-state-go="' + x[2] + '"' : "") + ">" + x[1] + "</button>";
+    }).join("");
+  }
+
+  function setState(key) {
+    var st = STATES[key], sk = activeKey();
+    if (!st || !sk) return;
+    curState = key;
+
+    var gate = scope("[data-gate]"), live = scope("[data-live]");
+    if (gate && live) { gate.hidden = !st.gate; live.hidden = !!st.gate; }
+    if (st.gate) renderPersona(sk, "idle");
+    document.querySelectorAll("#statebar button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.state === key ? "true" : "false");
+    });
+    if (st.gate) return;
+
+    renderPersona(sk, moodFor(key));
+    renderLog(sk, { answer: !!st.answer, speaking: !!st.speaking, thinking: !!st.thinking });
+
+    var bar = scope("[data-bar]"), line = scope("[data-bar-line]"), hint = scope("[data-bar-hint]");
+    if (!bar || !line) return;
+    bar.setAttribute("data-state", key);
+
+    if (st.input) {
+      line.innerHTML =
+        '<div class="bar-input"><textarea placeholder="답변을 입력하세요. 전송은 Enter."></textarea>' +
+        '<div style="display:grid;gap:8px;justify-items:end">' +
+          '<button class="btn sm solid" type="button">보내기</button>' +
+          '<button class="btn bare sm" type="button" data-state-go="listening">음성으로</button>' +
+        "</div></div>";
+    } else if (st.err) {
+      line.innerHTML =
+        '<div class="bar-main"><button class="mic" type="button" disabled>' + st.icon + "</button>" +
+        '<div class="bar-txt"><p class="bar-state">연결 오류</p>' +
+        '<p class="bar-err"><b>서버와의 연결이 끊겼습니다.</b> 네트워크를 확인해 주세요.</p></div>' +
+        '<div class="bar-acts">' + actsHtml(st.acts) + "</div></div>";
+    } else {
+      var sc = SCRIPTS[sk];
+      var say = st.interim ? sc.interim : st.final ? sc.final : (st.say || "");
+      line.innerHTML =
+        '<div class="bar-main"><button class="mic" type="button">' + st.icon + "</button>" +
+        '<div class="bar-txt"><p class="bar-state">' + (st.st || "") + "</p>" +
+        '<p class="bar-say' + (st.live ? " live" : "") + '">' + say + (st.wave ? waveBars(7) : "") + "</p></div>" +
+        '<div class="bar-acts">' + actsHtml(st.acts) + "</div></div>";
+    }
+    if (hint) hint.textContent = st.hint || "";
+  }
+
+  var sb = document.getElementById("statebar");
+  if (sb) {
+    ORDER.forEach(function (k) {
+      var b = document.createElement("button");
+      b.type = "button"; b.dataset.state = k; b.textContent = STATES[k].label;
+      b.addEventListener("click", function () { setState(k); });
+      sb.appendChild(b);
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var hit = e.target.closest("[data-state-go]");
+    if (!hit) return;
+    e.preventDefault();
+    setState(hit.dataset.stateGo);
+  });
+
+  /* ── 로그인 화면 캐릭터 ── */
+  var lf = document.getElementById("login-fig");
+  if (lf) lf.innerHTML = face("gyul", "listen");
+  var av2 = document.getElementById("acct-av");
+  if (av2) av2.innerHTML = face("gyul", "idle");
+
+  /* ── 마이페이지 ── */
+  var TREND = [
+    { when: "07-21", gap: 23 },
+    { when: "08-16", gap: 19 },
+    { when: "09-02", gap: 14 }
+  ];
+  var tp = document.getElementById("trend");
+  if (tp) {
+    var max = 28;
+    TREND.forEach(function (t) {
+      var el = document.createElement("div");
+      el.className = "tp";
+      el.innerHTML =
+        '<span class="val">' + t.gap + "</span>" +
+        '<span class="bar" style="height:' + Math.round((t.gap / max) * 108) + 'px"></span>' +
+        '<span class="lbl">' + t.when + "</span>";
+      tp.appendChild(el);
+    });
+  }
+
+  var SESSIONS = [
+    { draft:true, date:"2026-09-05", time:"진행 중", title:"자가분석 대화", tag:"이어하기",
+      facts:["6발화 수집", "면접 대화 남음"], acts:[["solid","이어서 면접 보기","self"]] },
+    { date:"2026-09-02", time:"14:20", title:"세 번째 세션",
+      facts:["평균 낙차 <b>14</b>", "자기개방 <b>−15</b>", "불일치 <b>3회</b>"],
+      acts:[["","리포트","report"],["","컬쳐핏","fit"]] },
+    { date:"2026-08-16", time:"20:05", title:"두 번째 세션",
+      facts:["평균 낙차 <b>19</b>", "자기개방 <b>−21</b>", "불일치 <b>4회</b>"],
+      acts:[["","리포트","report"]] },
+    { date:"2026-07-21", time:"11:32", title:"첫 세션",
+      facts:["평균 낙차 <b>23</b>", "자기개방 <b>−28</b>", "불일치 <b>5회</b>"],
+      acts:[["","리포트","report"]] }
+  ];
+  var sl = document.getElementById("ses-list");
+  if (sl) {
+    SESSIONS.forEach(function (x) {
+      var el = document.createElement("article");
+      el.className = "ses" + (x.draft ? " draft" : "");
+      el.innerHTML =
+        '<div class="when">' + x.date + "<em>" + x.time + "</em></div>" +
+        '<div><div class="ttl">' + x.title +
+          (x.tag ? '<span class="pill">' + x.tag + "</span>" : "") + "</div>" +
+          '<div class="facts">' + x.facts.map(function (f) { return "<span>" + f + "</span>"; }).join("") + "</div></div>" +
+        '<div class="go">' + x.acts.map(function (a) {
+          return '<button class="btn sm' + (a[0] === "solid" ? " solid" : "") + '" type="button" data-go="' + a[2] + '">' + a[1] + "</button>";
+        }).join("") + "</div>";
+      sl.appendChild(el);
+    });
+  }
+
+  /* 기준선 수집 (1단계) */
+  var BASE = [
+    { nm:"자기개방", v:82 }, { nm:"감정 표현", v:76 }, { nm:"일관성", v:84 },
+    { nm:"안정감", v:71 }, { nm:"주도성", v:46 }, { nm:"구체성", v:38 }
+  ];
+  var blRows = document.getElementById("bl-rows");
+  if (blRows) {
+    var lack = 0;
+    BASE.forEach(function (b) {
+      var low = b.v < 50; if (low) lack++;
+      var el = document.createElement("div");
+      el.className = "row" + (low ? " low" : "");
+      el.innerHTML = '<span class="nm">' + b.nm + '</span><span class="t"><i style="width:' + b.v +
+        '%"></i></span><span class="st">' + (low ? "부족" : "충분") + "</span>";
+      blRows.appendChild(el);
+    });
+    var foot = document.getElementById("bl-foot");
+    if (foot) foot.innerHTML = lack
+      ? "<b>" + lack + "개 축이 아직 부족해요.</b> 조금 더 이야기하면 비교할 기준선이 완성됩니다."
+      : "<b>기준선이 완성됐어요.</b> 면접 대화로 넘어갈 수 있습니다.";
+  }
+
+  /* ── 화면 전환 ── */
+  var SCREENS = { landing:"s-landing", login:"s-login", self:"s-self", session:"s-session",
+                  loading:"s-loading", report:"s-report", fit:"s-fit", my:"s-my" };
+  var NAV = { landing:"landing", login:null, self:"self", session:"self",
+              loading:"self", report:"report", fit:"report", my:"my" };
+  var timer = null;
+
+  function go(name) {
+    Object.keys(SCREENS).forEach(function (k) {
+      var el = document.getElementById(SCREENS[k]);
+      if (el) el.classList.toggle("is-active", k === name);
+    });
+    document.querySelectorAll(".switcher button").forEach(function (b) {
+      b.setAttribute("aria-current", b.dataset.go === name ? "true" : "false");
+    });
+    document.querySelectorAll(".topnav button").forEach(function (b) {
+      if (b.dataset.go === NAV[name]) b.setAttribute("aria-current", "page");
+      else b.removeAttribute("aria-current");
+    });
+    window.scrollTo({ top: 0 });
+    if (timer) { window.clearInterval(timer); timer = null; }
+    if (name === "loading") wait();
+
+    var out = name === "login" || name === "landing";
+    var chip = document.getElementById("acct-chip");
+    var outEl = document.getElementById("acct-out");
+    if (chip) chip.hidden = (name === "login");
+    if (outEl) outEl.hidden = (name !== "login");
+    document.querySelectorAll(".topnav [data-auth]").forEach(function (b) { b.hidden = (name === "login"); });
+
+    var isTalk = name === "self" || name === "session";
+    var bar = document.getElementById("statebar");
+    if (bar) bar.hidden = !isTalk;
+    if (isTalk) setState(curState);
+  }
+  document.addEventListener("click", function (e) {
+    var hit = e.target.closest("[data-go]");
+    if (!hit) return;
+    e.preventDefault();
+    go(hit.dataset.go);
+  });
+
+  /* ── 대기 ── */
+  var PHASES = ["1단계 자가분석 대화를 읽는 중", "2단계 면접 대화와 겹쳐 보는 중", "여섯 축의 차이를 계산하는 중"];
+  function wait() {
+    var t = 0, eta = 90, p = 0;
+    var fill = document.getElementById("loading-fill");
+    var el = document.getElementById("loading-elapsed");
+    var etaEl = document.getElementById("loading-eta");
+    var phaseEl = document.getElementById("loading-phase");
+    if (!fill) return;
+    fill.style.width = "8%";
+    if (phaseEl) phaseEl.textContent = PHASES[0];
+    timer = window.setInterval(function () {
+      t += 1;
+      fill.style.width = Math.min(95, Math.round((t / eta) * 100)) + "%";
+      if (el) el.textContent = t + "초";
+      var left = Math.max(0, eta - t);
+      if (etaEl) etaEl.textContent = left > 0 ? "약 " + left + "초 남음" : "곧 완료";
+      if (t % 6 === 0 && phaseEl) { p = (p + 1) % PHASES.length; phaseEl.textContent = PHASES[p]; }
+    }, 1000);
+  }
+
+  /* ══ 컬쳐핏 — 가상 회사 더미 ══ */
+  var COS = [
+    { rank:1, name:"오르빗랩", sub:"AI 인프라 · 62명 · 시리즈 B · 수평적 협업형", score:89,
+      fits:["온보딩 첫 달은 페어로 일합니다. 낯선 자리에서 표현이 위축되는 낙차를 줄여 줍니다.",
+            "주 단위 회고가 제도로 자리 잡았습니다. 평소 값이 높은 회고 지향이 그대로 발휘됩니다."],
+      watch:"기술 결정을 문서로 공개 논의합니다. 자기개방 낙차가 큰 편이라 초반 몇 주는 부담이 될 수 있습니다.",
+      tags:"페어 온보딩 · 주간 회고 · 원격 병행" },
+    { rank:2, name:"세움소프트", sub:"엔터프라이즈 SaaS · 180명 · 시리즈 C · 안정 지향형", score:84,
+      fits:["역할과 책임 범위가 문서로 정해져 있어, 말로 자기 몫을 주장하지 않아도 됩니다.",
+            "면접 대화에서 높게 나온 구체성이 리뷰 문화와 잘 맞습니다."],
+      watch:"의사결정이 느린 편입니다. 빠른 실행을 기대하면 답답할 수 있습니다.",
+      tags:"문서 우선 · 리뷰 필수 · 재택 주 2회" },
+    { rank:3, name:"필드노트", sub:"에듀테크 · 34명 · 시리즈 A · 수평적 협업형", score:76,
+      fits:["실패한 실험을 공유하는 자리가 정기적으로 있습니다. 평소 값의 자기개방이 살아날 여지가 큽니다."],
+      watch:"인원이 적어 한 사람이 여러 역할을 겸합니다. 범위가 자주 바뀝니다.",
+      tags:"소규모 · 실험 공유 · 전원 출근" },
+    { rank:4, name:"마루커넥트", sub:"커머스 플랫폼 · 240명 · 시리즈 D · 자율 실행형", score:68,
+      fits:["목표만 맞추면 방식은 자유입니다. 단독 실행 선호와 맞습니다."],
+      watch:"초반 정렬 없이 바로 실행에 들어갑니다. 주도성 낙차가 있어 첫 분기에 방향이 흔들릴 수 있습니다.",
+      tags:"목표 중심 · 높은 자율성 · 빠른 배포" },
+    { rank:5, name:"넥스트폴드", sub:"핀테크 · 410명 · 상장 준비 · 속도 우선형", score:61,
+      fits:["성장 기회가 많고 직무 이동이 자유롭습니다."],
+      watch:"주간 단위로 우선순위가 바뀌고 회고보다 다음 실행을 먼저 요구합니다. 되짚어 정리하는 성향과 리듬이 다릅니다.",
+      tags:"빠른 전환 · 성과 중심 · 야근 있음" }
+  ];
+
+  var ch = document.getElementById("co-list");
+  if (ch) {
+    COS.forEach(function (c) {
+      var el = document.createElement("article");
+      el.className = "co";
+      var why = c.fits.map(function (f, i) {
+        return '<div class="r"><span class="lbl">' + (i === 0 ? "맞음" : "") + '</span><span>' + f + "</span></div>";
+      }).join("");
+      el.innerHTML =
+        '<div class="co-hd">' +
+          "<div><div class=\"co-name\"><span class=\"rk\">" + String(c.rank).padStart(2, "0") + "</span>" + c.name + "</div>" +
+          '<div class="co-sub">' + c.sub + "</div></div>" +
+          '<div class="co-score"><div class="v">' + c.score + '%</div><div class="k">매치율</div></div>' +
+        "</div>" +
+        '<div class="co-bar"><i style="width:' + c.score + '%"></i></div>' +
+        '<div class="co-why">' + why +
+          '<div class="r watch"><span class="lbl">확인</span><span>' + c.watch + "</span></div>" +
+        "</div>" +
+        '<div class="co-tags">' + c.tags + "</div>";
+      ch.appendChild(el);
+    });
+  }
+  go("landing");
+})();
+</script>

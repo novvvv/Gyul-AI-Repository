@@ -10,6 +10,7 @@ from app.memory.session_memory import session_memory
 from app.services.face_detect_service import face_detect_service
 from app.services.face_service import face_service
 from app.services.fish_tts_service import fish_tts_service
+from app.services.openai_tts_service import openai_tts_service
 from app.services.kafka_producer import report_kafka_producer
 from app.services.llm_service import llm_reply_service
 from app.services.local_llm_service import local_llm_service
@@ -72,6 +73,7 @@ def health() -> dict:
         resolve_text_backend() == "openai" or local_llm_service.is_loaded
     )
     payload["fish_tts_enabled"] = fish_tts_service.is_enabled
+    payload["openai_tts_enabled"] = openai_tts_service.is_enabled
     if fish_tts_service.is_enabled:
         payload["fish_tts_voice_id"] = fish_tts_service.voice_id
     return payload
@@ -134,6 +136,30 @@ async def detect_face(body: FaceRequest) -> dict:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Face detection failed: {e}")
+
+
+class TtsRequest(BaseModel):
+    text: str
+    emotion: str = "neutral"
+
+
+@app.post("/tts")
+async def tts(body: TtsRequest) -> dict:
+    """임의 문장 낭독 — 고정 문항(첫 질문)을 읽어줄 때 쓴다."""
+    service = (
+        fish_tts_service
+        if fish_tts_service.is_enabled
+        else openai_tts_service
+        if openai_tts_service.is_enabled
+        else None
+    )
+    if service is None:
+        return {"audio_b64": None, "format": None}
+
+    audio_b64 = await asyncio.to_thread(service.synthesize_b64, body.text, body.emotion)
+    if not audio_b64:
+        return {"audio_b64": None, "format": None}
+    return {"audio_b64": audio_b64, "format": "mp3"}
 
 
 @app.websocket("/ws/predict")

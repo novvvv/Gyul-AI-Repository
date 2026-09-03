@@ -21,6 +21,7 @@ from app.core.config import (
 )
 from app.memory.session_memory import SessionContext, SessionMemory
 from app.services.fish_tts_service import fish_tts_service
+from app.services.openai_tts_service import openai_tts_service
 from app.services.llm_service import LLMReplyService
 from app.services.ser_service import SERService
 
@@ -162,9 +163,17 @@ async def run_final_turn(
         **final_result,
     }
 
-    if fish_tts_service.is_enabled:
+    # Fish 를 우선하고, 없으면 OpenAI TTS 로 떨어진다. 둘 다 꺼져 있으면 음성 없이 진행.
+    tts = (
+        fish_tts_service
+        if fish_tts_service.is_enabled
+        else openai_tts_service
+        if openai_tts_service.is_enabled
+        else None
+    )
+    if tts is not None:
         audio_b64 = await asyncio.to_thread(
-            fish_tts_service.synthesize_b64,
+            tts.synthesize_b64,
             ai_reply,
             final_result["label"],
         )
